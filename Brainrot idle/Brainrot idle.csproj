@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="model\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>

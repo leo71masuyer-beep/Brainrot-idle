@@ -21,5 +21,10 @@ namespace Brainrot_idle.view
             InitializeComponent();
             MainFrame.Navigate(new HomePage());
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

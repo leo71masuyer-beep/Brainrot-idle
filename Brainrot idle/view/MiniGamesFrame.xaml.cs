@@ -30,5 +30,10 @@ namespace Brainrot_idle.view
         {
             NavigationService.Navigate(new Snake());
         }
+
+        private void Combat_Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MonJeuCombatFrame());
+        }
     }
 }

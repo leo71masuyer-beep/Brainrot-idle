@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MonJeuCombat.Models
+namespace Brainrot_idle.Game.Combatgame.model
 {
     public class Personnage
     {
@@ -14,7 +14,7 @@ namespace MonJeuCombat.Models
         public double Defense { get; private set; }
         public double Vitesse { get; private set; }
         public int ChanceCritique { get; private set; }
-        public int DégatCritique { get; private set; }
+        public int DegatCritique { get; private set; }
         private static Random _rng = new Random();
 
         // Le constructeur : c'est ce qui permet de créer un perso avec des stats précises
@@ -27,14 +27,12 @@ namespace MonJeuCombat.Models
             Defense = def;
             Vitesse = vit;
             ChanceCritique = pourcentageCrit;
-            DégatCritique = degCrit;
+            DegatCritique = degCrit;
         }
 
         public void RecevoirDegats(double montantBrut, double PV)
         {
-            // 1. Soustraire la défense au montant de dégâts reçu
-            // (Attention : si la défense est plus haute que l'attaque, 
-            // le perso ne doit pas gagner de vie !)
+            // Calcul de la defense
             double coefficient = 100 / (100 + Defense);
             double degatsFinaux = montantBrut * coefficient;
 
@@ -50,17 +48,14 @@ namespace MonJeuCombat.Models
             // 1. Tirage au sort (entre 1 et 101 car le max est exclus)
             int jet = _rng.Next(1, 101);
 
-            double degatsFinaux = this.Attaque;
+            double degatsFinaux = Attaque;
 
             // 2. Test du coup critique
-            if (jet <= this.ChanceCritique)
+            if (jet >= ChanceCritique)
             {
-                // LOGIQUE : Comment transformer ton "int DégatCritique" (ex: 50) 
-                // en multiplicateur (ex: 1.5) ?
-
-                // Indice : (1 + (DégatCritique / 100.0))
-
-                Console.WriteLine("Coup Critique !"); // Petit message pour le debug
+                degatsFinaux = degatsFinaux * (1+DegatCritique / 100.0);
+                
+                Console.WriteLine("Coup Critique !");
             }
 
             return degatsFinaux;

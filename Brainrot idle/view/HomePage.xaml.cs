@@ -20,9 +20,13 @@ namespace Brainrot_idle.view
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MiniGames_Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MiniGamesFrame());
+        }
+        private void Parametre_Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ParametreFrame());
         }
     }
 }

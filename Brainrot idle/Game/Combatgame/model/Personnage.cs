@@ -15,10 +15,11 @@ namespace Brainrot_idle.Game.Combatgame.model
         public double Vitesse { get; private set; }
         public int ChanceCritique { get; private set; }
         public int DegatCritique { get; private set; }
+        public bool EstJoueur { get; private set; }
         private static Random _rng = new Random();
 
         // Le constructeur : c'est ce qui permet de créer un perso avec des stats précises
-        public Personnage(string nom, double pv, double atk , double def, double vit, int pourcentageCrit, int degCrit, double pvmax)
+        public Personnage(string nom, double pv, double atk , double def, double vit, int pourcentageCrit, int degCrit, double pvmax, bool EstJ)
         {
             Nom = nom;
             PointsDeVie = pv;
@@ -28,6 +29,7 @@ namespace Brainrot_idle.Game.Combatgame.model
             Vitesse = vit;
             ChanceCritique = pourcentageCrit;
             DegatCritique = degCrit;
+            EstJoueur = EstJ;
         }
 
         public void RecevoirDegats(double montantBrut, double PV)

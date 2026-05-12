@@ -14,21 +14,17 @@ using System.Windows.Shapes;
 namespace Brainrot_idle.view
 {
     /// <summary>
-    /// Logique d'interaction pour MiniGamesFrame.xaml
+    /// Logique d'interaction pour ParametreFrame.xaml
     /// </summary>
-    public partial class MiniGamesFrame : Page
+    public partial class ParametreFrame : Page
     {
-        public MiniGamesFrame()
+        public ParametreFrame()
         {
             InitializeComponent();
         }
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new HomePage());
-        }
-        private void Snake_Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Snake());
         }
     }
 }

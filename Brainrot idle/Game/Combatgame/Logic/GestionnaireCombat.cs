@@ -3,82 +3,129 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-
 namespace MonJeuCombat.Games.CombatGame.Logic
 {
     public class GestionnaireCombat
     {
-        // La liste qui contient tout le monde (Héros + Ennemis)
         public List<Personnage> participants = new List<Personnage>();
+
+        public int OrCumule { get; private set; }
+        public int ExpCumule { get; private set; }
 
         public void PreparerCombat(Personnage heros, List<Personnage> ennemisDeLaVague)
         {
-            // 1. On vide la liste au cas où il restait des gens du combat d'avant
             participants.Clear();
+            OrCumule = 0;
+            ExpCumule = 0;
 
-            // 2. On ajoute le héros
             participants.Add(heros);
-
-            // 3. On ajoute tous les ennemis d'un coup
             participants.AddRange(ennemisDeLaVague);
 
-            // 4. LE TRI PAR VITESSE
-            // On demande à LINQ de trier par vitesse descendante (du plus grand au plus petit)
-            participants = participants.OrderByDescending(p => p.Vitesse).ToList();
+            participants = participants.OrderByDescending(p => p.VitesseAttaque).ToList();
         }
 
-        public void ExecuterTour()
+        // 1. NOUVELLE MÉTHODE : Le temps qui passe
+        public void ExecuterTick()
         {
+            // On regarde chaque personnage sur le terrain
             foreach (var p in participants)
             {
-                if (p.PV <= 0) continue;
+                // Les morts ne font rien
+                if (p.PointsDeVie <= 0) continue;
 
-                if (p.EstJoueur)
+                // La jauge se remplit avec la vitesse (ex: si Vitesse = 10, ça ajoute 10 à chaque fois)
+                // On peut multiplier par un petit chiffre plus tard si ça va trop vite
+                p.JaugeAction += p.VitesseAttaque;
+
+                // Si la jauge déborde (atteint ou dépasse 100)
+                if (p.JaugeAction >= 100)
                 {
-                    Console.WriteLine("C'est à vous de jouer !");
-                    // Plus tard, ici on arrêtera la boucle pour attendre ton clic
-                }
-                else
-                {
-                    // C'est un ENNEMI qui attaque
-                    // Il calcule ses dégâts
-                    double degats = p.CalculerDegatsSortants();
+                    FaireAttaquer(p);
 
-                    // Il attaque le héros (on doit le trouver dans la liste)
-                    Personnage cible = participants.FirstOrDefault(x => x.EstJoueur);
-
-                    if (cible != null)
-                    {
-                        cible.RecevoirDegats(degats);
-                        Console.WriteLine($"{p.Nom} attaque le joueur et inflige {degats} dégâts !");
-                    }
+                    // On retire 100 à la jauge au lieu de la mettre à 0
+                    // Comme ça, s'il était à 105, il lui reste 5 pour la prochaine attaque (il ne perd pas de temps !)
+                    p.JaugeAction -= 100;
                 }
             }
+
             VerifierFinDeCombat();
         }
 
+        // 2. NOUVELLE MÉTHODE : L'action de frapper
+        private void FaireAttaquer(Personnage attaquant)
+        {
+            Personnage cible = null;
+
+            if (attaquant.EstJoueur)
+            {
+                // Le joueur cible le premier ennemi vivant
+                cible = participants.FirstOrDefault(x => !x.EstJoueur && x.PointsDeVie > 0);
+            }
+            else
+            {
+                // L'ennemi cible le joueur
+                cible = participants.FirstOrDefault(x => x.EstJoueur && x.PointsDeVie > 0);
+            }
+
+            // S'il a trouvé une cible valide, il frappe !
+            if (cible != null)
+            {
+                double degats = attaquant.CalculerDegatsSortants();
+                cible.RecevoirDegats(degats);
+
+                // On vérifie s'il l'a tué pour récupérer le loot
+                if (cible.PointsDeVie <= 0 && !cible.EstJoueur)
+                {
+                    OrCumule += cible.GenererOrAleatoire();
+                    ExpCumule += cible.GenererExpAleatoire();
+                }
+            }
+        }
+
+        public void VerifierFinDeCombat()
+        {
+            bool joueurVivant = participants.Any(x => x.EstJoueur && x.PointsDeVie > 0);
+            bool ennemisVivants = participants.Any(x => !x.EstJoueur && x.PointsDeVie > 0);
+
+            if (!joueurVivant)
+            {
+                Console.WriteLine("Défaite... Vous rentrez avec votre butin.");
+                TerminerCombat();
+            }
+            else if (!ennemisVivants)
+            {
+                Console.WriteLine("Victoire ! Vague terminée.");
+                TerminerCombat();
+            }
+        }
+
+        private void TerminerCombat()
+        {
+            Console.WriteLine($"Butin total : {OrCumule} Or et {ExpCumule} Exp.");
+        }
+
+        // Ta liste globale est bien là
         public List<Personnage> ennemisDeLaVague = new List<Personnage>();
 
         public void ChargerVague(int niveau, int vague)
         {
-            ennemisActuels.Clear();
-            //(     Nom | Pv | atk | def | vit | int pourcentageCrit | int degCrit | double pvmax | bool EstJ    )
-            if (niveau == 1) // On est dans la forêt par exemple
+            ennemisDeLaVague.Clear();
+
+            if (niveau == 1)
             {
-                if (vague == 1) 
+                if (vague == 1)
                 {
-                    ennemisActuels.Add(new Personnage("Lutin", 30, 5, 2, 10, 0, 0, 30, false));
+                    ennemisDeLaVague.Add(new Personnage("Lutin", 30, 5, 2, 10, 0, 0, 30, false, 10, 15));
                 }
-                if (vague == 2) 
+                if (vague == 2)
                 {
-                    ennemisActuels.Add(new Personnage("Lutin", 30, 5, 2, 10, 5, 50, 30, false));
-                    ennemisActuels.Add(new Personnage("Lutin", 30, 5, 2, 10, 5, 50, 30, false));
+                    ennemisDeLaVague.Add(new Personnage("Lutin A", 30, 5, 2, 10, 5, 50, 30, false, 10, 15));
+                    ennemisDeLaVague.Add(new Personnage("Lutin B", 30, 5, 2, 10, 5, 50, 30, false, 10, 15));
                 }
-                if (vague == 4) { ennemisActuels.Add(new Personnage("LutinBoss", 300, 5, 2, 10, 5, 50, 300, false)); }
-            }
-            else if (niveau == 2) // On est dans la grotte
-            {
-                if (vague == 1) { /* Ajouter 2 chauve-souris */ }
+                if (vague == 3)
+                {
+                    ennemisDeLaVague.Add(new Personnage("LutinBoss", 300, 5, 2, 10, 5, 50, 300, false, 100, 150));
+                }
             }
         }
     }

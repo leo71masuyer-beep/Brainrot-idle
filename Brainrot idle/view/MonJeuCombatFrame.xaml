@@ -31,7 +31,7 @@
         </UniformGrid>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
-            <Button x:Name="BtnAttaque" Content="ATTAQUER" Width="120" Height="40" Margin="10" Click="BtnAttaque_Click"/>
+            <Button x:Name="BtnAttaque" Content="ATTAQUER" Width="120" Height="40" Margin="10" />
             <Button x:Name="BtnCompetence" Content="COMPÉTENCES" Width="120" Height="40" Margin="10"/>
         </StackPanel>
     </Grid>

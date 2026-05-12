@@ -1,5 +1,4 @@
 ﻿using Brainrot_idle.Game.Combatgame.model;
-using MonJeuCombat.Games.CombatGame.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

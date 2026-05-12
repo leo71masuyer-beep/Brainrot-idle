@@ -6,52 +6,7 @@
         xmlns:local="clr-namespace:Brainrot_idle.view"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <!-- Grille principale -->
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="350"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Seconde grille -->
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="1" Grid.Column="0" Content="Button 1"/>
-            <Button Grid.Row="1" Grid.Column="1" Content="Button 2"/>
-            <Button Grid.Row="1" Grid.Column="2" Content="Button 3"/>
-            <Button Grid.Row="1" Grid.Column="3" Content="Button 4"/>
-            <Button Grid.Row="1" Grid.Column="4" Content="Button 5"/>
-            <Button Grid.Row="1" Grid.Column="5" Content="Button 6" Click="Button_Click"/>
-        </Grid>
-        <Button Grid.Row="0" Grid.Column="0" Content="Aura" Margin="200,120,200,120"/>
-        <ScrollViewer Grid.Row="0"
-              Grid.Column="1"
-              VerticalScrollBarVisibility="Auto"
-              HorizontalScrollBarVisibility="Disabled">
-            <Canvas Width="2000" Height="2000" Background="LightGray">
-                <Button Canvas.Left="150"  Canvas.Top="50" Width="100" Height="40" Content="Amélioration 1"/>
-                <Button Canvas.Left="150" Canvas.Top="150" Width="100" Height="40" Content="Amélioration 2"/>
-                <Button Canvas.Left="150" Canvas.Top="250" Width="100" Height="40" Content="Amélioration 3"/>
-                <Button Canvas.Left="150" Canvas.Top="350" Width="100" Height="40" Content="Amélioration 4"/>
-                <Button Canvas.Left="150" Canvas.Top="450" Width="100" Height="40" Content="Amélioration 5"/>
-                <Button Canvas.Left="150" Canvas.Top="550" Width="100" Height="40" Content="Amélioration 6"/>
-                <Button Canvas.Left="150" Canvas.Top="650" Width="100" Height="40" Content="Amélioration 7"/>
-                <Button Canvas.Left="150" Canvas.Top="750" Width="100" Height="40" Content="Amélioration 8"/>
-                <Button Canvas.Left="150" Canvas.Top="850" Width="100" Height="40" Content="Amélioration 9"/>
-                <Button Canvas.Left="150" Canvas.Top="950" Width="100" Height="40" Content="Amélioration 10"/>
-                <Button Canvas.Left="150" Canvas.Top="1050" Width="100" Height="40" Content="Amélioration 11"/>
-            </Canvas>
-        </ScrollViewer>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

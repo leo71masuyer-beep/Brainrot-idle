@@ -8,16 +8,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Brainrot_idle.view
 {
     /// <summary>
-    /// Logique d'interaction pour MiniGame.xaml
+    /// Logique d'interaction pour MiniGamesFrame.xaml
     /// </summary>
-    public partial class MiniGame : Window
+    public partial class MiniGamesFrame : Page
     {
-        public MiniGame()
+        public MiniGamesFrame()
         {
             InitializeComponent();
         }

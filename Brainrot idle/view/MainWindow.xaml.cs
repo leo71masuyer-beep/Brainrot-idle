@@ -16,7 +16,7 @@ namespace Brainrot_idle.view
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MediaPlayer player = new MediaPlayer();
+        public static MediaPlayer player = new MediaPlayer();
 
         private void PlayMusic()
         {

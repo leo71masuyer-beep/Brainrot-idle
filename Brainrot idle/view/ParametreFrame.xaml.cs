@@ -26,5 +26,12 @@ namespace Brainrot_idle.view
         {
             NavigationService.Navigate(new HomePage());
         }
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (MainWindow.player != null)
+            {
+                MainWindow.player.Volume = e.NewValue / 100.0;
+            }
+        }
     }
 }

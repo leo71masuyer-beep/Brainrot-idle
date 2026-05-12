@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:Brainrot_idle.view"
         mc:Ignorable="d">
     <Grid>
-        
-            <Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
                 <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock x:Name="TexteScore" Text="Score: 0" Foreground="Black" FontSize="24" FontWeight="Bold" Margin="10,0"/>
+        <Button x:Name="BoutonRetour" Grid.Row="0" Content="Retour" HorizontalAlignment="Left" Margin="10,0,0,0" Click="Return_Button_Click"/>
+        <TextBlock x:Name="TexteScore" Grid.Row="1" Text="Score: 0" Foreground="Black" FontSize="24" FontWeight="Bold" Margin="10,0"/>
 
-            <Canvas x:Name="ZoneDeJeu" Grid.Row="1" Background="LightGray"/>
+        <Canvas x:Name="ZoneDeJeu" Grid.Row="2" Background="LightGray"/>
         
     </Grid>
 </Page>

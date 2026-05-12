@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace Brainrot_idle.view
 {
     /// <summary>
-    /// Logique d'interaction pour MonJeuCombat.xaml
+    /// Logique d'interaction pour MonJeuCombatFrame.xaml
     /// </summary>
-    public partial class MonJeuCombat : Window
+    public partial class MonJeuCombatFrame : Page
     {
-        public MonJeuCombat()
+        public MonJeuCombatFrame()
         {
             InitializeComponent();
         }

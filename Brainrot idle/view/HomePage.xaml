@@ -8,14 +8,13 @@
     <!-- Grille principale -->
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="1500"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="350"/>
+            <RowDefinition Height="950"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <!-- Seconde grille -->
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

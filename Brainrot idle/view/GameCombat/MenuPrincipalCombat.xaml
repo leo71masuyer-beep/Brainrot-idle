@@ -7,11 +7,15 @@
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="320"/>
+            <!-- Panneau Gauche -->
             <ColumnDefinition Width="*"/>
+            <!-- Panneau Droit -->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="90"/>
+            <!-- En-tête -->
             <RowDefinition Height="*"/>
+            <!-- Contenu Principal -->
         </Grid.RowDefinitions>
 
         <!-- ========================================== -->
@@ -24,13 +28,17 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
+                <!-- Avatar -->
                 <Border Width="50" Height="50" Background="#2B3A2C" BorderBrush="#111111" BorderThickness="1" CornerRadius="3">
                     <TextBlock Text="🪵" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-5"/>
                 </Border>
 
+                <!-- Infos -->
                 <StackPanel Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center">
                     <TextBlock Text="TUNG TUNG SAHUR" Foreground="White" FontWeight="Bold" FontSize="16" FontFamily="Consolas"/>
                     <TextBlock Text="NIVEAU 1" Foreground="#4CAF50" FontSize="12" FontWeight="Bold" Margin="0,2,0,5"/>
+
+                    <!-- Barre d'XP -->
                     <Grid>
                         <ProgressBar Value="0" Maximum="50" Height="8" Background="#110F0D" BorderBrush="#2C241E" Foreground="#4CAF50"/>
                         <TextBlock Text="0 / 50" Foreground="#A59C90" FontSize="10" HorizontalAlignment="Right" Margin="0,-12,0,0"/>
@@ -44,6 +52,7 @@
         <!-- ========================================== -->
         <Border Grid.Row="0" Grid.Column="1" BorderBrush="#2C241E" BorderThickness="2" Background="#151310" CornerRadius="5" Margin="0,0,0,10">
             <Grid Margin="15,0">
+                <!-- Ressources -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBlock Text="🪙" FontSize="22" VerticalAlignment="Center" Margin="0,0,8,0"/>
                     <TextBlock Text="100" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
@@ -67,8 +76,10 @@
         <!-- ========================================== -->
         <Border Grid.Row="1" Grid.Column="0" BorderBrush="#2C241E" BorderThickness="2" Background="#151310" CornerRadius="5" Margin="0,0,10,0">
             <StackPanel>
+                <!-- Titre -->
                 <TextBlock Text="TUNG TUNG SAHUR" Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Margin="0,20,0,15" FontFamily="Consolas"/>
 
+                <!-- Portrait Complet (Gradient ciel/terre pour simuler le décor) -->
                 <Border BorderBrush="#111111" BorderThickness="2" Margin="15,0,15,15" Height="220" CornerRadius="3">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -78,11 +89,14 @@
                             <GradientStop Color="#39421A" Offset="1.0"/>
                         </LinearGradientBrush>
                     </Border.Background>
+                    <!-- Le personnage -->
                     <TextBlock Text="🪵" FontSize="140" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-15"/>
                 </Border>
 
+                <!-- Ligne de séparation -->
                 <Border Height="2" Background="#2C241E" Margin="15,0,15,15"/>
 
+                <!-- Statistiques -->
                 <Grid Margin="20,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
@@ -112,7 +126,9 @@
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
+                <!-- Onglets -->
                 <RowDefinition Height="*"/>
+                <!-- Contenu -->
             </Grid.RowDefinitions>
 
             <!-- Onglets (Par défaut : GRIS inactifs) -->
@@ -120,13 +136,13 @@
                 <Button x:Name="BtnOngletStats" Click="BtnOngletStats_Click" Background="Transparent" BorderThickness="0" Padding="0" Margin="0,0,5,0">
                     <Border x:Name="FondOngletStats" Background="#151310" BorderBrush="#2C241E" BorderThickness="2,2,2,0" Padding="30,10" CornerRadius="5,5,0,0">
                         <TextBlock x:Name="TexteOngletStats" Text="STATISTIQUES" Foreground="#A59C90" FontWeight="Bold" FontFamily="Consolas"/>
-                    </Border>
+                </Border>
                 </Button>
 
                 <Button x:Name="BtnOngletArbre" Click="BtnOngletArbre_Click" Background="Transparent" BorderThickness="0" Padding="0">
                     <Border x:Name="FondOngletArbre" Background="#151310" BorderBrush="#2C241E" BorderThickness="2,2,2,0" Padding="30,10" CornerRadius="5,5,0,0">
                         <TextBlock x:Name="TexteOngletArbre" Text="ARBRE DE COMPÉTENCES" Foreground="#A59C90" FontWeight="Bold" FontFamily="Consolas"/>
-                    </Border>
+                </Border>
                 </Button>
             </StackPanel>
 
@@ -138,111 +154,132 @@
                     <!-- PANNEAU 1 : L'ARBRE (CACHÉ PAR DÉFAUT)     -->
                     <!-- ========================================== -->
                     <Grid x:Name="PanneauArbre" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <!-- Zone Arbre -->
+                        <RowDefinition Height="Auto"/>
+                        <!-- Pied de page d'amélioration -->
+                    </Grid.RowDefinitions>
+
+                    <!-- L'ARBRE DE COMPÉTENCES -->
+                    <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="110"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
+                            <!-- Ligne 0 : Noeud Sommet -->
+                            <RowDefinition Height="25"/>
+                            <!-- Ligne 1 : Ligne descendante 1 -->
+                            <RowDefinition Height="25"/>
+                            <!-- Ligne 2 : Ligne horizontale -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Ligne 3 : Noeuds Milieu -->
+                            <RowDefinition Height="40"/>
+                            <!-- Ligne 4 : Lignes descendantes 2 -->
+                            <RowDefinition Height="Auto"/>
+                            <!-- Ligne 5 : Noeuds Bas -->
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,40">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="110"/>
-                                <ColumnDefinition Width="110"/>
-                                <ColumnDefinition Width="110"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="25"/>
-                                <RowDefinition Height="25"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="40"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                        <!-- Lignes de connexion (Tracers) -->
+                        <Border Grid.Row="1" Grid.Column="1" Width="2" Background="#4A4540"/>
 
-                            <Border Grid.Row="1" Grid.Column="1" Width="2" Background="#4A4540"/>
-                            <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Height="2" Background="#4A4540" Margin="54,0,54,0" VerticalAlignment="Top"/>
-                            <Border Grid.Row="2" Grid.Column="0" Width="2" Background="#4A4540"/>
-                            <Border Grid.Row="2" Grid.Column="1" Width="2" Background="#4A4540"/>
-                            <Border Grid.Row="2" Grid.Column="2" Width="2" Background="#4A4540"/>
-                            <Border Grid.Row="4" Grid.Column="0" Width="2" Background="#4A4540"/>
-                            <Border Grid.Row="4" Grid.Column="1" Width="2" Background="#4A4540"/>
-                            <Border Grid.Row="4" Grid.Column="2" Width="2" Background="#4A4540"/>
+                        <!-- Ligne horizontale connectant les 3 branches -->
+                        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Height="2" Background="#4A4540" Margin="54,0,54,0" VerticalAlignment="Top"/>
+                        <Border Grid.Row="2" Grid.Column="0" Width="2" Background="#4A4540"/>
+                        <Border Grid.Row="2" Grid.Column="1" Width="2" Background="#4A4540"/>
+                        <Border Grid.Row="2" Grid.Column="2" Width="2" Background="#4A4540"/>
 
-                            <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
-                                <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
-                                    <TextBlock Text="🗡️" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
-                                    <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
+                        <Border Grid.Row="4" Grid.Column="0" Width="2" Background="#4A4540"/>
+                        <Border Grid.Row="4" Grid.Column="1" Width="2" Background="#4A4540"/>
+                        <Border Grid.Row="4" Grid.Column="2" Width="2" Background="#4A4540"/>
 
-                            <Grid Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center">
-                                <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
-                                    <TextBlock Text="🩶" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
-                                    <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
-
-                            <Grid Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
-                                <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
-                                    <TextBlock Text="⚡" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
-                                    <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
-
-                            <Grid Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center">
-                                <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
-                                    <TextBlock Text="🌟" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
-                                    <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
-
-                            <Grid Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center">
-                                <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
-                                    <TextBlock Text="🧠" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
-                                    <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
-
-                            <Grid Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center">
-                                <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
-                                    <TextBlock Text="🛡️" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
-                                    <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
-
-                            <Grid Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center">
-                                <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
-                                    <TextBlock Text="💀" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
-                                    <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
-                                </Border>
-                            </Grid>
+                        <!-- ================== NOEUDS ================== -->
+                        <!-- Noeud 1 (Haut) -->
+                        <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center">
+                            <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
+                                <TextBlock Text="🗡️" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
+                                <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
+                            </Border>
                         </Grid>
 
-                        <!-- Barre de description -->
-                        <Border Grid.Row="1" Background="#0C0A09" BorderBrush="#2C241E" BorderThickness="0,2,0,0" Padding="20,15,20,15" Margin="-20,0,-20,-20" CornerRadius="0,0,3,3">
-                            <Grid>
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <TextBlock Text="💎" FontSize="20" VerticalAlignment="Center"/>
-                                    <TextBlock Text="PIERRES" Foreground="#A59C90" FontWeight="Bold" Margin="10,0,0,0" VerticalAlignment="Center" FontFamily="Consolas"/>
-                                    <TextBlock Text="25" Foreground="White" FontWeight="Bold" Margin="20,0,0,0" FontSize="16" VerticalAlignment="Center"/>
-                                </StackPanel>
-                                <TextBlock Text="Utilise des pierres pour améliorer tes compétences." Foreground="#A59C90" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas"/>
-                            </Grid>
-                        </Border>
+                        <!-- Noeud 2 (Milieu Gauche) -->
+                        <Grid Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center">
+                            <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
+                                <TextBlock Text="🩶" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
+                                <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- Noeud 3 (Milieu Centre) -->
+                        <Grid Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center">
+                            <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
+                                <TextBlock Text="⚡" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
+                                <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- Noeud 4 (Milieu Droit) -->
+                        <Grid Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center">
+                            <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
+                                <TextBlock Text="🌟" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
+                                <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- Noeud 5 (Bas Gauche) -->
+                        <Grid Grid.Row="5" Grid.Column="0" HorizontalAlignment="Center">
+                            <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
+                                <TextBlock Text="🧠" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
+                                <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- Noeud 6 (Bas Centre) -->
+                        <Grid Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center">
+                            <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
+                                <TextBlock Text="🛡️" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
+                                <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
+                            </Border>
+                        </Grid>
+
+                        <!-- Noeud 7 (Bas Droit) -->
+                        <Grid Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center">
+                            <Border Width="65" Height="65" BorderBrush="#4A4540" BorderThickness="2" Background="#221E1B" CornerRadius="5">
+                                <TextBlock Text="💀" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <Border Background="#1B1714" BorderBrush="#4A4540" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-8" Padding="6,2">
+                                <TextBlock Text="0/5" Foreground="#A59C90" FontSize="11" FontWeight="Bold"/>
+                            </Border>
+                        </Grid>
                     </Grid>
+
+                        <!-- Barre de description -->
+                    <Border Grid.Row="1" Background="#0C0A09" BorderBrush="#2C241E" BorderThickness="0,2,0,0" Padding="20,15,20,15" Margin="-20,0,-20,-20" CornerRadius="0,0,3,3">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="💎" FontSize="20" VerticalAlignment="Center"/>
+                                    <TextBlock Text="PIERRES" Foreground="#A59C90" FontWeight="Bold" Margin="10,0,0,0" VerticalAlignment="Center" FontFamily="Consolas"/>
+                                <TextBlock Text="25" Foreground="White" FontWeight="Bold" Margin="20,0,0,0" FontSize="16" VerticalAlignment="Center"/>
+                            </StackPanel>
+                                <TextBlock Text="Utilise des pierres pour améliorer tes compétences." Foreground="#A59C90" HorizontalAlignment="Right" VerticalAlignment="Center" FontFamily="Consolas"/>
+                        </Grid>
+                    </Border>
+                </Grid>
 
                     <!-- ========================================== -->
                     <!-- PANNEAU 2 : LES STATS (CACHÉ PAR DÉFAUT)   -->

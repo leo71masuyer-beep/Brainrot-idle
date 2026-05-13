@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Brainrot_idle.view.GameCombat;
 
 namespace Brainrot_idle.view
 {
@@ -33,7 +34,7 @@ namespace Brainrot_idle.view
 
         private void Combat_Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MonJeuCombatFrame());
+            NavigationService.Navigate(new MenuPrincipalCombat());
         }
     }
 }

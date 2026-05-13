@@ -9,4 +9,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Ressources\music.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Ressources\music.mp3" />
+  </ItemGroup>
+
 </Project>

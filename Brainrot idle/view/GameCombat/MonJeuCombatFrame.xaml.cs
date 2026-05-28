@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading; // Indispensable pour le Timer
+using System.Windows.Threading;
 
 namespace Brainrot_idle.view
 {
@@ -15,45 +15,40 @@ namespace Brainrot_idle.view
         private int _niveauActuel = 1;
         private int _vagueActuelle = 1;
 
-        // NOUVEAU : Le chronomètre du jeu
         private DispatcherTimer _timerCombat;
 
-        public MonJeuCombatFrame()
+        // NOUVEAU : On exige un Personnage dans les parenthèses du constructeur
+        public MonJeuCombatFrame(Personnage herosEnvoyeDepuisLeMenu)
         {
             InitializeComponent();
+
+            // On sauvegarde le héros qu'on vient de recevoir dans notre variable locale
+            _monHeros = herosEnvoyeDepuisLeMenu;
+
             InitialiserCombat();
         }
 
         private void InitialiserCombat()
         {
             _gc = new GestionnaireCombat();
-            _monHeros = new Personnage("Héros", 100, 20, 5, 15, 10, 50, 100, true);
+
+            // On a supprimé la création du héros ici, puisqu'on l'a déjà !
 
             _gc.ChargerVague(1, 1);
             _gc.PreparerCombat(_monHeros, _gc.ennemisDeLaVague);
 
-            // --- CONFIGURATION DU MOTEUR DU JEU ---
             _timerCombat = new DispatcherTimer();
-            // Le timer se déclenche toutes les 50 millisecondes (20 fois par seconde)
             _timerCombat.Interval = TimeSpan.FromMilliseconds(50);
-            _timerCombat.Tick += TimerCombat_Tick; // On lui dit quoi faire à chaque "tic"
+            _timerCombat.Tick += TimerCombat_Tick;
 
             MettreAJourInterface();
-
-            // On lance le combat automatique !
             _timerCombat.Start();
         }
 
-        // NOUVEAU : La boucle principale du jeu
         private void TimerCombat_Tick(object sender, EventArgs e)
         {
-            // 1. On fait avancer le temps (les jauges montent, les attaques partent)
             _gc.ExecuterTick();
-
-            // 2. On met à jour l'écran
             MettreAJourInterface();
-
-            // 3. On vérifie si quelqu'un a gagné ou perdu
             VerifierFinDeVague();
         }
 
@@ -61,12 +56,12 @@ namespace Brainrot_idle.view
         {
             if (_monHeros.PointsDeVie <= 0)
             {
-                _timerCombat.Stop(); // On arrête le temps
+                _timerCombat.Stop();
                 MessageBox.Show("Vous êtes mort !");
             }
             else if (!_gc.participants.Any(p => !p.EstJoueur && p.PointsDeVie > 0))
             {
-                _timerCombat.Stop(); // On met pause le temps de charger la suite
+                _timerCombat.Stop();
                 MessageBox.Show($"Vague {_vagueActuelle} terminée ! Butin en cours : {_gc.OrCumule} Or");
 
                 _vagueActuelle++;
@@ -76,7 +71,7 @@ namespace Brainrot_idle.view
                 {
                     _gc.PreparerCombat(_monHeros, _gc.ennemisDeLaVague);
                     MettreAJourInterface();
-                    _timerCombat.Start(); // On relance le temps pour la vague suivante !
+                    _timerCombat.Start();
                 }
                 else
                 {
@@ -108,6 +103,5 @@ namespace Brainrot_idle.view
                 TxtStatsEnnemi.Text = "Mort !";
             }
         }
-
     }
 }

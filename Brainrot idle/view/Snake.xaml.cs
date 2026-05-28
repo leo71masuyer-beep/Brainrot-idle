@@ -7,7 +7,7 @@ using System.Windows.Shapes;
 
 namespace Brainrot_idle.view
 {
-    public partial class Snake : Window
+    public partial class Snake : Page
     {
         private List<Rectangle> corpsDuSerpent = new List<Rectangle>();
         private const int TailleCase = 20;
@@ -23,6 +23,14 @@ namespace Brainrot_idle.view
             timerJeu.Interval = TimeSpan.FromMilliseconds(150);
             timerJeu.Tick += TimerJeu_Tick;
             timerJeu.Start();
+        }
+
+        private void Return_Button_Click(object sender, RoutedEventArgs e)
+
+        {
+
+            NavigationService.Navigate(new MiniGamesFrame());
+
         }
 
         private void TimerJeu_Tick(object sender, EventArgs e)

@@ -32,8 +32,9 @@
             <Button Grid.Row="1" Grid.Column="4" Content="Button 5"/>
             <Button Grid.Row="1" Grid.Column="5" Content="Paramètre" Click="Parametre_Button_Click"/>
         </Grid>
-        <Button Grid.Row="0" Grid.Column="0" Content="Aura" Margin="200,120,200,120"/>
-        <Label Content="Label" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="Aura" Margin="500,400,500,200" Click="AuraButton_Click"/>
+        <Label x:Name="AuraPoints" Content="AuraPoints :" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="AuraPointsParSec" Content="Points/seconde : 0" HorizontalAlignment="Center" Margin="0,0,1300,0" VerticalAlignment="Top"/>
         <ScrollViewer Grid.Row="0"
               Grid.Column="1"
               VerticalScrollBarVisibility="Auto"
@@ -41,54 +42,64 @@
             <Canvas Width="2000" Height="2000" Background="LightGray">
                 <StackPanel Canvas.Left="0" Canvas.Top="50" Margin="10,0,0,0">
                     <!--amélio 1 -->
-                    <StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-                        <Label Content="desc mine 1" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 1"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
+                        <Label Content="prix : 10" Width="140"/>
+                        <Button x:Name="Amelioration1" Width="100" Height="40" Content="Amélioration 1" Click="Amelioration1_Click"/>
+                        <Label x:Name="NbAmelioration1" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 2 -->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 2" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 2"/>
+                        <Label Content="prix : 100" Width="140"/>
+                        <Button x:Name="Amelioration2" Width="100" Height="40" Content="Amélioration 2" Click="Amelioration2_Click"/>
+                        <Label x:Name="NbAmelioration2" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 3 -->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 3" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 3"/>
+                        <Label Content="prix : 1K" Width="140"/>
+                        <Button x:Name="Amelioration3" Width="100" Height="40" Content="Amélioration 3" Click="Amelioration3_Click"/>
+                        <Label x:Name="NbAmelioration3" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 4 -->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 4" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 4"/>
+                        <Label Content="prix : 10K" Width="140"/>
+                        <Button x:Name="Amelioration4" Width="100" Height="40" Content="Amélioration 4" Click="Amelioration4_Click"/>
+                        <Label x:Name="NbAmelioration4" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 5 -->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 5" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 5"/>
+                        <Label Content="prix : 100K" Width="140"/>
+                        <Button x:Name="Amelioration5" Width="100" Height="40" Content="Amélioration 5" Click="Amelioration5_Click"/>
+                        <Label x:Name="NbAmelioration5" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 6 -->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 6" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 6"/>
+                        <Label Content="prix : 1M" Width="140"/>
+                        <Button x:Name="Amelioration6" Width="100" Height="40" Content="Amélioration 6" Click="Amelioration6_Click"/>
+                        <Label x:Name="NbAmelioration6" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 7-->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 7" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 7"/>
+                        <Label Content="prix : 10M" Width="140"/>
+                        <Button x:Name="Amelioration7" Width="100" Height="40" Content="Amélioration 7" Click="Amelioration7_Click"/>
+                        <Label x:Name="NbAmelioration7" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 8 -->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 8" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 8"/>
+                        <Label Content="prix : 100M" Width="140"/>
+                        <Button x:Name="Amelioration8" Width="100" Height="40" Content="Amélioration 8" Click="Amelioration8_Click"/>
+                        <Label x:Name="NbAmelioration8" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 9 -->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 9" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 9"/>
+                        <Label Content="prix : 1T" Width="140"/>
+                        <Button x:Name="Amelioration9" Width="100" Height="40" Content="Amélioration 9" Click="Amelioration9_Click"/>
+                        <Label x:Name="NbAmelioration9" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                     <!--amélio 10 -->
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,5">
-                        <Label Content="desc mine 10" Width="140"/>
-                        <Button Width="100" Height="40" Content="Amélioration 10"/>
+                        <Label Content="prix : 10T" Width="140"/>
+                        <Button x:Name="Amelioration10" Width="100" Height="40" Content="Amélioration 10" Click="Amelioration10_Click"/>
+                        <Label x:Name="NbAmelioration10" Content="Possédé : 0" Width="120"/>
                     </StackPanel>
                 </StackPanel>
             </Canvas>

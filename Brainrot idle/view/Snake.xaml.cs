@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -23,14 +24,15 @@ namespace Brainrot_idle.view
             timerJeu.Interval = TimeSpan.FromMilliseconds(150);
             timerJeu.Tick += TimerJeu_Tick;
             timerJeu.Start();
+
+            // forcer le focus pour écouter le clavier
+            this.Focusable = true;
+            this.Loaded += (s, e) => this.Focus();
         }
 
         private void Return_Button_Click(object sender, RoutedEventArgs e)
-
         {
-
             NavigationService.Navigate(new MiniGamesFrame());
-
         }
 
         private void TimerJeu_Tick(object sender, EventArgs e)
@@ -64,6 +66,26 @@ namespace Brainrot_idle.view
 
             ZoneDeJeu.Children.Add(morceau);
             corpsDuSerpent.Add(morceau);
+        }
+
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Up && directionY != 1)
+            {
+                directionX = 0; directionY = -1;
+            }
+            else if (e.Key == Key.Down && directionY != -1)
+            {
+                directionX = 0; directionY = 1;
+            }
+            else if (e.Key == Key.Left && directionX != 1)
+            {
+                directionX = -1; directionY = 0;
+            }
+            else if (e.Key == Key.Right && directionX != -1)
+            {
+                directionX = 1; directionY = 0;
+            }
         }
     }
 }

@@ -12,7 +12,6 @@ namespace MonJeuCombat.Games.CombatGame.Logic
         public int OrCumule { get; private set; }
         public int ExpCumule { get; private set; }
 
-        // Ajout d'un dé pour le choix aléatoire des monstres
         private static Random _rng = new Random();
 
         public void PreparerCombat(Personnage heros, List<Personnage> ennemisDeLaVague)
@@ -88,54 +87,70 @@ namespace MonJeuCombat.Games.CombatGame.Logic
 
         public List<Personnage> ennemisDeLaVague = new List<Personnage>();
 
-        // === LE NOUVEAU SYSTÈME DE VAGUES PAR POINTS ===
+        public void AddEnnemisAleatoire(Personnage monstreCommun, Personnage monstreRare, Personnage monstreLegendaire)
+        {
+            int index = _rng.Next(1, 10001);
+
+            if (index <= 7500)
+            {
+                ennemisDeLaVague.Add(monstreCommun);
+            }
+            else if (index <= 9500)
+            {
+                ennemisDeLaVague.Add(monstreRare);
+            }
+            else
+            {
+                ennemisDeLaVague.Add(monstreLegendaire);
+            }
+        }
+
         public void ChargerVague(int niveau, int vague)
         {
             ennemisDeLaVague.Clear();
 
             if (niveau == 1)
             {
-                // 1. Calcul du budget. Plus la vague est haute, plus on a de points !
-                // Exemple : Vague 1 = 15 pts, Vague 2 = 25 pts, Vague 10 = 105 pts.
-                int budgetPoints = 5 + (vague * 10);
-                int numeroEnnemi = 1;
-
-                // 2. Le jeu fait ses courses tant qu'il lui reste des points
-                while (budgetPoints > 0)
+                switch (vague)
                 {
-                    // On fait la liste de ce que le jeu PEUT acheter avec son budget actuel
-                    List<string> monstresAchetables = new List<string>();
+                    case 1:
+                        AddEnnemisAleatoire(
+                            new Personnage("Petit Lutin", 20, 3, 1, 15, 0, 0, 20, false, 5, 5),
+                            new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25),
+                            new Personnage("Lutin Enragé", 150, 20, 8, 12, 10, 50, 150, false, 50, 50)
+                        );
+                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 2", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        break;
 
-                    if (budgetPoints >= 5) monstresAchetables.Add("PetitLutin");   // Coûte 5 points
-                    if (budgetPoints >= 15) monstresAchetables.Add("LutinGuerrier"); // Coûte 15 points
-                    if (budgetPoints >= 50 && vague % 5 == 0) monstresAchetables.Add("BossLutin"); // Coûte 50 pts, dispo que toutes les 5 vagues
+                    case 2:
+                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
+                        ennemisDeLaVague.Add(new Personnage("Petit Lutin", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        break;
 
-                    // Si on n'a même plus assez pour le monstre le moins cher (5 pts), on arrête les courses
-                    if (monstresAchetables.Count == 0) break;
+                    case 3:
+                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier 1", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
+                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier 2", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
+                        break;
 
-                    // 3. On choisit un monstre au hasard parmi ceux qu'on peut s'offrir
-                    int indexAleatoire = _rng.Next(monstresAchetables.Count);
-                    string choix = monstresAchetables[indexAleatoire];
-                    //string nom, double pv, double atk, double def, double vit, int pourcentageCrit, int degCrit, double pvmax, bool EstJ, int orBase = 0, int expBase = 0
-                    // 4. On crée le monstre, on l'ajoute, et on DÉDUIT son prix du budget
-                    if (choix == "PetitLutin")
-                    {
-                        ennemisDeLaVague.Add(new Personnage($"Petit Lutin {numeroEnnemi}", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
-                        budgetPoints -= 5;
-                    }
-                    else if (choix == "LutinGuerrier")
-                    {
-                        ennemisDeLaVague.Add(new Personnage($"Lutin Guerrier {numeroEnnemi}", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
-                        budgetPoints -= 15;
-                    }
-                    else if (choix == "BossLutin")
-                    {
-                        ennemisDeLaVague.Add(new Personnage($"Boss Lutin", 300, 25, 10, 10, 10, 50, 300, false, 150, 200));
-                        budgetPoints -= 50;
-                    }
+                    case 4:
+                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 1", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 2", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 3", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
+                        break;
 
-                    numeroEnnemi++; // Pour donner un numéro différent (Ex: Petit Lutin 1, Petit Lutin 2...)
+                    case 5:
+                        ennemisDeLaVague.Add(new Personnage("Boss Lutin", 300, 25, 10, 10, 10, 50, 300, false, 150, 200));
+                        break;
+
+                    default:
+                        ennemisDeLaVague.Add(new Personnage($"Lutin Enragé", 150, 20, 8, 12, 10, 50, 150, false, 50, 50));
+                        break;
                 }
+            }
+            else if (niveau == 2)
+            {
+
             }
         }
     }

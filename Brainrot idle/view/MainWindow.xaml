@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Brainrot_idle.view"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        ResizeMode="CanResize">
     <Grid>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>

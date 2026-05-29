@@ -84,6 +84,8 @@ namespace Brainrot_idle.view
                 points -= 100;
                 gainParSeconde += 10;
 
+                NbAmelioration2.Content = "Possédé : " + amelioration2Possede;
+
                 MettreAJourLabel();
             }
             else
@@ -98,6 +100,8 @@ namespace Brainrot_idle.view
             {
                 points -= 1_000;
                 gainParSeconde += 100;
+
+                NbAmelioration3.Content = "Possédé : " + amelioration3Possede;
 
                 MettreAJourLabel();
             }
@@ -114,6 +118,8 @@ namespace Brainrot_idle.view
                 points -= 10_000;
                 gainParSeconde += 1_000;
 
+                NbAmelioration4.Content = "Possédé : " + amelioration4Possede;
+
                 MettreAJourLabel();
             }
             else
@@ -128,6 +134,8 @@ namespace Brainrot_idle.view
             {
                 points -= 100_000;
                 gainParSeconde += 10_000;
+
+                NbAmelioration5.Content = "Possédé : " + amelioration5Possede;
 
                 MettreAJourLabel();
             }
@@ -144,6 +152,8 @@ namespace Brainrot_idle.view
                 points -= 1_000_000;
                 gainParSeconde += 100_000;
 
+                NbAmelioration6.Content = "Possédé : " + amelioration6Possede;
+
                 MettreAJourLabel();
             }
             else
@@ -158,6 +168,8 @@ namespace Brainrot_idle.view
             {
                 points -= 10_000_000;
                 gainParSeconde += 1_000_000;
+
+                NbAmelioration7.Content = "Possédé : " + amelioration7Possede;
 
                 MettreAJourLabel();
             }
@@ -174,6 +186,8 @@ namespace Brainrot_idle.view
                 points -= 100_000_000;
                 gainParSeconde += 10_000_000;
 
+                NbAmelioration8.Content = "Possédé : " + amelioration8Possede;
+
                 MettreAJourLabel();
             }
             else
@@ -189,6 +203,8 @@ namespace Brainrot_idle.view
                 points -= 1_000_000_000;
                 gainParSeconde += 100_000_000;
 
+                NbAmelioration9.Content = "Possédé : " + amelioration9Possede;
+
                 MettreAJourLabel();
             }
             else
@@ -203,6 +219,8 @@ namespace Brainrot_idle.view
             {
                 points -= 10_000_000_000;
                 gainParSeconde += 1_000_000_000;
+
+                NbAmelioration10.Content = "Possédé : " + amelioration10Possede;
 
                 MettreAJourLabel();
             }

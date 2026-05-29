@@ -34,7 +34,7 @@
         </Grid>
         <Button Grid.Row="0" Grid.Column="0" Content="Aura" Width="200" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Click="AuraButton_Click"/>
         <Label x:Name="AuraPoints" Content="AuraPoints :" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="AuraPointsParSec" Content="Points/seconde : 0" HorizontalAlignment="Center" Margin="0,0,1300,0" VerticalAlignment="Top"/>
+        <Label x:Name="AuraPointsParSec" Content="Aura par seconde : 0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20"/>
         <ScrollViewer Grid.Row="0"
               Grid.Column="1"
               VerticalScrollBarVisibility="Auto"
@@ -65,7 +65,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Prix : 100" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" x:Name="Amelioration2" Content="Amélioration 2" MinHeight="40" Margin="5" HorizontalAlignment="Stretch" Click="Amelioration2_Click"/>
-                        <Label Grid.Column="2" Content="+5 Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Column="2" Content="+10 Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Column="3" x:Name="NbAmelioration2" Content="Possédé : 0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <!-- amélioration 3 -->
@@ -78,7 +78,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Prix : 1K" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" x:Name="Amelioration3" Content="Amélioration 3" MinHeight="40" Margin="5" HorizontalAlignment="Stretch" Click="Amelioration3_Click"/>
-                        <Label Grid.Column="2" Content="+25 Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Column="2" Content="+100 Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Column="3" x:Name="NbAmelioration3" Content="Possédé : 0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <!-- amélioration 4 -->
@@ -91,7 +91,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Prix : 10K" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" x:Name="Amelioration4" Content="Amélioration 4" MinHeight="40" Margin="5" HorizontalAlignment="Stretch" Click="Amelioration4_Click"/>
-                        <Label Grid.Column="2" Content="+100 Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Column="2" Content="+1K Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Column="3" x:Name="NbAmelioration4" Content="Possédé : 0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <!-- amélioration 5 -->
@@ -104,7 +104,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Prix : 100K" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" x:Name="Amelioration5" Content="Amélioration 5" MinHeight="40" Margin="5" HorizontalAlignment="Stretch" Click="Amelioration5_Click"/>
-                        <Label Grid.Column="2" Content="+500 Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Column="2" Content="+10K Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Column="3" x:Name="NbAmelioration5" Content="Possédé : 0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <!-- amélioration 6 -->
@@ -117,7 +117,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Prix : 1M" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" x:Name="Amelioration6" Content="Amélioration 6" MinHeight="40" Margin="5" HorizontalAlignment="Stretch" Click="Amelioration6_Click"/>
-                        <Label Grid.Column="2" Content="+2K Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Column="2" Content="+100K Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Column="3" x:Name="NbAmelioration6" Content="Possédé : 0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <!-- amélioration 7 -->
@@ -130,7 +130,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Prix : 10M" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" x:Name="Amelioration7" Content="Amélioration 7" MinHeight="40" Margin="5" HorizontalAlignment="Stretch" Click="Amelioration7_Click"/>
-                        <Label Grid.Column="2" Content="+10K Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Column="2" Content="+1M Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Column="3" x:Name="NbAmelioration7" Content="Possédé : 0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <!-- amélioration 8 -->
@@ -143,7 +143,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Prix : 100M" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" x:Name="Amelioration8" Content="Amélioration 8" MinHeight="40" Margin="5" HorizontalAlignment="Stretch" Click="Amelioration8_Click"/>
-                        <Label Grid.Column="2" Content="+50K Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Column="2" Content="+10M Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Column="3" x:Name="NbAmelioration8" Content="Possédé : 0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <!-- amélioration 9 -->
@@ -156,7 +156,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="Prix : 1T" VerticalAlignment="Center"/>
                         <Button Grid.Column="1" x:Name="Amelioration9" Content="Amélioration 9" MinHeight="40" Margin="5" HorizontalAlignment="Stretch" Click="Amelioration9_Click"/>
-                        <Label Grid.Column="2" Content="+250K Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Label Grid.Column="2" Content="+100M Aura/s" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Grid.Column="3" x:Name="NbAmelioration9" Content="Possédé : 0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <!-- amélioration 10 -->

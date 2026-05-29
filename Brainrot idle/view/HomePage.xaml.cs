@@ -16,31 +16,58 @@ namespace Brainrot_idle.view
 {
     public partial class HomePage : Page
     {
-        private long points = 0;
-        private long gainParSeconde = 0;
-        private long clicsCetteSeconde = 0;
+        private double points = 0;
+        public static double auraPoints = 0;
+        public static double auraParSeconde = 0;
+        private double clicsCetteSeconde = 0;
 
-        private int amelioration1Possede = 0;
-        private int amelioration2Possede = 0;
-        private int amelioration3Possede = 0;
-        private int amelioration4Possede = 0;
-        private int amelioration5Possede = 0;
-        private int amelioration6Possede = 0;
-        private int amelioration7Possede = 0;
-        private int amelioration8Possede = 0;
-        private int amelioration9Possede = 0;
-        private int amelioration10Possede = 0;
+        public static int nbAmelioration1 = 0;
+        public static int nbAmelioration2 = 0;
+        public static int nbAmelioration3 = 0;
+        public static int nbAmelioration4 = 0;
+        public static int nbAmelioration5 = 0;
+        public static int nbAmelioration6 = 0;
+        public static int nbAmelioration7 = 0;
+        public static int nbAmelioration8 = 0;
+        public static int nbAmelioration9 = 0;
+        public static int nbAmelioration10 = 0;
+
+        private double prixAmelioration1 = 10;
+        private double prixAmelioration2 = 100;
+        private double prixAmelioration3 = 1_000;
+        private double prixAmelioration4 = 10_000;
+        private double prixAmelioration5 = 100_000;
+        private double prixAmelioration6 = 1_000_000;
+        private double prixAmelioration7 = 10_000_000;
+        private double prixAmelioration8 = 100_000_000;
+        private double prixAmelioration9 = 1_000_000_000;
+        private double prixAmelioration10 = 10_000_000_000;
 
         private DispatcherTimer timer;
         public HomePage()
         {
             InitializeComponent();
 
+            AuraPoints.Content = "AuraPoints : " + FormatterNombre(points);
+            AuraPointsParSec.Content = "Points/seconde : " + FormatterNombre(auraParSeconde);
+
+            NbAmelioration1.Content = "Possédé : " + nbAmelioration1;
+            NbAmelioration2.Content = "Possédé : " + nbAmelioration2;
+            NbAmelioration3.Content = "Possédé : " + nbAmelioration3;
+            NbAmelioration4.Content = "Possédé : " + nbAmelioration4;
+            NbAmelioration5.Content = "Possédé : " + nbAmelioration5;
+            NbAmelioration6.Content = "Possédé : " + nbAmelioration6;
+            NbAmelioration7.Content = "Possédé : " + nbAmelioration7;
+            NbAmelioration8.Content = "Possédé : " + nbAmelioration8;
+            NbAmelioration9.Content = "Possédé : " + nbAmelioration9;
+            NbAmelioration10.Content = "Possédé : " + nbAmelioration10;
+
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             timer.Start();
         }
+
         //ensemble des differents onglet
         private void MiniGames_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -60,15 +87,16 @@ namespace Brainrot_idle.view
         //---------------------------------------------------------Amélioration---------------------------------------------------------------------------------------
         private void Amelioration1_Click(object sender, RoutedEventArgs e)
         {
-            // Vérifie si le joueur a assez de points
-            if (points >= 10)
+            if (points >= prixAmelioration1)
             {
-                points -= 10;
-                gainParSeconde += 1;
-                amelioration1Possede++;
+                points -= (long)prixAmelioration1;
+                auraParSeconde += 1;
+                nbAmelioration1++;
 
-                NbAmelioration1.Content ="Possédé : " + amelioration1Possede;
+                prixAmelioration1 *= 1.1;
+               PrixAmelioration1.Content = "Prix : " + FormatterNombre(prixAmelioration1);
 
+                NbAmelioration1.Content = "Possédé : " + nbAmelioration1;
                 MettreAJourLabel();
             }
             else
@@ -79,13 +107,16 @@ namespace Brainrot_idle.view
         private void Amelioration2_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 100)
+            if (points >= prixAmelioration2)
             {
-                points -= 100;
-                gainParSeconde += 10;
+                points -= (long)prixAmelioration2;
+                auraParSeconde += 10;
+                nbAmelioration2++;
 
-                NbAmelioration2.Content = "Possédé : " + amelioration2Possede;
+                prixAmelioration2 *= 1.1;
+                PrixAmelioration2.Content = "Prix : " + FormatterNombre(prixAmelioration2);
 
+                NbAmelioration2.Content = "Possédé : " + nbAmelioration2;
                 MettreAJourLabel();
             }
             else
@@ -96,12 +127,16 @@ namespace Brainrot_idle.view
         private void Amelioration3_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 1_000)
+            if (points >= prixAmelioration3)
             {
-                points -= 1_000;
-                gainParSeconde += 100;
+                points -= (long)prixAmelioration3;
+                auraParSeconde += 100;
+                nbAmelioration3++;
 
-                NbAmelioration3.Content = "Possédé : " + amelioration3Possede;
+                prixAmelioration3 *= 1.1;
+                PrixAmelioration3.Content = "Prix : " + FormatterNombre(prixAmelioration3);
+
+                NbAmelioration3.Content = "Possédé : " + nbAmelioration3;
 
                 MettreAJourLabel();
             }
@@ -113,12 +148,14 @@ namespace Brainrot_idle.view
         private void Amelioration4_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 10_000)
+            if (points >= prixAmelioration4)
             {
-                points -= 10_000;
-                gainParSeconde += 1_000;
-
-                NbAmelioration4.Content = "Possédé : " + amelioration4Possede;
+                points -= (long)prixAmelioration4;
+                auraParSeconde += 1_000;
+                nbAmelioration4++;
+                prixAmelioration4 *= 1.1;
+                PrixAmelioration4.Content = "Prix : " + FormatterNombre(prixAmelioration4);
+                NbAmelioration4.Content = "Possédé : " + nbAmelioration4;
 
                 MettreAJourLabel();
             }
@@ -130,12 +167,14 @@ namespace Brainrot_idle.view
         private void Amelioration5_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 100_000)
+            if (points >= prixAmelioration5)
             {
-                points -= 100_000;
-                gainParSeconde += 10_000;
-
-                NbAmelioration5.Content = "Possédé : " + amelioration5Possede;
+                points -= (long)prixAmelioration5;
+                auraParSeconde += 10_000;
+                nbAmelioration5++;
+                prixAmelioration5 *= 1.1;
+                PrixAmelioration5.Content = "Prix : " + FormatterNombre(prixAmelioration5);
+                NbAmelioration5.Content = "Possédé : " + nbAmelioration5;
 
                 MettreAJourLabel();
             }
@@ -147,12 +186,14 @@ namespace Brainrot_idle.view
         private void Amelioration6_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 1_000_000)
+            if (points >= prixAmelioration6)
             {
-                points -= 1_000_000;
-                gainParSeconde += 100_000;
-
-                NbAmelioration6.Content = "Possédé : " + amelioration6Possede;
+                points -= (long)prixAmelioration6;
+                auraParSeconde += 100_000;
+                nbAmelioration6++;
+                prixAmelioration6 *= 1.1;
+                PrixAmelioration6.Content = "Prix : " + FormatterNombre(prixAmelioration6);
+                NbAmelioration6.Content = "Possédé : " + nbAmelioration6;
 
                 MettreAJourLabel();
             }
@@ -164,12 +205,14 @@ namespace Brainrot_idle.view
         private void Amelioration7_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 10_000_000)
+            if (points >= prixAmelioration7)
             {
-                points -= 10_000_000;
-                gainParSeconde += 1_000_000;
-
-                NbAmelioration7.Content = "Possédé : " + amelioration7Possede;
+                points -= (long)prixAmelioration7;
+                auraParSeconde += 1_000_000;
+                nbAmelioration7++;
+                prixAmelioration7 *= 1.1;
+                PrixAmelioration7.Content = "Prix : " + FormatterNombre(prixAmelioration7);
+                NbAmelioration7.Content = "Possédé : " + nbAmelioration7;
 
                 MettreAJourLabel();
             }
@@ -181,12 +224,14 @@ namespace Brainrot_idle.view
         private void Amelioration8_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 100_000_000)
+            if (points >= prixAmelioration8)
             {
-                points -= 100_000_000;
-                gainParSeconde += 10_000_000;
-
-                NbAmelioration8.Content = "Possédé : " + amelioration8Possede;
+                points -= (long)prixAmelioration8;
+                auraParSeconde += 10_000_000;
+                nbAmelioration8++;
+                prixAmelioration8 *= 1.1;
+                PrixAmelioration8.Content = "Prix : " + FormatterNombre(prixAmelioration8);
+                NbAmelioration8.Content = "Possédé : " + nbAmelioration8;
 
                 MettreAJourLabel();
             }
@@ -198,12 +243,14 @@ namespace Brainrot_idle.view
         private void Amelioration9_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 1_000_000_000)
+            if (points >= prixAmelioration9)
             {
-                points -= 1_000_000_000;
-                gainParSeconde += 100_000_000;
-
-                NbAmelioration9.Content = "Possédé : " + amelioration9Possede;
+                points -= (long)prixAmelioration9;
+                auraParSeconde += 100_000_000;
+                nbAmelioration9++;
+                prixAmelioration9 *= 1.1;
+                PrixAmelioration9.Content = "Prix : " + FormatterNombre(prixAmelioration9);
+                NbAmelioration9.Content = "Possédé : " + nbAmelioration9;
 
                 MettreAJourLabel();
             }
@@ -215,12 +262,14 @@ namespace Brainrot_idle.view
         private void Amelioration10_Click(object sender, RoutedEventArgs e)
         {
             // Vérifie si le joueur a assez de points
-            if (points >= 10_000_000_000)
+            if (points >= prixAmelioration10)
             {
-                points -= 10_000_000_000;
-                gainParSeconde += 1_000_000_000;
-
-                NbAmelioration10.Content = "Possédé : " + amelioration10Possede;
+                points -= (long)prixAmelioration10;
+                auraParSeconde += 1_000_000_000;
+                nbAmelioration10++;
+                prixAmelioration10 *= 1.1;
+                PrixAmelioration10.Content = "Prix : " + FormatterNombre(prixAmelioration10);
+                NbAmelioration10.Content = "Possédé : " + nbAmelioration10;
 
                 MettreAJourLabel();
             }
@@ -232,8 +281,8 @@ namespace Brainrot_idle.view
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------
         private void Timer_Tick(object sender, EventArgs e)
         {
-            points += gainParSeconde;
-            AuraPointsParSec.Content = "Points/seconde : " + FormatterNombre((gainParSeconde + clicsCetteSeconde));
+            points += auraParSeconde;
+            AuraPointsParSec.Content = "Points/seconde : " + FormatterNombre((auraParSeconde + clicsCetteSeconde));
             clicsCetteSeconde = 0;
             MettreAJourLabel();
         }

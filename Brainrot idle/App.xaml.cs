@@ -13,7 +13,7 @@ namespace Brainrot_idle
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            GameState.InitialiserTimerGlobal();
+            Brainrot_idle.Ressources.GameState.InitialiserTimerGlobal();
         }
     }
 

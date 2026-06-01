@@ -49,17 +49,43 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Margin="30,20,30,10">
-            <Button Content="← Retour" 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="← Retour" 
                     VerticalAlignment="Center" 
-                    HorizontalAlignment="Left" 
                     Padding="12,6"
                     Click="Close_Button_Click"/>
 
-            <TextBlock Text="Arbre de Compétences (10 Améliorations)" 
-                       FontSize="26" 
-                       FontWeight="Bold" 
-                       Foreground="#2C3E50"
-                       HorizontalAlignment="Center"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Arbre de Compétences" 
+                           FontSize="26" 
+                           FontWeight="Bold" 
+                           Foreground="#2C3E50"
+                           HorizontalAlignment="Center"/>
+                <TextBlock x:Name="TextePointsDispo" 
+                           Text="Points disponibles : 0" 
+                           FontSize="14" FontWeight="SemiBold" Foreground="#27AE60"
+                           HorizontalAlignment="Center" Margin="0,4,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Margin="0,0,15,0">
+                    <TextBlock x:Name="TexteNiveau" Text="Niveau : 1" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Right"/>
+                    <ProgressBar x:Name="BarreXp" Width="150" Height="14" Margin="0,4,0,0" Minimum="0"/>
+                    <TextBlock x:Name="TexteXp" Text="0 / 10 XP" FontSize="10" Foreground="#7F8C8D" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                </StackPanel>
+
+                <Button Content="+1 XP" 
+                        Padding="15,10" 
+                        FontWeight="Bold"
+                        Background="#9B59B6" 
+                        Foreground="White"
+                        Click="XpButton_Click"/>
+            </StackPanel>
         </Grid>
 
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
@@ -78,58 +104,66 @@
                 <Line Style="{StaticResource TreeLineStyle}" X1="230" Y1="395" X2="500" Y2="545"/>
                 <Line Style="{StaticResource TreeLineStyle}" X1="500" Y1="395" X2="500" Y2="545"/>
                 <Line Style="{StaticResource TreeLineStyle}" X1="770" Y1="395" X2="500" Y2="545"/>
-                <Button Content="Logique" 
+
+                <Button Content="Apprenti" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="300" Canvas.Top="50"
-                        ToolTip="Génère 1 point/sec automatiquement."/>
+                        ToolTip="Génère 1 point/sec automatiquement."
+                        Click="Apprenti_Click"/>
 
-                <Button Content="Synthèse" 
+                <Button Content="Cliqueur" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="600" Canvas.Top="50"
-                        ToolTip="Améliore l'efficacité globale de 10%."/>
+                        ToolTip="Améliore l'efficacité globale de 10%."
+                        Click="Cliqueur_Click"/>
 
-
-                <Button Content="Analyse" 
+                <Button Content="Jeu de combat" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="150" Canvas.Top="200"
-                        ToolTip="Débloque le multiplicateur x2 sur les gains."/>
+                        ToolTip="Débloque le multiplicateur x2 sur les gains."
+                        Click="JeuDeCombat_Click"/>
 
-                <Button Content="Stratégie" 
+                <Button Content="Jeu 3" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="320" Canvas.Top="200"
-                        ToolTip="Réduit le coût des prochaines améliorations."/>
+                        ToolTip="Réduit le coût des prochaines améliorations."
+                        Click="Jeu3_Click"/>
 
-                <Button Content="Gestion" 
+                <Button Content="Jeu 4" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="580" Canvas.Top="200"
-                        ToolTip="Augmente la limite de stockage des points."/>
+                        ToolTip="Augmente la limite de stockage des points."
+                        Click="Jeu4_Click"/>
 
-                <Button Content="Optimisation" 
+                <Button Content="Jeu 5" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="750" Canvas.Top="200"
-                        ToolTip="Augmente la vitesse de production de 15%."/>
+                        ToolTip="Augmente la vitesse de production de 15%."
+                        Click="Jeu5_Click"/>
 
-
-                <Button Content="Algorithme" 
+                <Button Content="Jeu 6" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="180" Canvas.Top="350"
-                        ToolTip="Multiplie les gains passifs par le nombre de compétences débloquées."/>
+                        ToolTip="Multiplie les gains passifs par le nombre de compétences débloquées."
+                        Click="Jeu6_Click"/>
 
-                <Button Content="Synergie" 
+                <Button Content="Multiplicateur" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="450" Canvas.Top="350"
-                        ToolTip="Fusionne les bonus de Stratégie et Gestion (+25%)."/>
+                        ToolTip="Fusionne les bonus de Stratégie et Gestion (+25%)."
+                        Click="Multiplicateur_Click"/>
 
-                <Button Content="Automation" 
+                <Button Content="Boost 1" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="720" Canvas.Top="350"
-                        ToolTip="Achète automatiquement les améliorations les moins chères."/>
+                        ToolTip="Achète automatiquement les améliorations les moins chères."
+                        Click="Boost1_Click"/>
 
-
-                <Button Content="Expertise" 
+                <Button Content="Boost 2" 
                         Style="{StaticResource RoundSkillButtonStyle}" 
                         Canvas.Left="450" Canvas.Top="500"
-                        ToolTip="Multiplie l'Aura globale par 5. Fin de l'arbre."/>
+                        ToolTip="Multiplie l'Aura globale par 5. Fin de l'arbre."
+                        Click="Boost2_Click"/>
 
             </Canvas>
         </ScrollViewer>

@@ -15,49 +15,48 @@ namespace Brainrot_idle.view
         {
             InitializeComponent();
 
-            UpdateUI();
+            // S'exécute à chaque fois que la page s'affiche à l'écran
+            this.Loaded += HomePage_Loaded;
 
-            // Configuration du rafraîchissement de l'interface
+            // Configuration du rafraîchissement automatique de l'interface
             uiTimer = new DispatcherTimer();
-            uiTimer.Interval = TimeSpan.FromMilliseconds(200); // 5 fois par seconde pour un affichage ultra fluide
+            uiTimer.Interval = TimeSpan.FromMilliseconds(200); // 5 fois par seconde pour une fluidité maximale
             uiTimer.Tick += UiTimer_Tick;
-            uiTimer.Start();
+            uiTimer.Start(); // Lance le rafraîchissement
 
-            // Sécurité : On coupe le rafraîchissement si on change de page
-            this.Unloaded += HomePage_Unloaded;
+            // NOTE : L'événement 'this.Unloaded += HomePage_Unloaded;' a été supprimé 
+            // pour empêcher le timer de s'éteindre lors de la navigation vers le Skill Tree.
         }
 
-        private void HomePage_Unloaded(object sender, RoutedEventArgs e)
+        private void HomePage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (uiTimer != null)
-            {
-                uiTimer.Stop();
-                uiTimer.Tick -= UiTimer_Tick;
-            }
+            // Force un rafraîchissement visuel immédiat dès qu'on revient sur la page
+            UpdateUI();
         }
 
-        // ---------------- REFRESH DE L'UI ----------------
+        // ---------------- REFRESH DE L'UI (BOUCLE) ----------------
         private void UiTimer_Tick(object sender, EventArgs e)
         {
-            // On calcule la valeur de l'aura par seconde avec le bonus pour l'afficher au joueur
-            double multiplicateurSnake = 1.0 + (GameState.MeilleurScoreSnake * 0.15);
-            double auraBoosteParSec = GameState.auraParSeconde * multiplicateurSnake;
-
-            AuraPointsParSec.Content = "Points/seconde : " + FormatterNombre(auraBoosteParSec);
-
+            // Le timer se contente de demander la mise à jour des éléments visuels
             UpdateUI();
         }
 
         // ---------------- CLICK PRINCIPAL ----------------
         private void AuraButton_Click(object sender, RoutedEventArgs e)
         {
-            GameState.points += 1;
-            GameState.clicsCetteSeconde += 1;
+            // Sécurité pour éviter un multiplicateur à 0 ou négatif
+            if (GameState.MultiplicateurAuraParClic <= 0) GameState.MultiplicateurAuraParClic = 1.0;
+
+            // Calcul du gain réel basé sur l'arbre de compétences
+            double pointsGagnes = 1.0 * GameState.MultiplicateurAuraParClic;
+
+            GameState.points += pointsGagnes;
+            GameState.clicsCetteSeconde += pointsGagnes;
 
             UpdateUI();
         }
 
-        // ---------------- AMÉLIORATIONS ----------------
+        // ---------------- LOGIQUE DES AMÉLIORATIONS ----------------
         private void BuyUpgrade(int index, double gain)
         {
             if (GameState.points >= GameState.prixAmeliorations[index])
@@ -72,7 +71,8 @@ namespace Brainrot_idle.view
             }
             else
             {
-                MessageBox.Show("Pas assez de points");
+                // Message discret sans bloquer le thread principal du jeu
+                UpdateUI();
             }
         }
 
@@ -87,11 +87,18 @@ namespace Brainrot_idle.view
         private void Amelioration9_Click(object sender, RoutedEventArgs e) => BuyUpgrade(8, 100_000_000);
         private void Amelioration10_Click(object sender, RoutedEventArgs e) => BuyUpgrade(9, 1_000_000_000);
 
-        // ---------------- UI ----------------
+        // ---------------- MISE À JOUR DE L'INTERFACE ----------------
         private void UpdateUI()
         {
-            AuraPoints.Content = "AuraPoints : " + FormatterNombre(GameState.points);
+            // Calcul de la production passive totale intégrant le bonus du mini-jeu Snake
+            double multiplicateurSnake = 1.0 + (GameState.MeilleurScoreSnake * 0.15);
+            double auraBoosteParSec = GameState.auraParSeconde * multiplicateurSnake;
 
+            // Affichage des textes d'Aura principaux
+            AuraPoints.Content = "AuraPoints : " + FormatterNombre(GameState.points);
+            AuraPointsParSec.Content = "Points/seconde : " + FormatterNombre(auraBoosteParSec);
+
+            // Quantités possédées
             NbAmelioration1.Content = "Possédé : " + GameState.nbAmeliorations[0];
             NbAmelioration2.Content = "Possédé : " + GameState.nbAmeliorations[1];
             NbAmelioration3.Content = "Possédé : " + GameState.nbAmeliorations[2];
@@ -103,6 +110,7 @@ namespace Brainrot_idle.view
             NbAmelioration9.Content = "Possédé : " + GameState.nbAmeliorations[8];
             NbAmelioration10.Content = "Possédé : " + GameState.nbAmeliorations[9];
 
+            // Prix actuels
             PrixAmelioration1.Content = "Prix : " + FormatterNombre(GameState.prixAmeliorations[0]);
             PrixAmelioration2.Content = "Prix : " + FormatterNombre(GameState.prixAmeliorations[1]);
             PrixAmelioration3.Content = "Prix : " + FormatterNombre(GameState.prixAmeliorations[2]);
@@ -115,16 +123,10 @@ namespace Brainrot_idle.view
             PrixAmelioration10.Content = "Prix : " + FormatterNombre(GameState.prixAmeliorations[9]);
         }
 
-        // ---------------- FORMAT ----------------
+        // ---------------- FORMATTAGE DES NOMBRES ----------------
         private string FormatterNombre(double nombre)
         {
-            string[] suffixes =
-            {
-                "", "K", "M", "B", "T",
-                "Qa", "Qi", "Sx", "Sp",
-                "Oc", "No", "Dc"
-            };
-
+            string[] suffixes = { "", "K", "M", "B", "T", "Qa", "Qi", "Sx", "Sp", "Oc", "No", "Dc" };
             int index = 0;
 
             while (nombre >= 1000 && index < suffixes.Length - 1)
@@ -136,19 +138,9 @@ namespace Brainrot_idle.view
             return nombre.ToString("0.00") + suffixes[index];
         }
 
-        // ---------------- NAVIGATION ----------------
-        private void MiniGames_Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new MiniGamesFrame());
-        }
-
-        private void Parametre_Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new ParametreFrame());
-        }
-        private void SkillTree_Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new SkillTreeFrame());
-        }
+        // ---------------- NAVIGATION BETWEEN FRAMES ----------------
+        private void MiniGames_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MiniGamesFrame());
+        private void Parametre_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new ParametreFrame());
+        private void SkillTree_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new SkillTreeFrame());
     }
 }

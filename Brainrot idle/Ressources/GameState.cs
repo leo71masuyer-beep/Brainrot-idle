@@ -10,7 +10,7 @@ namespace Brainrot_idle.Ressources
         public static double auraParSeconde = 0;
         public static double clicsCetteSeconde = 0;
 
-        // ---------------- AMÉLIORATIONS ----------------
+        // ---------------- AMÉLIORATIONS DE BASE ----------------
         public static int[] nbAmeliorations = new int[10];
         public static double[] prixAmeliorations =
         {
@@ -29,11 +29,25 @@ namespace Brainrot_idle.Ressources
         // ---------------- MINI-JEUX ----------------
         public static int MeilleurScoreSnake { get; set; } = 0;
 
-        // ---------------- MOTEUR IDLE (TIMER BACKGROUND) ----------------
+        // ---------------- SYSTÈME DE NIVEAUX DANS L'ARBRE ----------------
+        public static double XpActuelle { get; set; } = 0;
+        public static double XpRequise { get; set; } = 10; // XP de départ pour le niveau 1
+        public static int Niveau { get; set; } = 1;
+        public static int PointsDeCompetence { get; set; } = 0;
+
+        // ---------------- STATS DES COMPÉTENCES DÉBLOQUÉES ----------------
+        public static int NiveauApprenti { get; set; } = 0;
+        public static double MultiplicateurXp { get; set; } = 1.0; // Initialisé à 1.0 (très important !)
+
+        public static int NiveauCliqueur { get; set; } = 0;
+        public static double MultiplicateurAuraParClic { get; set; } = 1.0; // Initialisé à 1.0 (très important !)
+
+
+        // ---------------- MOTEUR IDLE CORE (BACKEND) ----------------
         private static DispatcherTimer globalTimer;
 
         /// <summary>
-        /// Lance le cœur économique du jeu. À appeler UNE SEULE FOIS (dans App.xaml.cs).
+        /// Initialise le cœur de calcul de l'économie. Lancé automatiquement une fois par App.xaml.cs.
         /// </summary>
         public static void InitialiserTimerGlobal()
         {
@@ -48,16 +62,16 @@ namespace Brainrot_idle.Ressources
 
         private static void GlobalTimer_Tick(object sender, EventArgs e)
         {
-            // 1. Calcul du multiplicateur linéaire du Snake (+15% par point)
+            // 1. Calcul du multiplicateur lié au score du jeu Snake (+15% par fruit)
             double multiplicateurSnake = 1.0 + (MeilleurScoreSnake * 0.15);
 
-            // 2. Application du boost sur la production passive globale
+            // 2. Application de la production passive brute boostée
             double auraBoosteParSec = auraParSeconde * multiplicateurSnake;
 
-            // 3. Ajout des points en tâche de fond (marche partout, même sur la page Snake !)
+            // 3. Injection automatique des points dans le solde du joueur (Fonctionne en arrière-plan global)
             points += auraBoosteParSec;
 
-            // 4. Reset des clics de la seconde écoulée
+            // 4. Réinitialisation automatique des clics pour le calcul de la seconde suivante
             clicsCetteSeconde = 0;
         }
     }

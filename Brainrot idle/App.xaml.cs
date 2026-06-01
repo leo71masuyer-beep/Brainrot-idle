@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using Brainrot_idle.Ressources;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -9,6 +10,11 @@ namespace Brainrot_idle
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            GameState.InitialiserTimerGlobal();
+        }
     }
 
 }

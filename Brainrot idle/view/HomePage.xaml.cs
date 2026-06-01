@@ -8,7 +8,8 @@ namespace Brainrot_idle.view
 {
     public partial class HomePage : Page
     {
-        private DispatcherTimer timer;
+        // Ce timer sert uniquement à rafraîchir l'interface utilisateur (UI)
+        private DispatcherTimer uiTimer;
 
         public HomePage()
         {
@@ -16,10 +17,35 @@ namespace Brainrot_idle.view
 
             UpdateUI();
 
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            // Configuration du rafraîchissement de l'interface
+            uiTimer = new DispatcherTimer();
+            uiTimer.Interval = TimeSpan.FromMilliseconds(200); // 5 fois par seconde pour un affichage ultra fluide
+            uiTimer.Tick += UiTimer_Tick;
+            uiTimer.Start();
+
+            // Sécurité : On coupe le rafraîchissement si on change de page
+            this.Unloaded += HomePage_Unloaded;
+        }
+
+        private void HomePage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (uiTimer != null)
+            {
+                uiTimer.Stop();
+                uiTimer.Tick -= UiTimer_Tick;
+            }
+        }
+
+        // ---------------- REFRESH DE L'UI ----------------
+        private void UiTimer_Tick(object sender, EventArgs e)
+        {
+            // On calcule la valeur de l'aura par seconde avec le bonus pour l'afficher au joueur
+            double multiplicateurSnake = 1.0 + (GameState.MeilleurScoreSnake * 0.15);
+            double auraBoosteParSec = GameState.auraParSeconde * multiplicateurSnake;
+
+            AuraPointsParSec.Content = "Points/seconde : " + FormatterNombre(auraBoosteParSec);
+
+            UpdateUI();
         }
 
         // ---------------- CLICK PRINCIPAL ----------------
@@ -60,19 +86,6 @@ namespace Brainrot_idle.view
         private void Amelioration8_Click(object sender, RoutedEventArgs e) => BuyUpgrade(7, 10_000_000);
         private void Amelioration9_Click(object sender, RoutedEventArgs e) => BuyUpgrade(8, 100_000_000);
         private void Amelioration10_Click(object sender, RoutedEventArgs e) => BuyUpgrade(9, 1_000_000_000);
-
-        // ---------------- TIMER ----------------
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            GameState.points += GameState.auraParSeconde;
-
-            AuraPointsParSec.Content =
-                "Points/seconde : " + FormatterNombre(GameState.auraParSeconde + GameState.clicsCetteSeconde);
-
-            GameState.clicsCetteSeconde = 0;
-
-            UpdateUI();
-        }
 
         // ---------------- UI ----------------
         private void UpdateUI()

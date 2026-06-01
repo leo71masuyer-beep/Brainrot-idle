@@ -31,11 +31,17 @@ namespace Brainrot_idle.view
             timerJeu.Tick += TimerJeu_Tick;
 
             Loaded += Snake_Loaded;
+            Unloaded += Snake_Unloaded;
         }
 
         private void Snake_Loaded(object sender, RoutedEventArgs e)
         {
             DemarrerNouvellePartie();
+        }
+        private void Snake_Unloaded(object sender, RoutedEventArgs e)
+        {
+            timerJeu.Stop();
+            timerJeu.Tick -= TimerJeu_Tick;
         }
 
         private void DemarrerNouvellePartie()
@@ -212,21 +218,25 @@ namespace Brainrot_idle.view
             {
                 directionX = 0;
                 directionY = -1;
+                directionChangeeCeTour = true;
             }
             else if (e.Key == Key.Down && directionY != -1)
             {
                 directionX = 0;
                 directionY = 1;
+                directionChangeeCeTour = true;
             }
             else if (e.Key == Key.Left && directionX != 1)
             {
                 directionX = -1;
                 directionY = 0;
+                directionChangeeCeTour = true;
             }
             else if (e.Key == Key.Right && directionX != -1)
             {
                 directionX = 1;
                 directionY = 0;
+                directionChangeeCeTour = true;
             }
         }
     }

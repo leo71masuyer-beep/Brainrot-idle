@@ -18,12 +18,16 @@ namespace Brainrot_idle.view
         private int directionY = 0;
         private Ellipse pomme;
         private Random random = new Random();
+        private bool directionChangeeCeTour = false;
+
+        // Nouvelle variable pour suivre le score
+        private int score = 0;
 
         public Snake()
         {
             InitializeComponent();
 
-            timerJeu.Interval = TimeSpan.FromMilliseconds(50);
+            timerJeu.Interval = TimeSpan.FromMilliseconds(80); // Légèrement ralenti (50ms était très rapide)
             timerJeu.Tick += TimerJeu_Tick;
 
             Loaded += Snake_Loaded;
@@ -31,10 +35,28 @@ namespace Brainrot_idle.view
 
         private void Snake_Loaded(object sender, RoutedEventArgs e)
         {
+            DemarrerNouvellePartie();
+        }
+
+        private void DemarrerNouvellePartie()
+        {
+            // Nettoyage de la zone de jeu pour une nouvelle partie
+            timerJeu.Stop();
+            ZoneDeJeu.Children.Clear();
+            corpsDuSerpent.Clear();
+
+            // Réinitialisation des variables de jeu
+            score = 0;
+            TexteScore.Text = "Score : " + score;
+            directionX = 1;
+            directionY = 0;
+
+            // Spawn du serpent (tête + 2 morceaux de corps pour commencer proprement)
             AjouterMorceauSnake(200, 200);
 
             AjouterPomme();
 
+            // Forcer le focus sur la page pour capturer les touches du clavier
             Focusable = true;
             Focus();
             Keyboard.Focus(this);
@@ -44,17 +66,25 @@ namespace Brainrot_idle.view
 
         private void Return_Button_Click(object sender, RoutedEventArgs e)
         {
+            timerJeu.Stop();
+            if (score > Brainrot_idle.Ressources.GameState.MeilleurScoreSnake)
+            {
+                Brainrot_idle.Ressources.GameState.MeilleurScoreSnake = score;
+            }
             NavigationService.Navigate(new MiniGamesFrame());
         }
 
         private void TimerJeu_Tick(object sender, EventArgs e)
         {
+            directionChangeeCeTour = false;
             BougerSerpent();
+            VerifierCollisionMurs();
             VerifierCollisionPomme();
         }
 
         private void BougerSerpent()
         {
+            // Déplacement du corps (de la queue vers la tête)
             for (int i = corpsDuSerpent.Count - 1; i > 0; i--)
             {
                 double xPrecedent = Canvas.GetLeft(corpsDuSerpent[i - 1]);
@@ -64,6 +94,7 @@ namespace Brainrot_idle.view
                 Canvas.SetTop(corpsDuSerpent[i], yPrecedent);
             }
 
+            // Déplacement de la tête
             Rectangle tete = corpsDuSerpent[0];
             double positionXActuelle = Canvas.GetLeft(tete);
             double positionYActuelle = Canvas.GetTop(tete);
@@ -72,16 +103,74 @@ namespace Brainrot_idle.view
             Canvas.SetTop(tete, positionYActuelle + (directionY * TailleCase));
         }
 
+        private void VerifierCollisionMurs()
+        {
+            Rectangle tete = corpsDuSerpent[0];
+            double teteX = Canvas.GetLeft(tete);
+            double teteY = Canvas.GetTop(tete);
+
+            // Vérification des limites du Canvas (800 x 600)
+            if (teteX < 0 || teteX >= ZoneDeJeu.Width || teteY < 0 || teteY >= ZoneDeJeu.Height)
+            {
+                GameOver();
+            }
+        }
+
+        private void VerifierCollisionPomme()
+        {
+            if (corpsDuSerpent.Count == 0 || pomme == null) return;
+
+            Rectangle tete = corpsDuSerpent[0];
+            double teteX = Canvas.GetLeft(tete);
+            double teteY = Canvas.GetTop(tete);
+
+            double pommeX = Canvas.GetLeft(pomme);
+            double pommeY = Canvas.GetTop(pomme);
+
+            if (teteX == pommeX && teteY == pommeY)
+            {
+                // Augmentation et mise à jour du score
+                score++;
+                TexteScore.Text = "Score : " + score;
+
+                // Grandir le serpent
+                Rectangle dernierMorceau = corpsDuSerpent[corpsDuSerpent.Count - 1];
+                double nouveauX = Canvas.GetLeft(dernierMorceau);
+                double nouveauY = Canvas.GetTop(dernierMorceau);
+
+                AjouterMorceauSnake(nouveauX, nouveauY);
+
+                // Générer une nouvelle pomme
+                AjouterPomme();
+            }
+        }
+
+        private void GameOver()
+        {
+            timerJeu.Stop();
+            if (score > Brainrot_idle.Ressources.GameState.MeilleurScoreSnake)
+            {
+                Brainrot_idle.Ressources.GameState.MeilleurScoreSnake = score;
+                MessageBox.Show($"Nouveau Record ! Score final : {score}", "Perdu !", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show($"Game Over ! Votre score final est de : {score}", "Perdu !", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            DemarrerNouvellePartie();
+        }
+
         private void AjouterMorceauSnake(double x, double y)
         {
-            // On peut optionnellement changer la couleur du corps pour le différencier de la tête
-            Brush couleur = corpsDuSerpent.Count == 0 ? Brushes.Green : Brushes.LightGreen;
 
             Rectangle morceau = new Rectangle
             {
                 Width = TailleCase,
                 Height = TailleCase,
-                Fill = Brushes.Green
+                Fill = Brushes.Green,
+                Stroke = Brushes.Green,
+                StrokeThickness = 1
             };
 
             Canvas.SetLeft(morceau, x);
@@ -105,8 +194,10 @@ namespace Brainrot_idle.view
                 Fill = Brushes.Red
             };
 
-            int x = random.Next(0, 39) * TailleCase;
-            int y = random.Next(0, 29) * TailleCase;
+            // 800px / 20 = 40 colonnes (0 à 39)
+            // 600px / 20 = 30 lignes (0 à 29)
+            int x = random.Next(0, 40) * TailleCase;
+            int y = random.Next(0, 30) * TailleCase;
 
             Canvas.SetLeft(pomme, x);
             Canvas.SetTop(pomme, y);
@@ -114,31 +205,9 @@ namespace Brainrot_idle.view
             ZoneDeJeu.Children.Add(pomme);
         }
 
-        private void VerifierCollisionPomme()
-        {
-            Rectangle tete = corpsDuSerpent[0];
-
-            double teteX = Canvas.GetLeft(tete);
-            double teteY = Canvas.GetTop(tete);
-
-            double pommeX = Canvas.GetLeft(pomme);
-            double pommeY = Canvas.GetTop(pomme);
-
-            if (teteX == pommeX && teteY == pommeY)
-            {
-                Rectangle dernierMorceau = corpsDuSerpent[corpsDuSerpent.Count - 1];
-
-                double nouveauX = Canvas.GetLeft(dernierMorceau);
-                double nouveauY = Canvas.GetTop(dernierMorceau);
-
-                AjouterMorceauSnake(nouveauX, nouveauY);
-
-                AjouterPomme();
-            }
-        }
-
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
+            if (directionChangeeCeTour) return;
             if (e.Key == Key.Up && directionY != 1)
             {
                 directionX = 0;

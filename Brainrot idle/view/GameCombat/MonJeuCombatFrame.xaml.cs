@@ -102,6 +102,22 @@ namespace Brainrot_idle.view
                 BarrePVEnnemi.Value = 0;
                 TxtStatsEnnemi.Text = "Mort !";
             }
+            TxtOrGagne.Text = $"{_gc.OrCumule} Or";
+            TxtExpGagne.Text = $"{_gc.ExpCumule} Exp";
+        }
+        private void BtnArreterCombat_Click(object sender, RoutedEventArgs e)
+        {
+            _timerCombat.Stop();
+
+            SauvegardeJoueur.OrTotal += _gc.OrCumule;
+            SauvegardeJoueur.ExpTotal += _gc.ExpCumule;
+
+            MessageBox.Show($"Combat terminé !\nVous rentrez à la base avec {_gc.OrCumule} Or et {_gc.ExpCumule} Exp supplémentaires.");
+
+            if (this.NavigationService.CanGoBack)
+            {
+                this.NavigationService.GoBack();
+            }
         }
     }
 }

@@ -40,8 +40,8 @@
 
                     <!-- Barre d'XP -->
                     <Grid>
-                        <ProgressBar Value="0" Maximum="50" Height="8" Background="#110F0D" BorderBrush="#2C241E" Foreground="#4CAF50"/>
-                        <TextBlock Text="0 / 50" Foreground="#A59C90" FontSize="10" HorizontalAlignment="Right" Margin="0,-12,0,0"/>
+                        <ProgressBar x:Name="BarreXpGlobal" Value="0" Maximum="50" Height="8" Background="#110F0D" BorderBrush="#2C241E" Foreground="#4CAF50"/>
+                        <TextBlock x:Name="TxtXpGlobal" Text="0 / 50" Foreground="#A59C90" FontSize="10" HorizontalAlignment="Right" Margin="0,-12,0,0"/>
                     </Grid>
                 </StackPanel>
             </Grid>
@@ -55,13 +55,13 @@
                 <!-- Ressources -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBlock Text="🪙" FontSize="22" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                    <TextBlock Text="100" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
+                    <TextBlock x:Name="TxtOrGlobal" Text="0" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
 
                     <TextBlock Text="🪨" FontSize="22" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                    <TextBlock Text="50" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
+                    <TextBlock x:Name="TxtPierreGlobal" Text="0" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
 
                     <TextBlock Text="💎" FontSize="22" VerticalAlignment="Center" Margin="0,0,8,0"/>
-                    <TextBlock Text="25" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TxtDiamantGlobal" Text="0" Foreground="White" FontSize="16" FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <Button x:Name="BtnRetour" Content="⬅ RETOUR" Background="#221E1B" Foreground="#E0D8C8" 

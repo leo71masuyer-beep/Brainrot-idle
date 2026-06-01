@@ -7,13 +7,29 @@ namespace Brainrot_idle.view.GameCombat
 {
     public partial class MenuPrincipalCombat : Page
     {
-        // On déclare le héros ici pour que toute la page puisse le voir et l'utiliser
         private Personnage _monHero;
 
         public MenuPrincipalCombat()
         {
             InitializeComponent();
             ChargerStatistiquesPersonnage();
+
+            // On demande à la page de se mettre à jour à chaque fois qu'elle s'affiche à l'écran
+            this.Loaded += MenuPrincipalCombat_Loaded;
+        }
+
+        private void MenuPrincipalCombat_Loaded(object sender, RoutedEventArgs e)
+        {
+            // On lit les données du coffre-fort et on les affiche
+            TxtOrGlobal.Text = SauvegardeJoueur.OrTotal.ToString();
+            TxtPierreGlobal.Text = SauvegardeJoueur.PierresTotal.ToString();
+            TxtDiamantGlobal.Text = SauvegardeJoueur.DiamantsTotal.ToString();
+
+            // Affichage de l'XP
+            TxtXpGlobal.Text = $"{SauvegardeJoueur.ExpTotal} / 50";
+            BarreXpGlobal.Value = SauvegardeJoueur.ExpTotal;
+
+            // Plus tard, tu pourras ajouter la logique ici : si ExpTotal >= 50, alors Niveau++
         }
 
         private void ChargerStatistiquesPersonnage()

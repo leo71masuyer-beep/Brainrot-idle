@@ -11,10 +11,12 @@
 
   <ItemGroup>
     <None Remove="Ressources\music.mp3" />
+    <None Remove="Ressources\prairie.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Ressources\music.mp3" />
+    <Resource Include="Ressources\prairie.jpg" />
   </ItemGroup>
 
 </Project>

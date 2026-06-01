@@ -17,8 +17,6 @@ namespace MonJeuCombat.Games.CombatGame.Logic
         public void PreparerCombat(Personnage heros, List<Personnage> ennemisDeLaVague)
         {
             participants.Clear();
-            OrCumule = 0;
-            ExpCumule = 0;
 
             participants.Add(heros);
             participants.AddRange(ennemisDeLaVague);
@@ -150,7 +148,16 @@ namespace MonJeuCombat.Games.CombatGame.Logic
             }
             else if (niveau == 2)
             {
+                switch (vague)
+                {
+                    case 1:
+                        ennemisDeLaVague.Add(new Personnage("FDP", 20, 10000, 1, 15, 0, 0, 20, false, 5, 5));
+                        break;
 
+                    default:
+                        ennemisDeLaVague.Add(new Personnage($"Lutin Enragé", 150, 20, 8, 12, 10, 50, 150, false, 50, 50));
+                        break;
+                }
             }
         }
     }

@@ -124,6 +124,7 @@
                     </Border>
                 </Button>
 
+            <!-- Onglets -->
                 <Button x:Name="BtnOngletArbre" Click="BtnOngletArbre_Click" Background="Transparent" BorderThickness="0" Padding="0">
                     <Border x:Name="FondOngletArbre" Background="#0A0410" BorderBrush="#4D0099" BorderThickness="3,3,3,0" Padding="30,10" CornerRadius="10,10,0,0">
                         <TextBlock x:Name="TexteOngletArbre" Text="ARBRE DE COMPÉTENCES" Foreground="#A080C0" FontWeight="Bold"/>
@@ -131,7 +132,6 @@
                 </Button>
             </StackPanel>
 
-            <!-- Conteneur principal (La Grid magique qui évite l'erreur du Border) -->
             <Border Grid.Row="1" BorderBrush="#9D00FF" BorderThickness="3" Background="#120524" CornerRadius="10" Padding="20">
                 <Grid>
                     <!-- ========================================== -->
@@ -139,10 +139,8 @@
                     <!-- ========================================== -->
                     <Grid x:Name="PanneauArbre" Visibility="Collapsed">
 
-                        <!-- Le ScrollViewer permet de naviguer sur la carte -->
                         <ScrollViewer x:Name="CarteScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
-                            <!-- Le Canvas est notre tableau blanc géant de 3000x3000 pixels -->
                             <Canvas x:Name="ZoneArbre" Width="3500" Height="3500" Background="#0A0410"
                             MouseLeftButtonDown="ZoneArbre_MouseLeftButtonDown"
                             MouseLeftButtonUp="ZoneArbre_MouseLeftButtonUp"
@@ -150,7 +148,6 @@
 
                                 <!-- ========================================== -->
                                 <!-- 1. TOUTES LES LIGNES DE L'ARBRE            -->
-                                <!-- (Elles sont en premier pour être au fond)  -->
                                 <!-- ========================================== -->
 
                                 <Line X1="1535" Y1="1535" X2="1535" Y2="1685" Stroke="#333333" StrokeThickness="4"/>
@@ -197,7 +194,7 @@
 
                                 <!-- NOEUD CENTRAL : Attaque de base (1500, 1500) -->
                                 <StackPanel Canvas.Left="1500" Canvas.Top="1500" Width="70">
-                                    <Button x:Name="BtnCompBase" Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnCompBase_Click">
+                                    <Button x:Name="BtnCompBase" ToolTip="atk +10 " Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnCompBase_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureBase" BorderBrush="Gold" BorderThickness="3" CornerRadius="35" Background="#1A1A1A">
@@ -212,7 +209,7 @@
 
                                 <!-- BRANCHE central : Super Aura-->
                                 <StackPanel Canvas.Left="1500" Canvas.Top="1650" Width="70">
-                                    <Button x:Name="BtnSuperAura" ToolTip="atk +10%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="BtnSuperAura" ToolTip="aura 5%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSuperAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -243,12 +240,12 @@
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Mega Aura" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
-                                    <TextBlock x:Name="TxtMegaAura" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtMegaAura" Text="0/2" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                                 <!-- BRANCHE central : Sigma Aura-->
                                 <StackPanel Canvas.Left="1500" Canvas.Top="1950" Width="70">
-                                    <Button x:Name="BtnSigmaAura" ToolTip="atk +10%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="BtnSigmaAura" ToolTip="aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSigmaAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -266,7 +263,7 @@
 
                                 <!-- BRANCHE gauche Alliance Brainrot : Sigma Boy-->
                                 <StackPanel Canvas.Left="1300" Canvas.Top="2150" Width="70">
-                                    <Button x:Name="BtnSigmaBoy" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="BtnSigmaBoy" ToolTip="+atk 25%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSigmaBoy" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -284,22 +281,26 @@
 
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de tung tung sahur-->
                                 <StackPanel Canvas.Left="1150" Canvas.Top="2350" Width="70">
-                                    <Button x:Name="Btntungtungsahur" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btntungtungsahur" ToolTip="+atk 50" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Borduretungtungsahur" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" 
+                                                            Stretch="UniformToFill"/>
+                                                    </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
-                                    <TextBlock Text="puissance de tung tung sahur" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="puissance de Tung Tung Sahur" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
                                     <TextBlock x:Name="Txttungtungsahur" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
 
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de tralalero tralala-->
                                 <StackPanel Canvas.Left="950" Canvas.Top="2500" Width="70">
-                                    <Button x:Name="Btntralala" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btntralala" ToolTip="chance de cout critique + 5%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Borduretralala" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -317,7 +318,7 @@
 
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de frulifrula-->
                                 <StackPanel Canvas.Left="1350" Canvas.Top="2500" Width="70">
-                                    <Button x:Name="Btnfrulifrula" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btnfrulifrula" ToolTip="deg crit +15%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurefrulifrula" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -335,7 +336,7 @@
 
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de bombardilo crocodilo-->
                                 <StackPanel Canvas.Left="800" Canvas.Top="2650" Width="70">
-                                    <Button x:Name="Btnbombardilo" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btnbombardilo" ToolTip="chance de cout critique + 5%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurebombardilo" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -353,11 +354,14 @@
 
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de udindindindun-->
                                 <StackPanel Canvas.Left="1500" Canvas.Top="2650" Width="70">
-                                    <Button x:Name="Btnudindindindun" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btnudindindindun" ToolTip="degat crit +15%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordureudindindindun" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
-
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" 
+                                                            Stretch="UniformToFill"/>
+                                                    </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
@@ -368,7 +372,7 @@
 
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de brr brr patapim-->
                                 <StackPanel Canvas.Left="850" Canvas.Top="2850" Width="70">
-                                    <Button x:Name="Btnpatapim" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btnpatapim" ToolTip="chance de cout critique + 5%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurepatapim" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -386,7 +390,7 @@
 
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de  chimpanzini bananini-->
                                 <StackPanel Canvas.Left="1450" Canvas.Top="2850" Width="70">
-                                    <Button x:Name="Btnbananini" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btnbananini" ToolTip="degat crit + 15%%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurebananini" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -402,7 +406,7 @@
 
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de lirili larila-->
                                 <StackPanel Canvas.Left="1150" Canvas.Top="2950" Width="70">
-                                    <Button x:Name="Btnlarila" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btnlarila" ToolTip="chance de cout critique + 5% et degat crit + 15%%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurelarila" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
@@ -415,13 +419,17 @@
                                     <TextBlock x:Name="Txtlarila" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
+                                
                                 <!-- BRANCHE gauche Alliance Brainrot : puissance de alliance Brainrot-->
                                 <StackPanel Canvas.Left="1150" Canvas.Top="2650" Width="70">
-                                    <Button x:Name="Btnalliance" ToolTip="gain d'aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111">
+                                    <Button x:Name="Btnalliance" ToolTip="quand un ennemie est tuer d’un cout critique x10 aura gagné%" Width="70" Height="70" Cursor="Hand" Background="#111">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurealliance" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
-
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/alliance.png" 
+                                                            Stretch="UniformToFill"/>
+                                                    </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>

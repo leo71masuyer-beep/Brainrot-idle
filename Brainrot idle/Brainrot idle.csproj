@@ -12,17 +12,20 @@
   <ItemGroup>
     <None Remove="Ressources\music.mp3" />
     <None Remove="Ressources\prairie.jpg" />
+    <None Remove="view\GameCombat\Ressources\alliance.png" />
     <None Remove="view\GameCombat\Ressources\bananini.jpg" />
     <None Remove="view\GameCombat\Ressources\bombardilo.jpg" />
     <None Remove="view\GameCombat\Ressources\frulifrula.jpg" />
     <None Remove="view\GameCombat\Ressources\larila.jpg" />
     <None Remove="view\GameCombat\Ressources\patapim.jpg" />
+    <None Remove="view\GameCombat\Ressources\sahur.jpg" />
     <None Remove="view\GameCombat\Ressources\SigmaBoy.jpg" />
     <None Remove="view\GameCombat\Ressources\SuperAura.jpg" />
     <None Remove="view\GameCombat\Ressources\tralala.jpg" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="view\GameCombat\Ressources\alliance.png" />
     <Resource Include="view\GameCombat\Ressources\bombardilo.jpg" />
   </ItemGroup>
 
@@ -33,6 +36,7 @@
     <Resource Include="Ressources\prairie.jpg" />
     <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
     <Resource Include="view\GameCombat\Ressources\patapim.jpg" />
+    <Resource Include="view\GameCombat\Ressources\sahur.jpg" />
     <Resource Include="view\GameCombat\Ressources\SigmaBoy.jpg" />
     <Resource Include="view\GameCombat\Ressources\SuperAura.jpg" />
     <Resource Include="view\GameCombat\Ressources\tralala.jpg" />

@@ -188,14 +188,8 @@
                                 <!-- Gauche // Alliance BrainRot -->
                                 <Line X1="1535" Y1="1835" X2="1535" Y2="1985" Stroke="#333333" StrokeThickness="4"/>
 
-                                <!-- ========================================== -->
-
-                                <!-- 2. TOUS LES NOEUDS (BOUTONS)               -->
-
-                                <!-- ========================================== -->
-                                
                                 <StackPanel Canvas.Left="1500" Canvas.Top="1500" Width="70">
-                                    <Button x:Name="BtnCompBase" ToolTip="atk +10 " Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnCompBase_Click">
+                                    <Button x:Name="BtnCompBase" ToolTip="atk +10" Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnCompBase_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureBase" BorderBrush="Gold" BorderThickness="3" CornerRadius="35" Background="#1A1A1A">
@@ -205,6 +199,7 @@
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="+10 Attaque" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierres" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtNiveauBase" Text="0/5" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -214,14 +209,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSuperAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" 
-                                                            Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Super Aura" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtSuperAura" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -231,14 +226,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureMegaAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" 
-                                                           Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Mega Aura" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtMegaAura" Text="0/2" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -248,14 +243,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSigmaAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Sigma Aura" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 3 Pierres" Foreground="#FFD700" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtSigmaAura" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -265,14 +260,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSigmaBoy" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SigmaBoy.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SigmaBoy.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Sigma Boy" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtSigmaBoy" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -282,17 +277,16 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Borduretungtungsahur" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de Tung Tung Sahur" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txttungtungsahur" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
-
 
                                 <StackPanel Canvas.Left="950" Canvas.Top="2500" Width="70">
                                     <Button x:Name="Btntralala" ToolTip="chance de cout critique + 5%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btntralala_Click">
@@ -300,14 +294,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Borduretralala" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/tralala.jpg" 
-                                                         Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/tralala.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de tralalero tralala" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txttralala" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -317,14 +311,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurefrulifrula" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/frulifrula.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/frulifrula.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de fruli frula" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtfrulifrula" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -334,14 +328,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurebombardilo" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bombardilo.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bombardilo.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de bombardilo crocodilo" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtbombardilo" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -351,14 +345,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordureudindindindun" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de udindindindun" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtudindindindun" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -368,14 +362,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurepatapim" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/patapim.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/patapim.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de brr brr patapim" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtpatapim" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
@@ -385,17 +379,16 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurebananini" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bananini.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bananini.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de chimpanzini bananini" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtbananini" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
-
 
                                 <StackPanel Canvas.Left="1150" Canvas.Top="2950" Width="70">
                                     <Button x:Name="Btnlarila" ToolTip="chance de cout critique + 5% et degat crit + 15%%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnlarila_Click">
@@ -403,17 +396,16 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurelarila" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/larila.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/larila.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de lirili larila" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtlarila" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
-
 
                                 <StackPanel Canvas.Left="1150" Canvas.Top="2650" Width="70">
                                     <Button x:Name="Btnalliance" ToolTip="quand un ennemie est tuer d’un cout critique x10 aura gagné%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnalliance_Click">
@@ -421,14 +413,14 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurealliance" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/alliance.png" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/alliance.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de  alliance Brainrot" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 5 Pierres" Foreground="#FFD700" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtalliance" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 

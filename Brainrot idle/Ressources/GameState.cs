@@ -73,7 +73,7 @@ namespace Brainrot_idle.Ressources
             double multiplicateurGameCombat = (AuraBonus/100);
 
             // 1. Somme de tout les multiplicateur
-            double multiplicateurGlobal = 1.0 + MeilleurScoreSnake + AuraBonus;
+            double multiplicateurGlobal = 1.0 + multiplicateurSnake + multiplicateurGameCombat;
 
             // 2. Application de la production passive brute boostée
             double auraBoosteParSec = (auraParSeconde + AuraBonusFlat) * multiplicateurGlobal;

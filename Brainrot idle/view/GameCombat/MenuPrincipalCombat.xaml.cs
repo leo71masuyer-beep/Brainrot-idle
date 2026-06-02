@@ -77,29 +77,40 @@ namespace Brainrot_idle.view.GameCombat
             }
         }
         // ==========================================
-        // 1. LES AMÉLIORATIONS STANDARDS (Coût : 1)
+        // 1. CAS PARTICULIER : L'ATTAQUE DE BASE (Le point de départ)
         // ==========================================
-
-        private void BtnSuperAura_Click(object sender, RoutedEventArgs e)
+        private void BtnCompBase_Click(object sender, RoutedEventArgs e)
         {
-            int cout = 1;
-            if (TxtSuperAura.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            int cout = (TxtNiveauBase.Text == "4/5") ? 5 : 1;
+
+            if (SauvegardeJoueur.Pierres >= cout && TxtNiveauBase.Text != "5/5")
             {
                 SauvegardeJoueur.Pierres -= cout;
-                GameState.AuraBonus += 5; // +5% Aura
-                TxtSuperAura.Text = "1/1";
-                ChangerCouleurBordure(BtnSuperAura, "BordureSuperAura", Brushes.Gold);
+                SauvegardeJoueur.AttaqueBonus += 10;
+
+                if (TxtNiveauBase.Text == "0/5") { TxtNiveauBase.Text = "1/5"; ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow); }
+                else if (TxtNiveauBase.Text == "1/5") { TxtNiveauBase.Text = "2/5"; }
+                else if (TxtNiveauBase.Text == "2/5") { TxtNiveauBase.Text = "3/5"; }
+                else if (TxtNiveauBase.Text == "3/5") { TxtNiveauBase.Text = "4/5"; }
+                else if (TxtNiveauBase.Text == "4/5") { TxtNiveauBase.Text = "5/5"; ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Gold); }
+
                 RafraichirInterface();
             }
         }
 
+        // ==========================================
+        // 2. LES AMÉLIORATIONS STANDARDS (Nécessitent la base à 5/5)
+        // ==========================================
+
         private void BtnMegaAura_Click(object sender, RoutedEventArgs e)
         {
+            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
+
             int cout = 1;
             if (TxtMegaAura.Text == "0/2" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.AttaqueBonus += 10; // Niveau 1 : +10% Atk
+                SauvegardeJoueur.AttaqueBonus += 10;
                 TxtMegaAura.Text = "1/2";
                 ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Yellow);
                 RafraichirInterface();
@@ -107,7 +118,7 @@ namespace Brainrot_idle.view.GameCombat
             else if (TxtMegaAura.Text == "1/2" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.AttaqueBonus += 10; // Niveau 2 : +10% Atk (Total +20%)
+                SauvegardeJoueur.AttaqueBonus += 10;
                 TxtMegaAura.Text = "2/2";
                 ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Gold);
                 RafraichirInterface();
@@ -116,11 +127,13 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnSigmaBoy_Click(object sender, RoutedEventArgs e)
         {
+            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
+
             int cout = 1;
             if (TxtSigmaBoy.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.AttaqueBonus += 25; // +25% Atk
+                SauvegardeJoueur.AttaqueBonus += 25;
                 TxtSigmaBoy.Text = "1/1";
                 ChangerCouleurBordure(BtnSigmaBoy, "BordureSigmaBoy", Brushes.Gold);
                 RafraichirInterface();
@@ -129,121 +142,168 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btntungtungsahur_Click(object sender, RoutedEventArgs e)
         {
+            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
+
             int cout = 1;
             if (Txttungtungsahur.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.AttaqueBonusFlat += 50; // +50 Atk flat
+                SauvegardeJoueur.AttaqueBonusFlat += 50;
                 Txttungtungsahur.Text = "1/1";
                 ChangerCouleurBordure(Btntungtungsahur, "Borduretungtungsahur", Brushes.Gold);
                 RafraichirInterface();
             }
         }
 
-        private void Btntralala_Click(object sender, RoutedEventArgs e)
-        {
-            int cout = 1;
-            if (Txttralala.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
-            {
-                SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.ChanceCritique += 5; // +5% Chance Crit
-                Txttralala.Text = "1/1";
-                ChangerCouleurBordure(Btntralala, "Borduretralala", Brushes.Gold);
-                RafraichirInterface();
-            }
-        }
-
-        private void Btnfrulifrula_Click(object sender, RoutedEventArgs e)
-        {
-            int cout = 1;
-            if (Txtfrulifrula.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
-            {
-                SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.DegatCritique += 15; // +15% Dégâts Crit
-                Txtfrulifrula.Text = "1/1";
-                ChangerCouleurBordure(Btnfrulifrula, "Bordurefrulifrula", Brushes.Gold);
-                RafraichirInterface();
-            }
-        }
-
         private void Btnbombardilo_Click(object sender, RoutedEventArgs e)
         {
+            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
+
             int cout = 1;
             if (Txtbombardilo.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.ChanceCritique += 5; // +5% Chance Crit
+                SauvegardeJoueur.ChanceCritique += 5;
                 Txtbombardilo.Text = "1/1";
                 ChangerCouleurBordure(Btnbombardilo, "Bordurebombardilo", Brushes.Gold);
                 RafraichirInterface();
             }
         }
 
-        private void Btnudindindindun_Click(object sender, RoutedEventArgs e)
-        {
-            int cout = 1;
-            if (Txtudindindindun.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
-            {
-                SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.DegatCritique += 15; // +15% Dégâts Crit
-                Txtudindindindun.Text = "1/1";
-                ChangerCouleurBordure(Btnudindindindun, "Bordureudindindindun", Brushes.Gold);
-                RafraichirInterface();
-            }
-        }
-
         private void Btnpatapim_Click(object sender, RoutedEventArgs e)
         {
+            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
+
             int cout = 1;
             if (Txtpatapim.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.ChanceCritique += 5; // +5% Chance Crit
+                SauvegardeJoueur.ChanceCritique += 5;
                 Txtpatapim.Text = "1/1";
                 ChangerCouleurBordure(Btnpatapim, "Bordurepatapim", Brushes.Gold);
                 RafraichirInterface();
             }
         }
 
+        // ==========================================
+        // 3. LES COMPÉTENCES DE NIVEAU 2 (Nécessitent les compétences juste avant)
+        // ==========================================
+
+        private void BtnSuperAura_Click(object sender, RoutedEventArgs e)
+        {
+            // Nécessite Mega Aura au max
+            if (TxtMegaAura.Text != "2/2") { MessageBox.Show("Nécessite Mega Aura au niveau maximum !"); return; }
+
+            int cout = 1;
+            if (TxtSuperAura.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                GameState.AuraBonus += 5;
+                TxtSuperAura.Text = "1/1";
+                ChangerCouleurBordure(BtnSuperAura, "BordureSuperAura", Brushes.Gold);
+                RafraichirInterface();
+            }
+        }
+
+        private void Btntralala_Click(object sender, RoutedEventArgs e)
+        {
+            // Nécessite tungtungsahur
+            if (Txttungtungsahur.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
+
+            int cout = 1;
+            if (Txttralala.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.ChanceCritique += 5;
+                Txttralala.Text = "1/1";
+                ChangerCouleurBordure(Btntralala, "Borduretralala", Brushes.Gold);
+                RafraichirInterface();
+            }
+        }
+
+        private void Btnudindindindun_Click(object sender, RoutedEventArgs e)
+        {
+            // Nécessite bombardilo
+            if (Txtbombardilo.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
+
+            int cout = 1;
+            if (Txtudindindindun.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DegatCritique += 15;
+                Txtudindindindun.Text = "1/1";
+                ChangerCouleurBordure(Btnudindindindun, "Bordureudindindindun", Brushes.Gold);
+                RafraichirInterface();
+            }
+        }
+
         private void Btnbananini_Click(object sender, RoutedEventArgs e)
         {
+            // Nécessite patapim
+            if (Txtpatapim.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
+
             int cout = 1;
             if (Txtbananini.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.DegatCritique += 15; // +15% Dégâts Crit
+                SauvegardeJoueur.DegatCritique += 15;
                 Txtbananini.Text = "1/1";
                 ChangerCouleurBordure(Btnbananini, "Bordurebananini", Brushes.Gold);
                 RafraichirInterface();
             }
         }
 
+        // ==========================================
+        // 4. LES COMPÉTENCES DE NIVEAU 3 (Bouts de branches)
+        // ==========================================
+
+        private void Btnfrulifrula_Click(object sender, RoutedEventArgs e)
+        {
+            // Nécessite tralala
+            if (Txttralala.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
+
+            int cout = 1;
+            if (Txtfrulifrula.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DegatCritique += 15;
+                Txtfrulifrula.Text = "1/1";
+                ChangerCouleurBordure(Btnfrulifrula, "Bordurefrulifrula", Brushes.Gold);
+                RafraichirInterface();
+            }
+        }
+
         private void Btnlarila_Click(object sender, RoutedEventArgs e)
         {
+            // Nécessite bananini
+            if (Txtbananini.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
+
             int cout = 1;
             if (Txtlarila.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.ChanceCritique += 5; // +5% Chance Crit
-                SauvegardeJoueur.DegatCritique += 15; // +15% Dégâts Crit
+                SauvegardeJoueur.ChanceCritique += 5;
+                SauvegardeJoueur.DegatCritique += 15;
                 Txtlarila.Text = "1/1";
                 ChangerCouleurBordure(Btnlarila, "Bordurelarila", Brushes.Gold);
                 RafraichirInterface();
             }
         }
 
-
         // ==========================================
-        // 2. LES GROSSES AMÉLIORATIONS (Coût : 5)
+        // 5. LES COMPÉTENCES ULTIMES (Coût : 5)
         // ==========================================
 
         private void BtnSigmaAura_Click(object sender, RoutedEventArgs e)
         {
+            // Nécessite Super Aura
+            if (TxtSuperAura.Text != "1/1") { MessageBox.Show("Nécessite Super Aura !"); return; }
+
             int cout = 3;
             if (TxtSigmaAura.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                GameState.AuraBonus += 20; // +20% Aura
+                GameState.AuraBonus += 20;
                 TxtSigmaAura.Text = "1/1";
                 ChangerCouleurBordure(BtnSigmaAura, "BordureSigmaAura", Brushes.Gold);
                 RafraichirInterface();
@@ -252,53 +312,16 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btnalliance_Click(object sender, RoutedEventArgs e)
         {
+            if (Txtfrulifrula.Text != "1/1") { MessageBox.Show("Vous devez atteindre le bout de la branche de droite d'abord !"); return; }
+
             int cout = 5;
             if (Txtalliance.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.PassifAllianceActif = true; // Active le passif spécial
+                SauvegardeJoueur.PassifAllianceActif = true;
                 Txtalliance.Text = "1/1";
                 ChangerCouleurBordure(Btnalliance, "Bordurealliance", Brushes.Gold);
                 RafraichirInterface();
-            }
-        }
-
-
-        // ==========================================
-        // 3. CAS PARTICULIER : L'ATTAQUE DE BASE
-        // ==========================================
-        private void BtnCompBase_Click(object sender, RoutedEventArgs e)
-        {
-            int cout = 1;
-
-            if (SauvegardeJoueur.Pierres >= cout && TxtNiveauBase.Text != "5/5")
-            {
-                SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.AttaqueBonus += 10; // +10 Attaque à chaque niveau acheté
-                RafraichirInterface();
-
-                if (TxtNiveauBase.Text == "0/5")
-                {
-                    TxtNiveauBase.Text = "1/5";
-                    ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
-                }
-                else if (TxtNiveauBase.Text == "1/5")
-                {
-                    TxtNiveauBase.Text = "2/5";
-                }
-                else if (TxtNiveauBase.Text == "2/5")
-                {
-                    TxtNiveauBase.Text = "3/5";
-                }
-                else if (TxtNiveauBase.Text == "3/5")
-                {
-                    TxtNiveauBase.Text = "4/5";
-                }
-                else if (TxtNiveauBase.Text == "4/5")
-                {
-                    TxtNiveauBase.Text = "5/5";
-                    ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Gold);
-                }
             }
         }
 

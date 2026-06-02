@@ -73,5 +73,25 @@ namespace Brainrot_idle.Game.Combatgame.model
             int pourcentage = _rng.Next(90, 111); // Entre 90% et 110%
             return (ExpDeBase * pourcentage) / 100;
         }
+
+        public void AmeliorerStatistique(string stat, double valeur)
+        {
+            switch (stat)
+            {
+                case "Attaque":
+                    Attaque += valeur;
+                    break;
+                case "Sante":
+                    PointsDeVieMax += valeur;
+                    PointsDeVie += valeur; // On soigne aussi le joueur
+                    break;
+                case "Vitesse":
+                    VitesseAttaque += valeur;
+                    break;
+                case "Critique":
+                    ChanceCritique += (int)valeur;
+                    break;
+            }
+        }
     }
 }

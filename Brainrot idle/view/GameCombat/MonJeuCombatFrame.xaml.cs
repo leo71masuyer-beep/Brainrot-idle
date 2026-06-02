@@ -57,12 +57,10 @@ namespace Brainrot_idle.view
             if (_monHeros.PointsDeVie <= 0)
             {
                 _timerCombat.Stop();
-                MessageBox.Show("Vous êtes mort !");
             }
             else if (!_gc.participants.Any(p => !p.EstJoueur && p.PointsDeVie > 0))
             {
                 _timerCombat.Stop();
-                MessageBox.Show($"Vague {_vagueActuelle} terminée ! Butin en cours : {_gc.OrCumule} Or");
 
                 _vagueActuelle++;
                 _gc.ChargerVague(_niveauActuel, _vagueActuelle);
@@ -72,10 +70,6 @@ namespace Brainrot_idle.view
                     _gc.PreparerCombat(_monHeros, _gc.ennemisDeLaVague);
                     MettreAJourInterface();
                     _timerCombat.Start();
-                }
-                else
-                {
-                    MessageBox.Show("NIVEAU TERMINÉ ! Vous rentrez à la base.");
                 }
             }
         }
@@ -109,15 +103,17 @@ namespace Brainrot_idle.view
         {
             _timerCombat.Stop();
 
+            // 1. On ajoute l'or 
             SauvegardeJoueur.OrTotal += _gc.OrCumule;
-            SauvegardeJoueur.ExpTotal += _gc.ExpCumule;
 
-            MessageBox.Show($"Combat terminé !\nVous rentrez à la base avec {_gc.OrCumule} Or et {_gc.ExpCumule} Exp supplémentaires.");
+            // 2. ON UTILISE UNIQUEMENT LA FONCTION POUR L'XP (Elle fait le calcul et le Level Up toute seule)
+            SauvegardeJoueur.AjouterExp(_gc.ExpCumule);
+
 
             if (this.NavigationService.CanGoBack)
             {
                 this.NavigationService.GoBack();
             }
-        }
+        }   
     }
 }

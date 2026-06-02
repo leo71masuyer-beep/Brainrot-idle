@@ -62,8 +62,8 @@ namespace Brainrot_idle.Ressources
 
         private static void GlobalTimer_Tick(object sender, EventArgs e)
         {
-            // 1. Calcul du multiplicateur lié au score du jeu Snake (+15% par fruit)
-            double multiplicateurSnake = 1.0 + (MeilleurScoreSnake * 0.15);
+            // 1. Calcul du multiplicateur lié au score du jeu Snake (+10% par fruit)
+            double multiplicateurSnake = 1.0 + (MeilleurScoreSnake * 0.1);
 
             // 2. Application de la production passive brute boostée
             double auraBoosteParSec = auraParSeconde * multiplicateurSnake;

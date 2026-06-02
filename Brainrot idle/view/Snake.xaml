@@ -5,43 +5,59 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:local="clr-namespace:Brainrot_idle.view"
       mc:Ignorable="d"
-      KeyDown="Page_KeyDown"
+      PreviewKeyDown="Page_PreviewKeyDown"
       Focusable="True">
 
-    <Grid Background="White">
+    <Grid Background="#0A0011">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Button x:Name="BoutonRetour"
-                Grid.Row="0"
-                Content="Retour"
-                Width="100"
-                Height="30"
-                Margin="10"
-                HorizontalAlignment="Left"
-                Click="Return_Button_Click"/>
+            Grid.Row="0"
+            Content="RETOUR"
+            Width="120"
+            Height="35"
+            Margin="20,15,0,0"
+            HorizontalAlignment="Left"
+            Background="Transparent"
+            Foreground="#CCFF00"
+            BorderBrush="#7B00FF"
+            BorderThickness="2"
+            FontWeight="Bold"
+            Click="Return_Button_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
         <TextBlock x:Name="TexteScore"
-                   Grid.Row="1"
-                   Text="Score : 0"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   Margin="10"
-                   VerticalAlignment="Center"/>
+               Grid.Row="1"
+               Text="Score : 0"
+               Foreground="White"
+               FontSize="28"
+               FontWeight="Bold"
+               Margin="20,0,0,0"
+               VerticalAlignment="Center"/>
 
         <Border Grid.Row="2"
-                Margin="10"
-                BorderBrush="Black"
-                BorderThickness="2">
+                Margin="20"
+                BorderBrush="#7B00FF"
+                BorderThickness="3"
+                CornerRadius="10"
+                Background="#05000A"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
 
             <Canvas x:Name="ZoneDeJeu"
-                    Background="LightGray"
                     Width="800"
-                    Height="600"/>
+                    Height="600"
+                    ClipToBounds="True"/>
 
         </Border>
 

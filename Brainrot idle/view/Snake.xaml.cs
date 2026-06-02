@@ -13,7 +13,7 @@ namespace Brainrot_idle.view
     {
         private List<Rectangle> corpsDuSerpent = new List<Rectangle>();
         private const int TailleCase = 20;
-        private DispatcherTimer timerJeu = new DispatcherTimer();
+        private DispatcherTimer timerJeu;
         private int directionX = 1;
         private int directionY = 0;
         private Ellipse pomme;
@@ -27,7 +27,11 @@ namespace Brainrot_idle.view
         {
             InitializeComponent();
 
-            timerJeu.Interval = TimeSpan.FromMilliseconds(80); // Légèrement ralenti (50ms était très rapide)
+            // NOUVEAU : On force le timer à s'exécuter avec la priorité du rendu visuel
+            timerJeu = new DispatcherTimer(DispatcherPriority.Render, Dispatcher);
+
+            // 80ms est un excellent compromis pour la fluidité en WPF
+            timerJeu.Interval = TimeSpan.FromMilliseconds(80);
             timerJeu.Tick += TimerJeu_Tick;
 
             Loaded += Snake_Loaded;
@@ -211,32 +215,37 @@ namespace Brainrot_idle.view
             ZoneDeJeu.Children.Add(pomme);
         }
 
-        private void Page_KeyDown(object sender, KeyEventArgs e)
+        private void Page_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (directionChangeeCeTour) return;
+
             if (e.Key == Key.Up && directionY != 1)
             {
                 directionX = 0;
                 directionY = -1;
                 directionChangeeCeTour = true;
+                e.Handled = true;
             }
             else if (e.Key == Key.Down && directionY != -1)
             {
                 directionX = 0;
                 directionY = 1;
                 directionChangeeCeTour = true;
+                e.Handled = true;
             }
             else if (e.Key == Key.Left && directionX != 1)
             {
                 directionX = -1;
                 directionY = 0;
                 directionChangeeCeTour = true;
+                e.Handled = true;
             }
             else if (e.Key == Key.Right && directionX != -1)
             {
                 directionX = 1;
                 directionY = 0;
                 directionChangeeCeTour = true;
+                e.Handled = true;
             }
         }
     }

@@ -22,5 +22,12 @@ namespace Brainrot_idle.view
         {
             InitializeComponent();
         }
+        private void Return_Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+        }
     }
 }

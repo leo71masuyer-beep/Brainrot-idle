@@ -142,5 +142,6 @@ namespace Brainrot_idle.view
         private void MiniGames_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MiniGamesFrame());
         private void Parametre_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new ParametreFrame());
         private void SkillTree_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new SkillTreeFrame());
+        private void Statistiques_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new StatistiquesFrames());
     }
 }

@@ -33,10 +33,10 @@
 
             <Button Grid.Column="0" Content="Mini jeu" Click="MiniGames_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="1" Content="Skill tree" Click="SkillTree_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
-            <Button Grid.Column="2" Content="Button 3" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
+            <Button Grid.Column="2" Content="Statistiques" Click="Statistiques_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="3" Content="Button 4" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="4" Content="Button 5" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
-            <Button Grid.Column="5" Content="Paramètre" Click="Parametre_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
+            <Button Grid.Column="5" Content="Paramètres" Click="Parametre_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
 
         </Grid>
 

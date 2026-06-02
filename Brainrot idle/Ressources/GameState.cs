@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Threading;
+using System.Collections.Generic;
 
 namespace Brainrot_idle.Ressources
 {
@@ -74,5 +75,9 @@ namespace Brainrot_idle.Ressources
             // 4. Réinitialisation automatique des clics pour le calcul de la seconde suivante
             clicsCetteSeconde = 0;
         }
+
+        // ---------------- Musique ----------------
+        public static List<string> MusiquesDisponibles { get; set; } = new();
+        public static HashSet<string> MusiquesActives { get; set; } = new();
     }
 }

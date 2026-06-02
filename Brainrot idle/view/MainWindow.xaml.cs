@@ -1,62 +1,39 @@
-﻿using System.IO;
-using System.Text;
+﻿using Brainrot_idle.Ressources;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 
 namespace Brainrot_idle.view
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public static MediaPlayer player = new MediaPlayer();
-        private readonly Random random = new Random();
-        private List<string> musiques = new();
-        private int indexActuel = 0;
 
-        private void PlayMusic()
-        {
-            try
-            {
-                string audioPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Ressources/music.mp3");
+        private static MainWindow? instance;
 
-                if (System.IO.File.Exists(audioPath))
-                {
-                    player.Stop();
-                    player.Open(new Uri(audioPath, UriKind.Absolute));
-                    player.Volume = 1.0;
+        private readonly Random random = new();
 
-                    player.MediaEnded += (s, e) => { player.Position = TimeSpan.Zero; player.Play(); };
-                    player.Play();
-                }
-                else
-                {
-                    MessageBox.Show("Le fichier n'est toujours pas vu à cet endroit : " + audioPath);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur critique : " + ex.Message);
-            }
-        }
+        private List<string> toutesLesMusiques = new();
+
+        private string? musiqueActuelle;
+
+        private readonly Stack<string> historiqueMusiques = new();
+
         public MainWindow()
         {
             InitializeComponent();
 
+            instance = this;
+
             ChargerMusiques();
+
             player.MediaEnded += Player_MediaEnded;
 
-            JouerMusiqueCourante();
+            PasserMusiqueSuivante();
 
             MainFrame.Navigate(new HomePage());
         }
+
         private void ChargerMusiques()
         {
             string dossierMusiques = Path.Combine(
@@ -70,37 +47,91 @@ namespace Brainrot_idle.view
                 return;
             }
 
-            musiques = Directory
+            toutesLesMusiques = Directory
                 .GetFiles(dossierMusiques, "*.mp3")
-                .OrderBy(x => random.Next())
                 .ToList();
+
+            // Initialisation des listes du GameState
+            GameState.MusiquesDisponibles.Clear();
+            GameState.MusiquesActives.Clear();
+
+            foreach (string musique in toutesLesMusiques)
+            {
+                string nomFichier = Path.GetFileName(musique);
+
+                GameState.MusiquesDisponibles.Add(nomFichier);
+                GameState.MusiquesActives.Add(nomFichier);
+            }
         }
-        private void JouerMusiqueCourante()
+
+        private void Player_MediaEnded(object? sender, EventArgs e)
         {
-            if (musiques.Count == 0)
+            PasserMusiqueSuivante();
+        }
+
+        public static void SkipCurrentMusic()
+        {
+            instance?.PasserMusiqueSuivante();
+        }
+
+        private void PasserMusiqueSuivante()
+        {
+            if (toutesLesMusiques.Count == 0)
                 return;
 
+            var musiquesDisponibles = toutesLesMusiques
+                .Where(f =>
+                    GameState.MusiquesActives.Contains(
+                        Path.GetFileName(f)))
+                .ToList();
+
+            if (musiquesDisponibles.Count == 0)
+            {
+                MessageBox.Show("Aucune musique sélectionnée.");
+                return;
+            }
+
+            string prochaineMusique;
+
+            do
+            {
+                prochaineMusique =
+                    musiquesDisponibles[random.Next(musiquesDisponibles.Count)];
+            }
+            while (
+                musiquesDisponibles.Count > 1 &&
+                prochaineMusique == musiqueActuelle
+            );
+
+            if (musiqueActuelle != null)
+            {
+                historiqueMusiques.Push(musiqueActuelle);
+            }
+
+            musiqueActuelle = prochaineMusique;
+
             player.Stop();
-            player.Open(new Uri(musiques[indexActuel], UriKind.Absolute));
+            player.Open(new Uri(prochaineMusique, UriKind.Absolute));
             player.Volume = 1.0;
             player.Play();
         }
-        private void Player_MediaEnded(object? sender, EventArgs e)
+        public static void PreviousMusic()
         {
-            indexActuel++;
+            instance?.RevenirMusiquePrecedente();
+        }
+        private void RevenirMusiquePrecedente()
+        {
+            if (historiqueMusiques.Count == 0)
+                return;
 
-            // Toutes les musiques ont été jouées
-            if (indexActuel >= musiques.Count)
-            {
-                // Nouveau mélange
-                musiques = musiques
-                    .OrderBy(x => random.Next())
-                    .ToList();
+            string precedente = historiqueMusiques.Pop();
 
-                indexActuel = 0;
-            }
+            musiqueActuelle = precedente;
 
-            JouerMusiqueCourante();
+            player.Stop();
+            player.Open(new Uri(precedente, UriKind.Absolute));
+            player.Volume = 1.0;
+            player.Play();
         }
     }
 }

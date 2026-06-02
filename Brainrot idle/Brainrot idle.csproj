@@ -10,7 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Ressources\music.mp3" />
+    <None Remove="Ressources\music\Boss_Level_Overdrive.mp3" />
+    <None Remove="Ressources\music\Level_Failure.mp3" />
+    <None Remove="Ressources\music\Panic_Button_Joyride.mp3" />
+    <None Remove="Ressources\music\Sahur_Overdrive.mp3" />
+    <None Remove="Ressources\music\Turbo_Candy_Rampage.mp3" />
     <None Remove="Ressources\prairie.jpg" />
     <None Remove="view\GameCombat\Ressources\bananini.jpg" />
     <None Remove="view\GameCombat\Ressources\bombardilo.jpg" />
@@ -23,13 +27,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Ressources\music\Boss_Level_Overdrive.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\music\Level_Failure.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\music\Panic_Button_Joyride.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\music\Sahur_Overdrive.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\music\Turbo_Candy_Rampage.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="view\GameCombat\Ressources\bombardilo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Ressources\music.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Ressources\prairie.jpg" />
     <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
     <Resource Include="view\GameCombat\Ressources\patapim.jpg" />

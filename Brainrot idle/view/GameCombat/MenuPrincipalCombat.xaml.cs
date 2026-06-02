@@ -385,9 +385,19 @@ namespace Brainrot_idle.view.GameCombat
 
                 int tirage = _rngGacha.Next(1, 101);
 
-                if (tirage <= 2) { AfficherResultat("ÉPIQUE", Brushes.Magenta); }
-                else if (tirage <= 20) { AfficherResultat("RARE", Brushes.Blue); }
-                else { AfficherResultat("COMMUN", Brushes.Black); }
+                // ÉPIQUE (Total 2%)
+                if (tirage <= 1) { AfficherResultat("ÉPIQUE!!! gold + 2000", Brushes.Magenta); }        
+                else if (tirage <= 2) { AfficherResultat("ÉPIQUE!!! vitesse + 5", Brushes.Magenta); }   
+
+                // RARE (Total 18%)
+                else if (tirage <= 10) { AfficherResultat("RARE Pierres + 1", Brushes.Blue); }         
+                else if (tirage <= 20) { AfficherResultat("RARE gold + 250", Brushes.Blue); }         
+
+                // COMMUN (Total 80%)
+                else if (tirage <= 30) { AfficherResultat("COMMUN PV + 5", Brushes.Black); }         
+                else if (tirage <= 40) { AfficherResultat("COMMUN Defense + 5", Brushes.Black); }       
+                else if (tirage <= 50) { AfficherResultat("COMMUN Attaque + 5", Brushes.Black); }       
+                else { AfficherResultat("COMMUN RIEN", Brushes.Black); }                                
             }
         }
 

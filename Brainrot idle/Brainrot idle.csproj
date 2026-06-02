@@ -27,6 +27,7 @@
     <None Remove="view\GameCombat\Ressources\Sprites\heros_idle.png" />
     <None Remove="view\GameCombat\Ressources\SuperAura.jpg" />
     <None Remove="view\GameCombat\Ressources\tralala.jpg" />
+    <None Remove="view\GameCombat\Ressources\Udindindindun.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -63,6 +64,7 @@
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_idle.png" />
     <Resource Include="view\GameCombat\Ressources\SuperAura.jpg" />
     <Resource Include="view\GameCombat\Ressources\tralala.jpg" />
+    <Resource Include="view\GameCombat\Ressources\Udindindindun.png" />
   </ItemGroup>
 
 </Project>

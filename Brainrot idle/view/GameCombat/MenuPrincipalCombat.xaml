@@ -367,7 +367,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurepatapim" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/patapim.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/Udindindindun.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -509,15 +509,37 @@
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0">
                                                 <TextBlock Text="Commun" Foreground="#D0C0E0"/>
-                                                <TextBlock Text="Rien" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Rien" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Attaque + 5" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Defense + 5" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       PV + 5" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       " />
                                                 <TextBlock Text="Rare" Foreground="Cyan"/>
+                                                <TextBlock Text="       gold + 250" Foreground="Cyan"/>
+                                                <TextBlock Text="       Pirres + 1" Foreground="Cyan"/>
+                                                <TextBlock Text="       " />
                                                 <TextBlock Text="Épique" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       gold + 2000 " Foreground="#FF00FF"/>
+                                                <TextBlock Text="       vitesse + 5" Foreground="#FF00FF"/>
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                                                 <TextBlock Text="80%" Foreground="White"/>
-                                                <TextBlock Text="40%" Foreground="White"/>
+                                                <TextBlock Text="50%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+
+                                                <TextBlock Text="" Foreground="White"/>
+
                                                 <TextBlock Text="18%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="8%" Foreground="White"/>
+
+                                                <TextBlock Text="" Foreground="White"/>
+
                                                 <TextBlock Text="2%" Foreground="White"/>
+                                                <TextBlock Text="1%" Foreground="White"/>
+                                                <TextBlock Text="1%" Foreground="White"/>
                                             </StackPanel>
                                         </Grid>
                                     </StackPanel>

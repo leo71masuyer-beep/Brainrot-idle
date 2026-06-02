@@ -29,21 +29,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Ressources\music\Boss_Level_Overdrive.mp3">
+    <Content Include="Ressources\music\Boss_Level_Overdrive.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\music\Level_Failure.mp3">
+    </Content>
+    <Content Include="Ressources\music\Level_Failure.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\music\Panic_Button_Joyride.mp3">
+    </Content>
+    <Content Include="Ressources\music\Panic_Button_Joyride.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\music\Sahur_Overdrive.mp3">
+    </Content>
+    <Content Include="Ressources\music\Sahur_Overdrive.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\music\Turbo_Candy_Rampage.mp3">
+    </Content>
+    <Content Include="Ressources\music\Turbo_Candy_Rampage.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Resource Include="view\GameCombat\Ressources\bombardilo.jpg" />
   </ItemGroup>
 

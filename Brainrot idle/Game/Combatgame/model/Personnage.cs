@@ -93,5 +93,10 @@ namespace Brainrot_idle.Game.Combatgame.model
                     break;
             }
         }
+
+        public void SoignerTotalement()
+        {
+            PointsDeVie = PointsDeVieMax;
+        }
     }
 }

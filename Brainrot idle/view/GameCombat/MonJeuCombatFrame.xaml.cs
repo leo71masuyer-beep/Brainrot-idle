@@ -109,6 +109,7 @@ namespace Brainrot_idle.view
             // 2. ON UTILISE UNIQUEMENT LA FONCTION POUR L'XP (Elle fait le calcul et le Level Up toute seule)
             SauvegardeJoueur.AjouterExp(_gc.ExpCumule);
 
+            _monHeros.SoignerTotalement();
 
             if (this.NavigationService.CanGoBack)
             {

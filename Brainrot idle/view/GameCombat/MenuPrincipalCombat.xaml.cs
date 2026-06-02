@@ -39,7 +39,7 @@ namespace Brainrot_idle.view.GameCombat
         private void ChargerStatistiquesPersonnage()
         {
             // Création du héros avec ses statistiques de base
-            _monHero = new Personnage("Tung Tung Sahur", 10000, 10, 5, 10, 5, 150, 10000, true);
+            _monHero = new Personnage("Tung Tung Sahur", 100, 10, 5, 10, 5, 150, 100, true);
 
             // ON APPLIQUE LES AMÉLIORATIONS DE LA SAUVEGARDE
             // (Évite que les statistiques durement achetées ne disparaissent en rechargeant la page)
@@ -89,23 +89,193 @@ namespace Brainrot_idle.view.GameCombat
 
             // Le reste a été supprimé en attendant de recréer les nouveaux nœuds sur la carte géante !
         }
+        // ==========================================
+        // LA FONCTION MAGIQUE POUR ATTEINDRE LES BORDURES
+        // ==========================================
+        private void ChangerCouleurBordure(Button btn, string nomBordure, Brush couleur)
+        {
+            // On fouille dans le template du bouton pour trouver la bordure
+            Border bordure = btn.Template.FindName(nomBordure, btn) as Border;
+            if (bordure != null)
+            {
+                bordure.BorderBrush = couleur;
+            }
+        }
 
         // ==========================================
-        // ACTIONS DE CLIC SUR LES COMPÉTENCES
+        // 1. LES COMPÉTENCES DE STATISTIQUES (Actives)
         // ==========================================
+
+        private void BtnSigmaBoy_Click(object sender, RoutedEventArgs e)
+        {
+            if (TxtSigmaBoy.Text == "0/1")
+            {
+                // Stats : +25% attaque
+                TxtSigmaBoy.Text = "1/1";
+                ChangerCouleurBordure(BtnSigmaBoy, "BordureSigmaBoy", Brushes.Gold);
+            }
+        }
+
+        private void Btntungtungsahur_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txttungtungsahur.Text == "0/1")
+            {
+                // Stats : +50 Attaque
+                Txttungtungsahur.Text = "1/1";
+                ChangerCouleurBordure(Btntungtungsahur, "Borduretungtungsahur", Brushes.Gold);
+            }
+        }
+
+        private void Btntralala_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txttralala.Text == "0/1")
+            {
+                // Stats : Chance de coup critique +5%
+                Txttralala.Text = "1/1";
+                ChangerCouleurBordure(Btntralala, "Borduretralala", Brushes.Gold);
+            }
+        }
+
+        private void Btnfrulifrula_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txtfrulifrula.Text == "0/1")
+            {
+                // Stats : Dégâts critiques +15%
+                Txtfrulifrula.Text = "1/1";
+                ChangerCouleurBordure(Btnfrulifrula, "Bordurefrulifrula", Brushes.Gold);
+            }
+        }
+
+        private void Btnbombardilo_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txtbombardilo.Text == "0/1")
+            {
+                // Stats : Chance de coup critique +5%
+                Txtbombardilo.Text = "1/1";
+                ChangerCouleurBordure(Btnbombardilo, "Bordurebombardilo", Brushes.Gold);
+            }
+        }
+
+        private void Btnudindindindun_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txtudindindindun.Text == "0/1")
+            {
+                // Stats : Dégâts critiques +15%
+                Txtudindindindun.Text = "1/1";
+                ChangerCouleurBordure(Btnudindindindun, "Bordureudindindindun", Brushes.Gold);
+            }
+        }
+
+        private void Btnpatapim_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txtpatapim.Text == "0/1")
+            {
+                // Stats : Chance de coup critique +5%
+                Txtpatapim.Text = "1/1";
+                ChangerCouleurBordure(Btnpatapim, "Bordurepatapim", Brushes.Gold);
+            }
+        }
+
+        private void Btnbananini_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txtbananini.Text == "0/1")
+            {
+                // Stats : Dégâts critiques +15%
+                Txtbananini.Text = "1/1";
+                ChangerCouleurBordure(Btnbananini, "Bordurebananini", Brushes.Gold);
+            }
+        }
+
+        private void Btnlarila_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txtlarila.Text == "0/1")
+            {
+                // Stats : Chance crit +5% ET Dégâts crit +15%
+                Txtlarila.Text = "1/1";
+                ChangerCouleurBordure(Btnlarila, "Bordurelarila", Brushes.Gold);
+            }
+        }
+
+        // ==========================================
+        // 2. LES COMPÉTENCES À PLUSIEURS NIVEAUX
+        // ==========================================
+
+        private void BtnMegaAura_Click(object sender, RoutedEventArgs e)
+        {
+            if (TxtMegaAura.Text == "0/2")
+            {
+                TxtMegaAura.Text = "1/2";
+                ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Yellow);
+            }
+            else if (TxtMegaAura.Text == "1/2")
+            {
+                TxtMegaAura.Text = "2/2";
+                ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Gold);
+            }
+        }
+
         private void BtnCompBase_Click(object sender, RoutedEventArgs e)
         {
-            int cout = 1; // Coûte 1 Pierre
-            if (SauvegardeJoueur.PierresTotal >= cout && SauvegardeJoueur.CompBaseAttaque < 5)
+            if (TxtNiveauBase.Text == "0/5")
             {
-                SauvegardeJoueur.PierresTotal -= cout;
-                SauvegardeJoueur.CompBaseAttaque++;
+                // Stats : +10 Attaque
+                TxtNiveauBase.Text = "1/5";
+                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
+            }
+            else if (TxtNiveauBase.Text == "1/5")
+            {
+                // Stats : +10 Attaque
+                TxtNiveauBase.Text = "2/5";
+                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
+            }
+            else if (TxtNiveauBase.Text == "2/5")
+            {
+                // Stats : +10 Attaque
+                TxtNiveauBase.Text = "3/5";
+                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
+            }
+            else if (TxtNiveauBase.Text == "3/5")
+            {
+                // Stats : +10 Attaque
+                TxtNiveauBase.Text = "4/5";
+                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
+            }
+            else if (TxtNiveauBase.Text == "4/5")
+            {
+                // Stats : +10 Attaque
+                TxtNiveauBase.Text = "5/5";
+                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Gold);
+            }
+        }
 
-                _monHero.AmeliorerStatistique("Attaque", 10);
+        // ==========================================
+        // 3. PRÉPARATION POUR LE SYSTÈME D'AURA
+        // ==========================================
 
-                MettreAJourStatsUI();
-                MettreAJourArbreUI();
-                TxtOrGlobal.Text = SauvegardeJoueur.OrTotal.ToString(); // Reste des monnaies à jour
+        private void BtnSuperAura_Click(object sender, RoutedEventArgs e)
+        {
+            if (TxtSuperAura.Text == "0/1")
+            {
+                TxtSuperAura.Text = "1/1";
+                ChangerCouleurBordure(BtnSuperAura, "BordureSuperAura", Brushes.Gold);
+            }
+        }
+
+        private void BtnSigmaAura_Click(object sender, RoutedEventArgs e)
+        {
+            if (TxtSigmaAura.Text == "0/1")
+            {
+                TxtSigmaAura.Text = "1/1";
+                ChangerCouleurBordure(BtnSigmaAura, "BordureSigmaAura", Brushes.Gold);
+            }
+        }
+
+        private void Btnalliance_Click(object sender, RoutedEventArgs e)
+        {
+            if (Txtalliance.Text == "0/1")
+            {
+                Txtalliance.Text = "1/1";
+                ChangerCouleurBordure(Btnalliance, "Bordurealliance", Brushes.Gold);
             }
         }
 

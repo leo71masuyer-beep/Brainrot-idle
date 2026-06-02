@@ -44,12 +44,15 @@
     <Content Include="Ressources\music\Turbo_Candy_Rampage.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="view\GameCombat\Ressources\alliance.png" />
+    <Resource Include="view\GameCombat\Ressources\bananini.jpg" />
     <Resource Include="view\GameCombat\Ressources\bombardilo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Ressources\prairie.jpg" />
     <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
+    <Resource Include="view\GameCombat\Ressources\larila.jpg" />
     <Resource Include="view\GameCombat\Ressources\patapim.jpg" />
     <Resource Include="view\GameCombat\Ressources\sahur.jpg" />
     <Resource Include="view\GameCombat\Ressources\SigmaBoy.jpg" />

@@ -43,6 +43,9 @@ namespace Brainrot_idle.Ressources
         public static int NiveauCliqueur { get; set; } = 0;
         public static double MultiplicateurAuraParClic { get; set; } = 1.0; // Initialisé à 1.0 (très important !)
 
+        // ---------------- Systeme de GameCombat d'amelioration ----------------
+        public static double AuraBonus { get; set; } = 0;
+        public static double AuraBonusFlat { get; set; } = 0;
 
         // ---------------- MOTEUR IDLE CORE (BACKEND) ----------------
         private static DispatcherTimer globalTimer;
@@ -64,10 +67,16 @@ namespace Brainrot_idle.Ressources
         private static void GlobalTimer_Tick(object sender, EventArgs e)
         {
             // 1. Calcul du multiplicateur lié au score du jeu Snake (+10% par fruit)
-            double multiplicateurSnake = 1.0 + (MeilleurScoreSnake * 0.1);
+            double multiplicateurSnake = (MeilleurScoreSnake * 0.1);
+
+            // 1. Calcul du multiplicateur lié au Bonus d'aura obtenu par le jeu GameCombat (No limit)
+            double multiplicateurGameCombat = (AuraBonus/100);
+
+            // 1. Somme de tout les multiplicateur
+            double multiplicateurGlobal = 1.0 + MeilleurScoreSnake + AuraBonus;
 
             // 2. Application de la production passive brute boostée
-            double auraBoosteParSec = auraParSeconde * multiplicateurSnake;
+            double auraBoosteParSec = (auraParSeconde + AuraBonusFlat) * multiplicateurGlobal;
 
             // 3. Injection automatique des points dans le solde du joueur (Fonctionne en arrière-plan global)
             points += auraBoosteParSec;

@@ -9,7 +9,27 @@ namespace Brainrot_idle.Game.Combatgame.model
         public string Nom { get; private set; }
         public double PointsDeVie { get; private set; }
         public double PointsDeVieMax { get; private set; }
-        public double Attaque { get; private set; }
+        private double _Attaque;
+
+        public double Attaque
+        {
+            get
+            {
+                if (this.EstJoueur)
+                {
+                    double multiplicateurPercentage = 1f + (SauvegardeJoueur.AttaqueBonus / 100f);
+                    return (_Attaque + SauvegardeJoueur.AttaqueBonusFlat) * multiplicateurPercentage;
+                }
+                else
+                {
+                    return _Attaque;
+                }
+            }
+            set
+            {
+                _Attaque = value;
+            }
+        }
         public double Defense { get; private set; }
         public double VitesseAttaque { get; private set; }
         public int ChanceCritique { get; private set; }

@@ -103,10 +103,8 @@ namespace Brainrot_idle.view
         {
             _timerCombat.Stop();
 
-            // 1. On ajoute l'or 
             SauvegardeJoueur.OrTotal += _gc.OrCumule;
 
-            // 2. ON UTILISE UNIQUEMENT LA FONCTION POUR L'XP (Elle fait le calcul et le Level Up toute seule)
             SauvegardeJoueur.AjouterExp(_gc.ExpCumule);
 
             _monHeros.SoignerTotalement();

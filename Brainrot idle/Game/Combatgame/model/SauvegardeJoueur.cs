@@ -8,9 +8,24 @@ namespace Brainrot_idle.Game.Combatgame.model
     {
         public static int OrTotal { get; set; } = 0;
         public static int ExpTotal { get; set; } = 0;
-        public static int PierresTotal { get; set; } = 0;
+        public static int Pierres { get; set; } = 0;
         public static int DiamantsTotal { get; set; } = 0;
         public static int NiveauHeros { get; set; } = 1;
+
+        // ==========================================
+        // STATS BONUS (Issues de l'arbre)
+        // ==========================================
+        public static int AttaqueBonusFlat { get; set; } = 0;
+        public static float AttaqueBonus { get; set; } = 1f;
+        public static float ChanceCritique { get; set; } = 0f;
+        public static float DegatCritique { get; set; } = 0f;
+
+        // ==========================================
+        // PASSIFS UNIQUE / SPÉCIAUX
+        // ==========================================
+        public static bool PassifAllianceActif { get; set; } = false;
+
+
 
         // --- SAUVEGARDE DE L'ARBRE DE COMPÉTENCES ---
         // Nœud de départ
@@ -34,8 +49,8 @@ namespace Brainrot_idle.Game.Combatgame.model
             {
                 ExpTotal -= xpRequise;
                 NiveauHeros++;
-                if (NiveauHeros % 5 == 0) PierresTotal += 3;
-                else PierresTotal += 1;
+                if (NiveauHeros % 5 == 0) Pierres += 3;
+                else Pierres += 1;
                 xpRequise = CalculerXpRequise(NiveauHeros);
             }
         }

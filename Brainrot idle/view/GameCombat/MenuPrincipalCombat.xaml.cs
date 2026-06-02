@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Brainrot_idle.Game.Combatgame.model;
+using Brainrot_idle.Ressources;
 
 namespace Brainrot_idle.view.GameCombat
 {
@@ -17,14 +18,17 @@ namespace Brainrot_idle.view.GameCombat
             InitializeComponent();
             ChargerStatistiquesPersonnage();
 
-            // On demande à la page de se mettre à jour à chaque fois qu'elle s'affiche à l'écran
             this.Loaded += MenuPrincipalCombat_Loaded;
         }
 
         private void MenuPrincipalCombat_Loaded(object sender, RoutedEventArgs e)
         {
+            RafraichirInterface();
+        }
+        private void RafraichirInterface()
+        {
             TxtOrGlobal.Text = SauvegardeJoueur.OrTotal.ToString();
-            TxtPierreGlobal.Text = SauvegardeJoueur.PierresTotal.ToString();
+            TxtPierreGlobal.Text = SauvegardeJoueur.Pierres.ToString();
             TxtDiamantGlobal.Text = SauvegardeJoueur.DiamantsTotal.ToString();
 
             TxtNiveauGlobal.Text = $"NIVEAU {SauvegardeJoueur.NiveauHeros}";
@@ -34,30 +38,13 @@ namespace Brainrot_idle.view.GameCombat
             BarreXpGlobal.Maximum = xpRequise;
             BarreXpGlobal.Value = SauvegardeJoueur.ExpTotal;
             TxtXpGlobal.Text = $"{SauvegardeJoueur.ExpTotal} / {xpRequise}";
+            MettreAJourStatsUI();
         }
 
         private void ChargerStatistiquesPersonnage()
         {
-            // Création du héros avec ses statistiques de base
-            _monHero = new Personnage("Tung Tung Sahur", 100, 10, 5, 10, 5, 150, 100, true);
+            _monHero = new Personnage("Tung Tung Sahur", 100, 100, 5, 10, 5, 150, 100, true);
 
-            // ON APPLIQUE LES AMÉLIORATIONS DE LA SAUVEGARDE
-            // (Évite que les statistiques durement achetées ne disparaissent en rechargeant la page)
-            if (SauvegardeJoueur.CompBaseAttaque > 0)
-            {
-                _monHero.AmeliorerStatistique("Attaque", SauvegardeJoueur.CompBaseAttaque * 10);
-            }
-            if (SauvegardeJoueur.CompVoieBrainrot > 0)
-            {
-                _monHero.AmeliorerStatistique("Vitesse", 15);
-                _monHero.AmeliorerStatistique("Critique", 10);
-            }
-            if (SauvegardeJoueur.CompVoieGigachad > 0)
-            {
-                _monHero.AmeliorerStatistique("Sante", 500);
-            }
-
-            // Liaison de toutes les statistiques aux TextBlocks de l'interface
             MettreAJourStatsUI();
         }
 
@@ -65,30 +52,18 @@ namespace Brainrot_idle.view.GameCombat
         {
             if (_monHero == null) return;
 
-            TxtStatAttaque.Text = _monHero.Attaque.ToString();
-            TxtStatDefense.Text = _monHero.Defense.ToString();
-            TxtStatSante.Text = _monHero.PointsDeVieMax.ToString();
-            TxtStatVitesse.Text = _monHero.VitesseAttaque.ToString();
-            TxtStatCritique.Text = _monHero.ChanceCritique.ToString() + "%";
-            TxtStatDegatCritique.Text = _monHero.DegatCritique.ToString() + "%";
+            TxtStatAttaque.Text = _monHero.Attaque.ToString("0");
+            TxtStatDefense.Text = _monHero.Defense.ToString("0");
+            TxtStatSante.Text = _monHero.PointsDeVieMax.ToString("0");
+            TxtStatVitesse.Text = _monHero.VitesseAttaque.ToString("0");
+
+            float chanceCritFinale = _monHero.ChanceCritique + SauvegardeJoueur.ChanceCritique;
+            float degatCritFinal = _monHero.DegatCritique + SauvegardeJoueur.DegatCritique;
+
+            TxtStatCritique.Text = chanceCritFinale.ToString("0") + "%";
+            TxtStatDegatCritique.Text = degatCritFinal.ToString("0") + "%";
         }
 
-        // ==========================================
-        // LOGIQUE VISUELLE DE L'ARBRE DE COMPÉTENCES
-        // ==========================================
-        private void MettreAJourArbreUI()
-        {
-            TxtNiveauBase.Text = $"{SauvegardeJoueur.CompBaseAttaque}/5";
-
-            // 1. Changement de couleur de la bordure du nœud de base
-            var bordureBase = (Border)BtnCompBase.Template.FindName("BordureBase", BtnCompBase);
-            if (bordureBase != null)
-            {
-                bordureBase.BorderBrush = SauvegardeJoueur.CompBaseAttaque > 0 ? Brushes.Gold : new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333333"));
-            }
-
-            // Le reste a été supprimé en attendant de recréer les nouveaux nœuds sur la carte géante !
-        }
         // ==========================================
         // LA FONCTION MAGIQUE POUR ATTEINDRE LES BORDURES
         // ==========================================
@@ -101,181 +76,229 @@ namespace Brainrot_idle.view.GameCombat
                 bordure.BorderBrush = couleur;
             }
         }
+        // ==========================================
+        // 1. LES AMÉLIORATIONS STANDARDS (Coût : 1)
+        // ==========================================
 
-        // ==========================================
-        // 1. LES COMPÉTENCES DE STATISTIQUES (Actives)
-        // ==========================================
+        private void BtnSuperAura_Click(object sender, RoutedEventArgs e)
+        {
+            int cout = 1;
+            if (TxtSuperAura.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                GameState.AuraBonus += 5; // +5% Aura
+                TxtSuperAura.Text = "1/1";
+                ChangerCouleurBordure(BtnSuperAura, "BordureSuperAura", Brushes.Gold);
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnMegaAura_Click(object sender, RoutedEventArgs e)
+        {
+            int cout = 1;
+            if (TxtMegaAura.Text == "0/2" && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.AttaqueBonus += 10; // Niveau 1 : +10% Atk
+                TxtMegaAura.Text = "1/2";
+                ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Yellow);
+                RafraichirInterface();
+            }
+            else if (TxtMegaAura.Text == "1/2" && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.AttaqueBonus += 10; // Niveau 2 : +10% Atk (Total +20%)
+                TxtMegaAura.Text = "2/2";
+                ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Gold);
+                RafraichirInterface();
+            }
+        }
 
         private void BtnSigmaBoy_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtSigmaBoy.Text == "0/1")
+            int cout = 1;
+            if (TxtSigmaBoy.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : +25% attaque
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.AttaqueBonus += 25; // +25% Atk
                 TxtSigmaBoy.Text = "1/1";
                 ChangerCouleurBordure(BtnSigmaBoy, "BordureSigmaBoy", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btntungtungsahur_Click(object sender, RoutedEventArgs e)
         {
-            if (Txttungtungsahur.Text == "0/1")
+            int cout = 1;
+            if (Txttungtungsahur.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : +50 Attaque
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.AttaqueBonusFlat += 50; // +50 Atk flat
                 Txttungtungsahur.Text = "1/1";
                 ChangerCouleurBordure(Btntungtungsahur, "Borduretungtungsahur", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btntralala_Click(object sender, RoutedEventArgs e)
         {
-            if (Txttralala.Text == "0/1")
+            int cout = 1;
+            if (Txttralala.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : Chance de coup critique +5%
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.ChanceCritique += 5; // +5% Chance Crit
                 Txttralala.Text = "1/1";
                 ChangerCouleurBordure(Btntralala, "Borduretralala", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btnfrulifrula_Click(object sender, RoutedEventArgs e)
         {
-            if (Txtfrulifrula.Text == "0/1")
+            int cout = 1;
+            if (Txtfrulifrula.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : Dégâts critiques +15%
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DegatCritique += 15; // +15% Dégâts Crit
                 Txtfrulifrula.Text = "1/1";
                 ChangerCouleurBordure(Btnfrulifrula, "Bordurefrulifrula", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btnbombardilo_Click(object sender, RoutedEventArgs e)
         {
-            if (Txtbombardilo.Text == "0/1")
+            int cout = 1;
+            if (Txtbombardilo.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : Chance de coup critique +5%
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.ChanceCritique += 5; // +5% Chance Crit
                 Txtbombardilo.Text = "1/1";
                 ChangerCouleurBordure(Btnbombardilo, "Bordurebombardilo", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btnudindindindun_Click(object sender, RoutedEventArgs e)
         {
-            if (Txtudindindindun.Text == "0/1")
+            int cout = 1;
+            if (Txtudindindindun.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : Dégâts critiques +15%
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DegatCritique += 15; // +15% Dégâts Crit
                 Txtudindindindun.Text = "1/1";
                 ChangerCouleurBordure(Btnudindindindun, "Bordureudindindindun", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btnpatapim_Click(object sender, RoutedEventArgs e)
         {
-            if (Txtpatapim.Text == "0/1")
+            int cout = 1;
+            if (Txtpatapim.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : Chance de coup critique +5%
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.ChanceCritique += 5; // +5% Chance Crit
                 Txtpatapim.Text = "1/1";
                 ChangerCouleurBordure(Btnpatapim, "Bordurepatapim", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btnbananini_Click(object sender, RoutedEventArgs e)
         {
-            if (Txtbananini.Text == "0/1")
+            int cout = 1;
+            if (Txtbananini.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : Dégâts critiques +15%
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DegatCritique += 15; // +15% Dégâts Crit
                 Txtbananini.Text = "1/1";
                 ChangerCouleurBordure(Btnbananini, "Bordurebananini", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btnlarila_Click(object sender, RoutedEventArgs e)
         {
-            if (Txtlarila.Text == "0/1")
+            int cout = 1;
+            if (Txtlarila.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
-                // Stats : Chance crit +5% ET Dégâts crit +15%
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.ChanceCritique += 5; // +5% Chance Crit
+                SauvegardeJoueur.DegatCritique += 15; // +15% Dégâts Crit
                 Txtlarila.Text = "1/1";
                 ChangerCouleurBordure(Btnlarila, "Bordurelarila", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
-        // ==========================================
-        // 2. LES COMPÉTENCES À PLUSIEURS NIVEAUX
-        // ==========================================
-
-        private void BtnMegaAura_Click(object sender, RoutedEventArgs e)
-        {
-            if (TxtMegaAura.Text == "0/2")
-            {
-                TxtMegaAura.Text = "1/2";
-                ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Yellow);
-            }
-            else if (TxtMegaAura.Text == "1/2")
-            {
-                TxtMegaAura.Text = "2/2";
-                ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Gold);
-            }
-        }
-
-        private void BtnCompBase_Click(object sender, RoutedEventArgs e)
-        {
-            if (TxtNiveauBase.Text == "0/5")
-            {
-                // Stats : +10 Attaque
-                TxtNiveauBase.Text = "1/5";
-                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
-            }
-            else if (TxtNiveauBase.Text == "1/5")
-            {
-                // Stats : +10 Attaque
-                TxtNiveauBase.Text = "2/5";
-                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
-            }
-            else if (TxtNiveauBase.Text == "2/5")
-            {
-                // Stats : +10 Attaque
-                TxtNiveauBase.Text = "3/5";
-                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
-            }
-            else if (TxtNiveauBase.Text == "3/5")
-            {
-                // Stats : +10 Attaque
-                TxtNiveauBase.Text = "4/5";
-                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
-            }
-            else if (TxtNiveauBase.Text == "4/5")
-            {
-                // Stats : +10 Attaque
-                TxtNiveauBase.Text = "5/5";
-                ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Gold);
-            }
-        }
 
         // ==========================================
-        // 3. PRÉPARATION POUR LE SYSTÈME D'AURA
+        // 2. LES GROSSES AMÉLIORATIONS (Coût : 5)
         // ==========================================
-
-        private void BtnSuperAura_Click(object sender, RoutedEventArgs e)
-        {
-            if (TxtSuperAura.Text == "0/1")
-            {
-                TxtSuperAura.Text = "1/1";
-                ChangerCouleurBordure(BtnSuperAura, "BordureSuperAura", Brushes.Gold);
-            }
-        }
 
         private void BtnSigmaAura_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtSigmaAura.Text == "0/1")
+            int cout = 3;
+            if (TxtSigmaAura.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
+                SauvegardeJoueur.Pierres -= cout;
+                GameState.AuraBonus += 20; // +20% Aura
                 TxtSigmaAura.Text = "1/1";
                 ChangerCouleurBordure(BtnSigmaAura, "BordureSigmaAura", Brushes.Gold);
+                RafraichirInterface();
             }
         }
 
         private void Btnalliance_Click(object sender, RoutedEventArgs e)
         {
-            if (Txtalliance.Text == "0/1")
+            int cout = 5;
+            if (Txtalliance.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
             {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.PassifAllianceActif = true; // Active le passif spécial
                 Txtalliance.Text = "1/1";
                 ChangerCouleurBordure(Btnalliance, "Bordurealliance", Brushes.Gold);
+                RafraichirInterface();
+            }
+        }
+
+
+        // ==========================================
+        // 3. CAS PARTICULIER : L'ATTAQUE DE BASE
+        // ==========================================
+        private void BtnCompBase_Click(object sender, RoutedEventArgs e)
+        {
+            int cout = 1;
+
+            if (SauvegardeJoueur.Pierres >= cout && TxtNiveauBase.Text != "5/5")
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.AttaqueBonus += 10; // +10 Attaque à chaque niveau acheté
+                RafraichirInterface();
+
+                if (TxtNiveauBase.Text == "0/5")
+                {
+                    TxtNiveauBase.Text = "1/5";
+                    ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
+                }
+                else if (TxtNiveauBase.Text == "1/5")
+                {
+                    TxtNiveauBase.Text = "2/5";
+                }
+                else if (TxtNiveauBase.Text == "2/5")
+                {
+                    TxtNiveauBase.Text = "3/5";
+                }
+                else if (TxtNiveauBase.Text == "3/5")
+                {
+                    TxtNiveauBase.Text = "4/5";
+                }
+                else if (TxtNiveauBase.Text == "4/5")
+                {
+                    TxtNiveauBase.Text = "5/5";
+                    ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Gold);
+                }
             }
         }
 

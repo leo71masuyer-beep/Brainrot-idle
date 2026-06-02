@@ -27,7 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Ressources\music.mp3" />
+    <Content Include="Ressources\music.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Ressources\prairie.jpg" />
     <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
     <Resource Include="view\GameCombat\Ressources\patapim.jpg" />

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
+using System.Windows.Media.Imaging;
+using System.Windows.Media.Animation;
+using System.Threading.Tasks;
 
 namespace Brainrot_idle.view
 {
@@ -17,12 +20,10 @@ namespace Brainrot_idle.view
 
         private DispatcherTimer _timerCombat;
 
-        // NOUVEAU : On exige un Personnage dans les parenthèses du constructeur
         public MonJeuCombatFrame(Personnage herosEnvoyeDepuisLeMenu)
         {
             InitializeComponent();
 
-            // On sauvegarde le héros qu'on vient de recevoir dans notre variable locale
             _monHeros = herosEnvoyeDepuisLeMenu;
 
             InitialiserCombat();
@@ -32,7 +33,7 @@ namespace Brainrot_idle.view
         {
             _gc = new GestionnaireCombat();
 
-            // On a supprimé la création du héros ici, puisqu'on l'a déjà !
+            _gc.OnAttaque += Gc_OnAttaque;
 
             _gc.ChargerVague(1, 1);
             _gc.PreparerCombat(_monHeros, _gc.ennemisDeLaVague);
@@ -43,6 +44,47 @@ namespace Brainrot_idle.view
 
             MettreAJourInterface();
             _timerCombat.Start();
+        }
+
+        private void Gc_OnAttaque(Personnage attaquant)
+        {
+            if (attaquant.EstJoueur)
+            {
+                // On envoie le nom de base du héros
+                JouerAnimationAttaqueSprite(ImgHeros, "heros");
+            }
+            else
+            {
+                string nomBaseEnnemi = attaquant.Nom.ToLower().Replace(" ", "_");
+                JouerAnimationAttaqueSprite(ImgEnnemi, nomBaseEnnemi);
+            }
+        }
+
+        private async void JouerAnimationAttaqueSprite(Image imageAAnimer, string nomBase)
+        {
+            try
+            {
+                int vitesseAnimation = 80;
+
+                // Frame d'attaque 1
+                imageAAnimer.Source = new BitmapImage(new Uri($"pack://application:,,,/view/GameCombat/Ressources/Sprites/{nomBase}_atk1.png"));
+                await Task.Delay(vitesseAnimation);
+
+                // Frame d'attaque 2
+                imageAAnimer.Source = new BitmapImage(new Uri($"pack://application:,,,/view/GameCombat/Ressources/Sprites/{nomBase}_atk2.png"));
+                await Task.Delay(vitesseAnimation);
+
+                // Frame d'attaque 3
+                imageAAnimer.Source = new BitmapImage(new Uri($"pack://application:,,,/view/GameCombat/Ressources/Sprites/{nomBase}_atk3.png"));
+                await Task.Delay(vitesseAnimation);
+
+                // Retour à la position de repos (Idle)
+                imageAAnimer.Source = new BitmapImage(new Uri($"pack://application:,,,/view/GameCombat/Ressources/Sprites/{nomBase}_idle.png"));
+            }
+            catch
+            {
+                // Si une frame manque dans le dossier, on ignore l'erreur pour ne pas faire crasher le jeu
+            }
         }
 
         private void TimerCombat_Tick(object sender, EventArgs e)
@@ -89,6 +131,25 @@ namespace Brainrot_idle.view
                 BarrePVEnnemi.Maximum = ennemi.PointsDeVieMax;
                 BarrePVEnnemi.Value = pvEnnemiAffichage;
                 TxtStatsEnnemi.Text = $"PV: {pvEnnemiAffichage} / {ennemi.PointsDeVieMax}";
+
+                try
+                {
+                    // Convertit "Petit Lutin" en "petit_lutin_idle.png"
+                    string nomImage = ennemi.Nom.ToLower().Replace(" ", "_") + "_idle.png";
+                    string cheminComplet = $"pack://application:,,,/view/GameCombat/Ressources/Sprites/{nomImage}";
+
+                    string sourceActuelle = ImgEnnemi.Source?.ToString() ?? "";
+
+                    // On ne change l'image QUE si elle est différente ET qu'on n'est pas en train de jouer une frame d'attaque ("_atk")
+                    if (sourceActuelle != cheminComplet && !sourceActuelle.Contains("_atk"))
+                    {
+                        ImgEnnemi.Source = new BitmapImage(new Uri(cheminComplet));
+                    }
+                }
+                catch
+                {
+                    // Si l'image n'est pas trouvée, l'image par défaut reste en place
+                }
             }
             else
             {
@@ -99,6 +160,7 @@ namespace Brainrot_idle.view
             TxtOrGagne.Text = $"{_gc.OrCumule} Or";
             TxtExpGagne.Text = $"{_gc.ExpCumule} Exp";
         }
+
         private void BtnArreterCombat_Click(object sender, RoutedEventArgs e)
         {
             _timerCombat.Stop();
@@ -113,6 +175,6 @@ namespace Brainrot_idle.view
             {
                 this.NavigationService.GoBack();
             }
-        }   
+        }
     }
 }

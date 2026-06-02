@@ -24,6 +24,7 @@
     <None Remove="view\GameCombat\Ressources\patapim.jpg" />
     <None Remove="view\GameCombat\Ressources\sahur.jpg" />
     <None Remove="view\GameCombat\Ressources\SigmaBoy.jpg" />
+    <None Remove="view\GameCombat\Ressources\Sprites\heros_idle.png" />
     <None Remove="view\GameCombat\Ressources\SuperAura.jpg" />
     <None Remove="view\GameCombat\Ressources\tralala.jpg" />
   </ItemGroup>
@@ -56,6 +57,10 @@
     <Resource Include="view\GameCombat\Ressources\patapim.jpg" />
     <Resource Include="view\GameCombat\Ressources\sahur.jpg" />
     <Resource Include="view\GameCombat\Ressources\SigmaBoy.jpg" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk2.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk3.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk1.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\heros_idle.png" />
     <Resource Include="view\GameCombat\Ressources\SuperAura.jpg" />
     <Resource Include="view\GameCombat\Ressources\tralala.jpg" />
   </ItemGroup>

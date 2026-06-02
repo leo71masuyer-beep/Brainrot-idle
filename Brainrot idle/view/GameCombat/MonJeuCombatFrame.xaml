@@ -49,11 +49,11 @@
                 </Grid.ColumnDefinitions>
 
                 <Viewbox Grid.Column="0" Stretch="Uniform">
-                    <Image x:Name="ImgHeros" Source="pack://application:,,,/Ressources/heros.png" Height="300"/>
+                    <Image x:Name="ImgHeros" Source="pack://application:,,,/view/GameCombat/Ressources/Sprites/heros_idle.png" Height="300"/>
                 </Viewbox>
 
                 <Viewbox Grid.Column="1" Stretch="Uniform">
-                    <Image x:Name="ImgEnnemi" Source="pack://application:,,,/Ressources/lutin_basique.png" Height="300"/>
+                    <Image x:Name="ImgEnnemi" Source="pack://application:,,,/view/GameCombat/Ressources/Sprites/lutin_basique.png" Height="300"/>
                 </Viewbox>
             </Grid>
 

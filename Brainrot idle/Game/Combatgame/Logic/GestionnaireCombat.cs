@@ -7,6 +7,8 @@ namespace MonJeuCombat.Games.CombatGame.Logic
 {
     public class GestionnaireCombat
     {
+        public event Action<Personnage> OnAttaque;
+
         public List<Personnage> participants = new List<Personnage>();
 
         public int OrCumule { get; private set; }
@@ -57,6 +59,9 @@ namespace MonJeuCombat.Games.CombatGame.Logic
 
             if (cible != null)
             {
+                // NOUVEAU : On déclenche l'animation juste avant d'infliger les dégâts
+                OnAttaque?.Invoke(attaquant);
+
                 double degats = attaquant.CalculerDegatsSortants();
                 cible.RecevoirDegats(degats);
 

@@ -21,6 +21,25 @@ namespace Brainrot_idle.Game.Combatgame.model
         public static float DegatCritique { get; set; } = 0f;
 
         // ==========================================
+        // Variables pour sauvegarder l'état de l'arbre de compétences
+        // ==========================================
+
+        public static int LvlBase = 0;
+        public static int LvlSuperAura = 0;
+        public static int LvlMegaAura = 0;
+        public static int LvlSigmaAura = 0;
+        public static int LvlSigmaBoy = 0;
+        public static int Lvltungtungsahur = 0;
+        public static int Lvltralala = 0;
+        public static int Lvlfrulifrula = 0;
+        public static int Lvlbombardilo = 0;
+        public static int Lvludindindindun = 0;
+        public static int Lvlpatapim = 0;
+        public static int Lvlbananini = 0;
+        public static int Lvllarila = 0;
+        public static int Lvlalliance = 0;
+
+        // ==========================================
         // PASSIFS UNIQUE / SPÉCIAUX
         // ==========================================
         public static bool PassifAllianceActif { get; set; } = false;

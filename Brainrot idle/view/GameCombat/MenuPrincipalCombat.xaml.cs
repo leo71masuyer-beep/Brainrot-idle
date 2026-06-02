@@ -12,38 +12,45 @@ namespace Brainrot_idle.view.GameCombat
         private Personnage _monHero;
         private Point _pointDepartClic;
         private bool _enDeplacement = false;
+        private Random _rngGacha = new Random();
 
         public MenuPrincipalCombat()
         {
             InitializeComponent();
             ChargerStatistiquesPersonnage();
-
-            this.Loaded += MenuPrincipalCombat_Loaded;
         }
 
-        private void MenuPrincipalCombat_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            RestaurerArbre();
             RafraichirInterface();
         }
+
+        #region ================== MISE À JOUR DE L'INTERFACE ==================
+
+        private void ChargerStatistiquesPersonnage()
+        {
+            _monHero = new Personnage("Tung Tung Sahur", 100, 100, 5, 10, 5, 150, 100, true);
+            MettreAJourStatsUI();
+        }
+
         private void RafraichirInterface()
         {
+            // Ressources globales
             TxtOrGlobal.Text = SauvegardeJoueur.OrTotal.ToString();
             TxtPierreGlobal.Text = SauvegardeJoueur.Pierres.ToString();
             TxtDiamantGlobal.Text = SauvegardeJoueur.DiamantsTotal.ToString();
 
-            TxtNiveauGlobal.Text = $"NIVEAU {SauvegardeJoueur.NiveauHeros}";
+            // Mise à jour de l'or spécifique à l'onglet Gacha s'il existe
+            if (TxtOrGacha != null) TxtOrGacha.Text = SauvegardeJoueur.OrTotal.ToString();
 
+            // Expérience et Niveau
+            TxtNiveauGlobal.Text = $"NIVEAU {SauvegardeJoueur.NiveauHeros}";
             int xpRequise = SauvegardeJoueur.CalculerXpRequise(SauvegardeJoueur.NiveauHeros);
 
             BarreXpGlobal.Maximum = xpRequise;
             BarreXpGlobal.Value = SauvegardeJoueur.ExpTotal;
             TxtXpGlobal.Text = $"{SauvegardeJoueur.ExpTotal} / {xpRequise}";
-            MettreAJourStatsUI();
-        }
-
-        private void ChargerStatistiquesPersonnage()
-        {
-            _monHero = new Personnage("Tung Tung Sahur", 100, 100, 5, 10, 5, 150, 100, true);
 
             MettreAJourStatsUI();
         }
@@ -64,270 +71,371 @@ namespace Brainrot_idle.view.GameCombat
             TxtStatDegatCritique.Text = degatCritFinal.ToString("0") + "%";
         }
 
-        // ==========================================
-        // LA FONCTION MAGIQUE POUR ATTEINDRE LES BORDURES
-        // ==========================================
+        #endregion
+
+        #region ================== GESTION DES ONGLETS ==================
+
+        // Fonction centralisée pour changer d'onglet proprement sans répéter le code
+        private void ActiverOnglet(Grid panneauActif, Border fondActif, TextBlock texteActif)
+        {
+            // 1. On cache tout
+            PanneauStats.Visibility = Visibility.Collapsed;
+            PanneauArbre.Visibility = Visibility.Collapsed;
+            PanneauGacha.Visibility = Visibility.Collapsed;
+
+            // 2. On éteint tous les boutons
+            ResetOngletCouleur(FondOngletStats, TexteOngletStats);
+            ResetOngletCouleur(FondOngletArbre, TexteOngletArbre);
+            ResetOngletCouleur(FondOngletGacha, TexteOngletGacha);
+
+            // 3. On affiche seulement le bon panneau et on allume le bon bouton
+            panneauActif.Visibility = Visibility.Visible;
+            fondActif.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2A004D"));
+            fondActif.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9D00FF"));
+            texteActif.Foreground = Brushes.White;
+        }
+
+        private void ResetOngletCouleur(Border fond, TextBlock texte)
+        {
+            fond.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0A0410"));
+            fond.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4D0099"));
+            texte.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A080C0"));
+        }
+
+        private void BtnOngletStats_Click(object sender, RoutedEventArgs e)
+        {
+            ActiverOnglet(PanneauStats, FondOngletStats, TexteOngletStats);
+        }
+
+        private void BtnOngletArbre_Click(object sender, RoutedEventArgs e)
+        {
+            ActiverOnglet(PanneauArbre, FondOngletArbre, TexteOngletArbre);
+
+            // On force l'attente maximale pour que la fenêtre soit 100% calculée et on centre la vue
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                CarteScroll.UpdateLayout();
+                CarteScroll.ScrollToHorizontalOffset(1535 - (CarteScroll.ViewportWidth / 2));
+                CarteScroll.ScrollToVerticalOffset(1535 - (CarteScroll.ViewportHeight / 2));
+            }), System.Windows.Threading.DispatcherPriority.ContextIdle);
+        }
+
+        private void BtnOngletGacha_Click(object sender, RoutedEventArgs e)
+        {
+            ActiverOnglet(PanneauGacha, FondOngletGacha, TexteOngletGacha);
+            RafraichirInterface();
+        }
+
+        #endregion
+
+        #region ================== ARBRE DE COMPÉTENCES ==================
+
         private void ChangerCouleurBordure(Button btn, string nomBordure, Brush couleur)
         {
-            // On fouille dans le template du bouton pour trouver la bordure
-            Border bordure = btn.Template.FindName(nomBordure, btn) as Border;
-            if (bordure != null)
+            if (btn.Template.FindName(nomBordure, btn) is Border bordure)
             {
                 bordure.BorderBrush = couleur;
             }
         }
-        // ==========================================
-        // 1. CAS PARTICULIER : L'ATTAQUE DE BASE (Le point de départ)
-        // ==========================================
+
+        private void RestaurerArbre()
+        {
+            // 1. Mise à jour des textes
+            TxtNiveauBase.Text = $"{SauvegardeJoueur.LvlBase}/5";
+            TxtSuperAura.Text = $"{SauvegardeJoueur.LvlSuperAura}/1";
+            TxtMegaAura.Text = $"{SauvegardeJoueur.LvlMegaAura}/2";
+            TxtSigmaAura.Text = $"{SauvegardeJoueur.LvlSigmaAura}/1";
+            TxtSigmaBoy.Text = $"{SauvegardeJoueur.LvlSigmaBoy}/1";
+            Txttungtungsahur.Text = $"{SauvegardeJoueur.Lvltungtungsahur}/1";
+            Txttralala.Text = $"{SauvegardeJoueur.Lvltralala}/1";
+            Txtfrulifrula.Text = $"{SauvegardeJoueur.Lvlfrulifrula}/1";
+            Txtbombardilo.Text = $"{SauvegardeJoueur.Lvlbombardilo}/1";
+            Txtudindindindun.Text = $"{SauvegardeJoueur.Lvludindindindun}/1";
+            Txtpatapim.Text = $"{SauvegardeJoueur.Lvlpatapim}/1";
+            Txtbananini.Text = $"{SauvegardeJoueur.Lvlbananini}/1";
+            Txtlarila.Text = $"{SauvegardeJoueur.Lvllarila}/1";
+            Txtalliance.Text = $"{SauvegardeJoueur.Lvlalliance}/1";
+
+            // 2. Remise en place des couleurs
+            if (SauvegardeJoueur.LvlBase > 0) ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
+            if (SauvegardeJoueur.LvlBase == 5) ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Gold);
+            if (SauvegardeJoueur.LvlSuperAura == 1) ChangerCouleurBordure(BtnSuperAura, "BordureSuperAura", Brushes.Gold);
+            if (SauvegardeJoueur.LvlMegaAura == 1) ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Yellow);
+            if (SauvegardeJoueur.LvlMegaAura == 2) ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Gold);
+            if (SauvegardeJoueur.LvlSigmaAura == 1) ChangerCouleurBordure(BtnSigmaAura, "BordureSigmaAura", Brushes.Gold);
+            if (SauvegardeJoueur.LvlSigmaBoy == 1) ChangerCouleurBordure(BtnSigmaBoy, "BordureSigmaBoy", Brushes.Gold);
+            if (SauvegardeJoueur.Lvltungtungsahur == 1) ChangerCouleurBordure(Btntungtungsahur, "Borduretungtungsahur", Brushes.Gold);
+            if (SauvegardeJoueur.Lvltralala == 1) ChangerCouleurBordure(Btntralala, "Borduretralala", Brushes.Gold);
+            if (SauvegardeJoueur.Lvlfrulifrula == 1) ChangerCouleurBordure(Btnfrulifrula, "Bordurefrulifrula", Brushes.Gold);
+            if (SauvegardeJoueur.Lvlbombardilo == 1) ChangerCouleurBordure(Btnbombardilo, "Bordurebombardilo", Brushes.Gold);
+            if (SauvegardeJoueur.Lvludindindindun == 1) ChangerCouleurBordure(Btnudindindindun, "Bordureudindindindun", Brushes.Gold);
+            if (SauvegardeJoueur.Lvlpatapim == 1) ChangerCouleurBordure(Btnpatapim, "Bordurepatapim", Brushes.Gold);
+            if (SauvegardeJoueur.Lvlbananini == 1) ChangerCouleurBordure(Btnbananini, "Bordurebananini", Brushes.Gold);
+            if (SauvegardeJoueur.Lvllarila == 1) ChangerCouleurBordure(Btnlarila, "Bordurelarila", Brushes.Gold);
+            if (SauvegardeJoueur.Lvlalliance == 1) ChangerCouleurBordure(Btnalliance, "Bordurealliance", Brushes.Gold);
+        }
+
         private void BtnCompBase_Click(object sender, RoutedEventArgs e)
         {
-            int cout = (TxtNiveauBase.Text == "4/5") ? 5 : 1;
-
-            if (SauvegardeJoueur.Pierres >= cout && TxtNiveauBase.Text != "5/5")
+            int cout = 1;
+            if (SauvegardeJoueur.Pierres >= cout && SauvegardeJoueur.LvlBase < 5)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.AttaqueBonus += 10;
-
-                if (TxtNiveauBase.Text == "0/5") { TxtNiveauBase.Text = "1/5"; ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow); }
-                else if (TxtNiveauBase.Text == "1/5") { TxtNiveauBase.Text = "2/5"; }
-                else if (TxtNiveauBase.Text == "2/5") { TxtNiveauBase.Text = "3/5"; }
-                else if (TxtNiveauBase.Text == "3/5") { TxtNiveauBase.Text = "4/5"; }
-                else if (TxtNiveauBase.Text == "4/5") { TxtNiveauBase.Text = "5/5"; ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Gold); }
-
+                SauvegardeJoueur.LvlBase++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
-
-        // ==========================================
-        // 2. LES AMÉLIORATIONS STANDARDS (Nécessitent la base à 5/5)
-        // ==========================================
-
-        private void BtnMegaAura_Click(object sender, RoutedEventArgs e)
+        private void BtnSuperAura_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
-
+            if (SauvegardeJoueur.LvlBase < 5) return;
             int cout = 1;
-            if (TxtMegaAura.Text == "0/2" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.LvlSuperAura == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.AttaqueBonus += 10;
-                TxtMegaAura.Text = "1/2";
-                ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Yellow);
+                GameState.AuraBonus += 5;
+                SauvegardeJoueur.LvlSuperAura++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
-            else if (TxtMegaAura.Text == "1/2" && SauvegardeJoueur.Pierres >= cout)
+        }
+        private void BtnMegaAura_Click(object sender, RoutedEventArgs e)
+        {
+            if (SauvegardeJoueur.LvlSuperAura == 0) return;
+            int cout = 1;
+            if (SauvegardeJoueur.LvlMegaAura < 2 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.AttaqueBonus += 10;
-                TxtMegaAura.Text = "2/2";
-                ChangerCouleurBordure(BtnMegaAura, "BordureMegaAura", Brushes.Gold);
+                SauvegardeJoueur.LvlMegaAura++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
         private void BtnSigmaBoy_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
-
+            if (SauvegardeJoueur.LvlBase < 5) return;
             int cout = 1;
-            if (TxtSigmaBoy.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.LvlSigmaBoy == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.AttaqueBonus += 25;
-                TxtSigmaBoy.Text = "1/1";
-                ChangerCouleurBordure(BtnSigmaBoy, "BordureSigmaBoy", Brushes.Gold);
+                SauvegardeJoueur.LvlSigmaBoy++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
         private void Btntungtungsahur_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
-
+            if (SauvegardeJoueur.LvlBase < 5) return;
             int cout = 1;
-            if (Txttungtungsahur.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvltungtungsahur == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.AttaqueBonusFlat += 50;
-                Txttungtungsahur.Text = "1/1";
-                ChangerCouleurBordure(Btntungtungsahur, "Borduretungtungsahur", Brushes.Gold);
+                SauvegardeJoueur.Lvltungtungsahur++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
         private void Btnbombardilo_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
-
+            if (SauvegardeJoueur.LvlBase < 5) return;
             int cout = 1;
-            if (Txtbombardilo.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvlbombardilo == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.ChanceCritique += 5;
-                Txtbombardilo.Text = "1/1";
-                ChangerCouleurBordure(Btnbombardilo, "Bordurebombardilo", Brushes.Gold);
+                SauvegardeJoueur.Lvlbombardilo++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
         private void Btnpatapim_Click(object sender, RoutedEventArgs e)
         {
-            if (TxtNiveauBase.Text != "5/5") { MessageBox.Show("Améliorez l'attaque de base au maximum d'abord !"); return; }
-
+            if (SauvegardeJoueur.LvlBase < 5) return;
             int cout = 1;
-            if (Txtpatapim.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvlpatapim == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.ChanceCritique += 5;
-                Txtpatapim.Text = "1/1";
-                ChangerCouleurBordure(Btnpatapim, "Bordurepatapim", Brushes.Gold);
+                SauvegardeJoueur.Lvlpatapim++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
-        // ==========================================
-        // 3. LES COMPÉTENCES DE NIVEAU 2 (Nécessitent les compétences juste avant)
-        // ==========================================
 
-        private void BtnSuperAura_Click(object sender, RoutedEventArgs e)
-        {
-            // Nécessite Mega Aura au max
-            if (TxtMegaAura.Text != "2/2") { MessageBox.Show("Nécessite Mega Aura au niveau maximum !"); return; }
-
-            int cout = 1;
-            if (TxtSuperAura.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
-            {
-                SauvegardeJoueur.Pierres -= cout;
-                GameState.AuraBonus += 5;
-                TxtSuperAura.Text = "1/1";
-                ChangerCouleurBordure(BtnSuperAura, "BordureSuperAura", Brushes.Gold);
-                RafraichirInterface();
-            }
-        }
 
         private void Btntralala_Click(object sender, RoutedEventArgs e)
         {
-            // Nécessite tungtungsahur
-            if (Txttungtungsahur.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
-
+            if (SauvegardeJoueur.Lvltungtungsahur == 0) return;
             int cout = 1;
-            if (Txttralala.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvltralala == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.ChanceCritique += 5;
-                Txttralala.Text = "1/1";
-                ChangerCouleurBordure(Btntralala, "Borduretralala", Brushes.Gold);
+                SauvegardeJoueur.Lvltralala++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
         private void Btnudindindindun_Click(object sender, RoutedEventArgs e)
         {
-            // Nécessite bombardilo
-            if (Txtbombardilo.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
-
+            if (SauvegardeJoueur.Lvlbombardilo == 0) return;
             int cout = 1;
-            if (Txtudindindindun.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvludindindindun == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.DegatCritique += 15;
-                Txtudindindindun.Text = "1/1";
-                ChangerCouleurBordure(Btnudindindindun, "Bordureudindindindun", Brushes.Gold);
+                SauvegardeJoueur.Lvludindindindun++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
         private void Btnbananini_Click(object sender, RoutedEventArgs e)
         {
-            // Nécessite patapim
-            if (Txtpatapim.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
-
+            if (SauvegardeJoueur.Lvlpatapim == 0) return;
             int cout = 1;
-            if (Txtbananini.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvlbananini == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.DegatCritique += 15;
-                Txtbananini.Text = "1/1";
-                ChangerCouleurBordure(Btnbananini, "Bordurebananini", Brushes.Gold);
+                SauvegardeJoueur.Lvlbananini++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
-        // ==========================================
-        // 4. LES COMPÉTENCES DE NIVEAU 3 (Bouts de branches)
-        // ==========================================
-
         private void Btnfrulifrula_Click(object sender, RoutedEventArgs e)
         {
-            // Nécessite tralala
-            if (Txttralala.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
-
+            if (SauvegardeJoueur.Lvltralala == 0) return;
             int cout = 1;
-            if (Txtfrulifrula.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvlfrulifrula == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.DegatCritique += 15;
-                Txtfrulifrula.Text = "1/1";
-                ChangerCouleurBordure(Btnfrulifrula, "Bordurefrulifrula", Brushes.Gold);
+                SauvegardeJoueur.Lvlfrulifrula++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
         private void Btnlarila_Click(object sender, RoutedEventArgs e)
         {
-            // Nécessite bananini
-            if (Txtbananini.Text != "1/1") { MessageBox.Show("Nécessite la compétence précédente !"); return; }
-
+            if (SauvegardeJoueur.Lvlbananini == 0) return;
             int cout = 1;
-            if (Txtlarila.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvllarila == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.ChanceCritique += 5;
                 SauvegardeJoueur.DegatCritique += 15;
-                Txtlarila.Text = "1/1";
-                ChangerCouleurBordure(Btnlarila, "Bordurelarila", Brushes.Gold);
+                SauvegardeJoueur.Lvllarila++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
-        // ==========================================
-        // 5. LES COMPÉTENCES ULTIMES (Coût : 5)
-        // ==========================================
-
         private void BtnSigmaAura_Click(object sender, RoutedEventArgs e)
         {
-            // Nécessite Super Aura
-            if (TxtSuperAura.Text != "1/1") { MessageBox.Show("Nécessite Super Aura !"); return; }
-
-            int cout = 3;
-            if (TxtSigmaAura.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.LvlSuperAura == 0) return;
+            int cout = 5;
+            if (SauvegardeJoueur.LvlSigmaAura == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 GameState.AuraBonus += 20;
-                TxtSigmaAura.Text = "1/1";
-                ChangerCouleurBordure(BtnSigmaAura, "BordureSigmaAura", Brushes.Gold);
+                SauvegardeJoueur.LvlSigmaAura++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
         private void Btnalliance_Click(object sender, RoutedEventArgs e)
         {
-            if (Txtfrulifrula.Text != "1/1") { MessageBox.Show("Vous devez atteindre le bout de la branche de droite d'abord !"); return; }
-
+            if (SauvegardeJoueur.Lvlfrulifrula == 0) return;
             int cout = 5;
-            if (Txtalliance.Text == "0/1" && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvlalliance == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.PassifAllianceActif = true;
-                Txtalliance.Text = "1/1";
-                ChangerCouleurBordure(Btnalliance, "Bordurealliance", Brushes.Gold);
+                SauvegardeJoueur.Lvlalliance++;
+                RestaurerArbre();
                 RafraichirInterface();
             }
         }
 
-        // ==========================================
-        // BOUTONS DE NAVIGATION & NAVIGATION ONGLETS
-        // ==========================================
+        #endregion
+
+        #region ================== SYSTÈME DE GACHA ==================
+
+        private void BtnOuvrirCommun_Click(object sender, RoutedEventArgs e)
+        {
+            int cout = 500;
+            if (SauvegardeJoueur.OrTotal >= cout)
+            {
+                SauvegardeJoueur.OrTotal -= cout;
+                RafraichirInterface();
+
+                int tirage = _rngGacha.Next(1, 101);
+
+                if (tirage <= 2) { AfficherResultat("ÉPIQUE", Brushes.Magenta); }
+                else if (tirage <= 20) { AfficherResultat("RARE", Brushes.Blue); }
+                else { AfficherResultat("COMMUN", Brushes.Black); }
+            }
+        }
+
+        private void BtnOuvrirRare_Click(object sender, RoutedEventArgs e)
+        {
+            int cout = 2000;
+            if (SauvegardeJoueur.OrTotal >= cout)
+            {
+                SauvegardeJoueur.OrTotal -= cout;
+                RafraichirInterface();
+
+                int tirage = _rngGacha.Next(1, 101);
+
+                if (tirage <= 5) { AfficherResultat("LÉGENDAIRE", Brushes.Orange); }
+                else if (tirage <= 20) { AfficherResultat("ÉPIQUE", Brushes.Magenta); }
+                else if (tirage <= 60) { AfficherResultat("RARE", Brushes.Blue); }
+                else { AfficherResultat("COMMUN", Brushes.Black); }
+            }
+        }
+
+        private void BtnOuvrirMythique_Click(object sender, RoutedEventArgs e)
+        {
+            int cout = 10000;
+            if (SauvegardeJoueur.OrTotal >= cout)
+            {
+                SauvegardeJoueur.OrTotal -= cout;
+                RafraichirInterface();
+
+                int tirage = _rngGacha.Next(1, 101);
+
+                if (tirage <= 5) { AfficherResultat("MYTHIQUE", Brushes.Red); }
+                else if (tirage <= 25) { AfficherResultat("LÉGENDAIRE", Brushes.Orange); }
+                else if (tirage <= 60) { AfficherResultat("ÉPIQUE", Brushes.Magenta); }
+                else if (tirage <= 90) { AfficherResultat("RARE", Brushes.Blue); }
+                else { AfficherResultat("COMMUN", Brushes.Black); }
+            }
+        }
+
+        private void AfficherResultat(string rarete, Brush couleur)
+        {
+            TxtResultatTirage.Text = $"Tu as obtenu un objet {rarete} !";
+            TxtResultatTirage.Foreground = couleur;
+        }
+
+        #endregion
+
+        #region ================== NAVIGATION & DÉPLACEMENT SOURIS ==================
+
         private void BtnStartCombat_Click(object sender, RoutedEventArgs e)
         {
             ComboBoxItem itemSelectionne = (ComboBoxItem)ComboDifficulte.SelectedItem;
@@ -351,85 +459,37 @@ namespace Brainrot_idle.view.GameCombat
             }
         }
 
-        private void BtnOngletStats_Click(object sender, RoutedEventArgs e)
-        {
-            PanneauStats.Visibility = Visibility.Visible;
-            PanneauArbre.Visibility = Visibility.Collapsed;
-
-            FondOngletStats.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2A004D"));
-            FondOngletStats.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9D00FF"));
-            TexteOngletStats.Foreground = Brushes.White;
-
-            ResetOngletCouleur(FondOngletArbre, TexteOngletArbre);
-        }
-
-        private void BtnOngletArbre_Click(object sender, RoutedEventArgs e)
-        {
-            PanneauArbre.Visibility = Visibility.Visible;
-            PanneauStats.Visibility = Visibility.Collapsed;
-
-            // Couleurs d'onglet Actif
-            FondOngletArbre.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#2A004D"));
-            FondOngletArbre.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9D00FF"));
-            TexteOngletArbre.Foreground = Brushes.White;
-
-            ResetOngletCouleur(FondOngletStats, TexteOngletStats);
-
-            // On force l'attente maximale pour que la fenêtre soit 100% calculée
-            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                CarteScroll.UpdateLayout(); // Force le calcul des dimensions
-
-                // 1535 = Position (1500) + la moitié de la taille de ton bouton (35)
-                CarteScroll.ScrollToHorizontalOffset(1535 - (CarteScroll.ViewportWidth / 2));
-                CarteScroll.ScrollToVerticalOffset(1535 - (CarteScroll.ViewportHeight / 2));
-
-            }), System.Windows.Threading.DispatcherPriority.ContextIdle);
-        }
-
-        private void ResetOngletCouleur(Border fond, TextBlock texte)
-        {
-            fond.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0A0410"));
-            fond.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4D0099"));
-            texte.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A080C0"));
-        }
-
-        // 1. Quand on clique sur le fond de l'arbre
         private void ZoneArbre_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             _enDeplacement = true;
-            _pointDepartClic = e.GetPosition(CarteScroll); // On mémorise la position de départ
-
-            ZoneArbre.CaptureMouse(); // Verrouille la souris pour ne pas la perdre si on bouge vite
-            ZoneArbre.Cursor = System.Windows.Input.Cursors.SizeAll; // Transforme la souris en croix directionnelle
+            _pointDepartClic = e.GetPosition(CarteScroll);
+            ZoneArbre.CaptureMouse();
+            ZoneArbre.Cursor = System.Windows.Input.Cursors.SizeAll;
         }
 
-        // 2. Quand on lâche le clic
         private void ZoneArbre_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             _enDeplacement = false;
-            ZoneArbre.ReleaseMouseCapture(); // On libère la souris
-            ZoneArbre.Cursor = System.Windows.Input.Cursors.Arrow; // Remet la souris normale
+            ZoneArbre.ReleaseMouseCapture();
+            ZoneArbre.Cursor = System.Windows.Input.Cursors.Arrow;
         }
 
-        // 3. Quand on bouge la souris (seulement si le clic est enfoncé)
         private void ZoneArbre_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (_enDeplacement)
             {
                 Point positionActuelle = e.GetPosition(CarteScroll);
 
-                // On calcule de combien de pixels la souris a bougé
                 double deplacementX = positionActuelle.X - _pointDepartClic.X;
                 double deplacementY = positionActuelle.Y - _pointDepartClic.Y;
 
-                // On fait glisser les barres de défilement (Scroll) dans le sens inverse du mouvement
                 CarteScroll.ScrollToHorizontalOffset(CarteScroll.HorizontalOffset - deplacementX);
                 CarteScroll.ScrollToVerticalOffset(CarteScroll.VerticalOffset - deplacementY);
 
-                // On met à jour la position pour que le mouvement soit fluide en continu
                 _pointDepartClic = positionActuelle;
             }
         }
+
+        #endregion
     }
 }

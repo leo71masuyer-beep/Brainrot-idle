@@ -28,17 +28,31 @@ namespace MonJeuCombat.Games.CombatGame.Logic
 
         public void ExecuterTick()
         {
+            // 1. On charge les jauges de TOUS les personnages vivants en même temps
             foreach (var p in participants)
             {
-                if (p.PointsDeVie <= 0) continue;
-
-                p.JaugeAction += p.VitesseAttaque;
-
-                if (p.JaugeAction >= 100)
+                if (p.PointsDeVie > 0)
                 {
-                    FaireAttaquer(p);
-                    p.JaugeAction -= 100;
+                    p.JaugeAction += p.VitesseAttaque;
                 }
+            }
+
+            // 2. On récupère ceux qui ont atteint 100 de jauge, et on les TRIE 
+            // Celui qui a la plus grande jauge (le plus rapide) est placé en premier
+            var pretsAAttaquer = participants
+                .Where(p => p.PointsDeVie > 0 && p.JaugeAction >= 100)
+                .OrderByDescending(p => p.JaugeAction)
+                .ToList();
+
+            // 3. On les fait attaquer dans le bon ordre
+            foreach (var attaquant in pretsAAttaquer)
+            {
+                // SÉCURITÉ CRUCIALE : Si un monstre a été tué par le héros 
+                // juste avant dans cette même milliseconde, il ne peut plus attaquer !
+                if (attaquant.PointsDeVie <= 0) continue;
+
+                FaireAttaquer(attaquant);
+                attaquant.JaugeAction -= 100;
             }
 
             VerifierFinDeCombat();
@@ -59,7 +73,7 @@ namespace MonJeuCombat.Games.CombatGame.Logic
 
             if (cible != null)
             {
-                // NOUVEAU : On déclenche l'animation juste avant d'infliger les dégâts
+                // On déclenche l'animation juste avant d'infliger les dégâts
                 OnAttaque?.Invoke(attaquant);
 
                 double degats = attaquant.CalculerDegatsSortants();

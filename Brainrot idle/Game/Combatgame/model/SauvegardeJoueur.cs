@@ -8,7 +8,7 @@ namespace Brainrot_idle.Game.Combatgame.model
     {
         public static int OrTotal { get; set; } = 5000;
         public static int ExpTotal { get; set; } = 0;
-        public static int Pierres { get; set; } = 0;
+        public static int Pierres { get; set; } = 1000;
         public static int DiamantsTotal { get; set; } = 0;
         public static int NiveauHeros { get; set; } = 1;
 
@@ -17,13 +17,16 @@ namespace Brainrot_idle.Game.Combatgame.model
         // ==========================================
         public static int AttaqueBonusFlat { get; set; } = 0;
         public static float AttaqueBonus { get; set; } = 1f;
+
+        public static double DefenseBonusFlat { get; set; } = 0;
+        public static double DefenseBonus { get; set; } = 0;
+
         public static float ChanceCritique { get; set; } = 0f;
         public static float DegatCritique { get; set; } = 0f;
 
         // ==========================================
         // Variables pour sauvegarder l'état de l'arbre de compétences
         // ==========================================
-
         public static int LvlBase = 0;
         public static int LvlSuperAura = 0;
         public static int LvlMegaAura = 0;
@@ -39,20 +42,22 @@ namespace Brainrot_idle.Game.Combatgame.model
         public static int Lvllarila = 0;
         public static int Lvlalliance = 0;
 
+        // Branche Giga Chad
+        public static int LvlGigaChad = 0;
+        public static int LvlPecsChad = 0;
+        public static int LvlLombaireChad = 0;
+        public static int LvlTricepsChad = 0;
+        public static int LvlCorpGigachad = 0;
+        public static int LvlMegaChad = 0;
+        public static int LvlMuscleGigaChad = 0;
+        public static int LvlQuadricepsChad = 0;
+        public static int LvlAbdoChad = 0;
+        public static int LvlChadUltime = 0;
+
         // ==========================================
         // PASSIFS UNIQUE / SPÉCIAUX
         // ==========================================
         public static bool PassifAllianceActif { get; set; } = false;
-
-
-
-        // --- SAUVEGARDE DE L'ARBRE DE COMPÉTENCES ---
-        // Nœud de départ
-        public static int CompBaseAttaque { get; set; } = 0; // Max 5
-
-        // Nœuds de spécialisation (Choix mutuellement exclusif)
-        public static int CompVoieBrainrot { get; set; } = 0; // Max 1
-        public static int CompVoieGigachad { get; set; } = 0; // Max 1
 
         public static int CalculerXpRequise(int niveau)
         {

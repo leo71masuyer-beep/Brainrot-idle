@@ -20,6 +20,7 @@
     <None Remove="view\GameCombat\Ressources\bananini.jpg" />
     <None Remove="view\GameCombat\Ressources\bombardilo.jpg" />
     <None Remove="view\GameCombat\Ressources\frulifrula.jpg" />
+    <None Remove="view\GameCombat\Ressources\gigachad.jpg" />
     <None Remove="view\GameCombat\Ressources\larila.jpg" />
     <None Remove="view\GameCombat\Ressources\patapim.jpg" />
     <None Remove="view\GameCombat\Ressources\sahur.jpg" />
@@ -54,6 +55,7 @@
   <ItemGroup>
     <Resource Include="Ressources\prairie.jpg" />
     <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
+    <Resource Include="view\GameCombat\Ressources\gigachad.jpg" />
     <Resource Include="view\GameCombat\Ressources\larila.jpg" />
     <Resource Include="view\GameCombat\Ressources\patapim.jpg" />
     <Resource Include="view\GameCombat\Ressources\sahur.jpg" />

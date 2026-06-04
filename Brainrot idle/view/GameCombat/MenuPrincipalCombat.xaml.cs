@@ -140,7 +140,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void RestaurerArbre()
         {
-            // 1. Mise à jour des textes
+            // 1. Mise à jour des textes (Anciennes branches)
             TxtNiveauBase.Text = $"{SauvegardeJoueur.LvlBase}/5";
             TxtSuperAura.Text = $"{SauvegardeJoueur.LvlSuperAura}/1";
             TxtMegaAura.Text = $"{SauvegardeJoueur.LvlMegaAura}/2";
@@ -156,7 +156,19 @@ namespace Brainrot_idle.view.GameCombat
             Txtlarila.Text = $"{SauvegardeJoueur.Lvllarila}/1";
             Txtalliance.Text = $"{SauvegardeJoueur.Lvlalliance}/1";
 
-            // 2. Remise en place des couleurs
+            // Mise à jour des textes (Branche Giga Chad)
+            if (TxtGigaChad != null) TxtGigaChad.Text = $"{SauvegardeJoueur.LvlGigaChad}/1";
+            if (TxtPecsChad != null) TxtPecsChad.Text = $"{SauvegardeJoueur.LvlPecsChad}/1";
+            if (TxtLombaireChad != null) TxtLombaireChad.Text = $"{SauvegardeJoueur.LvlLombaireChad}/1";
+            if (TxtTricepsChad != null) TxtTricepsChad.Text = $"{SauvegardeJoueur.LvlTricepsChad}/1";
+            if (TxtCorpGigachad != null) TxtCorpGigachad.Text = $"{SauvegardeJoueur.LvlCorpGigachad}/1";
+            if (TxtMegaChad != null) TxtMegaChad.Text = $"{SauvegardeJoueur.LvlMegaChad}/1";
+            if (TxtMuscleGigaChad != null) TxtMuscleGigaChad.Text = $"{SauvegardeJoueur.LvlMuscleGigaChad}/1";
+            if (TxtQuadricepsChad != null) TxtQuadricepsChad.Text = $"{SauvegardeJoueur.LvlQuadricepsChad}/1";
+            if (TxtAbdoChad != null) TxtAbdoChad.Text = $"{SauvegardeJoueur.LvlAbdoChad}/1";
+            if (TxtChadUltime != null) TxtChadUltime.Text = $"{SauvegardeJoueur.LvlChadUltime}/1";
+
+            // 2. Remise en place des couleurs (Anciennes branches)
             if (SauvegardeJoueur.LvlBase > 0) ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Yellow);
             if (SauvegardeJoueur.LvlBase == 5) ChangerCouleurBordure(BtnCompBase, "BordureBase", Brushes.Gold);
             if (SauvegardeJoueur.LvlSuperAura == 1) ChangerCouleurBordure(BtnSuperAura, "BordureSuperAura", Brushes.Gold);
@@ -173,6 +185,18 @@ namespace Brainrot_idle.view.GameCombat
             if (SauvegardeJoueur.Lvlbananini == 1) ChangerCouleurBordure(Btnbananini, "Bordurebananini", Brushes.Gold);
             if (SauvegardeJoueur.Lvllarila == 1) ChangerCouleurBordure(Btnlarila, "Bordurelarila", Brushes.Gold);
             if (SauvegardeJoueur.Lvlalliance == 1) ChangerCouleurBordure(Btnalliance, "Bordurealliance", Brushes.Gold);
+
+            // Remise en place des couleurs (Branche Giga Chad)
+            if (SauvegardeJoueur.LvlGigaChad == 1) ChangerCouleurBordure(BtnGigaChad, "BordureGigaChad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlPecsChad == 1) ChangerCouleurBordure(BtnPecsChad, "BordurePecsChad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlLombaireChad == 1) ChangerCouleurBordure(BtnLombaireChad, "BordureLombaireChad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlTricepsChad == 1) ChangerCouleurBordure(BtnTricepsChad, "BordureTricepsChad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlCorpGigachad == 1) ChangerCouleurBordure(BtnCorpGigachad, "BordureCorpGigachad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlMegaChad == 1) ChangerCouleurBordure(BtnMegaChad, "BordureMegaChad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlMuscleGigaChad == 1) ChangerCouleurBordure(BtnMuscleGigaChad, "BordureMuscleGigaChad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlQuadricepsChad == 1) ChangerCouleurBordure(BtnQuadricepsChad, "BordureQuadricepsChad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlAbdoChad == 1) ChangerCouleurBordure(BtnAbdoChad, "BordureAbdoChad", Brushes.Gold);
+            if (SauvegardeJoueur.LvlChadUltime == 1) ChangerCouleurBordure(BtnChadUltime, "BordureChadUltime", Brushes.Gold);
         }
 
         private void BtnCompBase_Click(object sender, RoutedEventArgs e)
@@ -216,7 +240,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnSigmaBoy_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlBase < 5) return;
+            if (SauvegardeJoueur.LvlSigmaAura == 1) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlSigmaBoy == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -288,7 +312,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btnudindindindun_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.Lvlbombardilo == 0) return;
+            if (SauvegardeJoueur.Lvlfrulifrula == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.Lvludindindindun == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -302,9 +326,9 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btnbananini_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.Lvlpatapim == 0) return;
+            if (SauvegardeJoueur.Lvludindindindun == 0) return;
             int cout = 1;
-            if (SauvegardeJoueur.Lvlbananini == 0 && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvlbananini == 0 || SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.DegatCritique += 15;
@@ -316,9 +340,9 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btnfrulifrula_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.Lvltralala == 0) return;
+            if (SauvegardeJoueur.Lvltungtungsahur == 0) return;
             int cout = 1;
-            if (SauvegardeJoueur.Lvlfrulifrula == 0 && SauvegardeJoueur.Pierres >= cout)
+            if (SauvegardeJoueur.Lvlfrulifrula == 0 || SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
                 SauvegardeJoueur.DegatCritique += 15;
@@ -330,7 +354,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btnlarila_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.Lvlbananini == 0) return;
+            if (SauvegardeJoueur.Lvlbananini == 0 || SauvegardeJoueur.Lvlpatapim == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.Lvllarila == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -345,7 +369,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnSigmaAura_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlSuperAura == 0) return;
+            if (SauvegardeJoueur.LvlMegaAura <= 1) return;
             int cout = 5;
             if (SauvegardeJoueur.LvlSigmaAura == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -359,7 +383,14 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btnalliance_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.Lvlfrulifrula == 0) return;
+            if (SauvegardeJoueur.Lvlfrulifrula == 0
+                || SauvegardeJoueur.Lvludindindindun == 0
+                || SauvegardeJoueur.Lvlbananini == 0
+                || SauvegardeJoueur.Lvllarila == 0
+                || SauvegardeJoueur.Lvltungtungsahur == 0
+                || SauvegardeJoueur.Lvlbombardilo == 0
+                || SauvegardeJoueur.Lvltralala == 0
+                || SauvegardeJoueur.Lvlpatapim == 0) return;
             int cout = 5;
             if (SauvegardeJoueur.Lvlalliance == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -370,6 +401,153 @@ namespace Brainrot_idle.view.GameCombat
                 RafraichirInterface();
             }
         }
+
+        #region ================== BRANCHE GIGA CHAD ==================
+
+        private void BtnGigaChad_Click(object sender, RoutedEventArgs e)
+        {
+            if (SauvegardeJoueur.LvlSigmaAura == 0) return; // Dépend de Sigma Aura
+            int cout = 1;
+            if (SauvegardeJoueur.LvlGigaChad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                // La stat (atk + def/2) est calculée dynamiquement dans Personnage.cs
+                SauvegardeJoueur.LvlGigaChad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnPecsChad_Click(object sender, RoutedEventArgs e)
+        {
+            if (SauvegardeJoueur.LvlGigaChad == 0) return; // Dépend de Giga Chad
+            int cout = 1;
+            if (SauvegardeJoueur.LvlPecsChad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DefenseBonusFlat += 10;
+                SauvegardeJoueur.LvlPecsChad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnLombaireChad_Click(object sender, RoutedEventArgs e)
+        {
+            if (SauvegardeJoueur.LvlGigaChad == 0) return; // Dépend de Giga Chad
+            int cout = 1;
+            if (SauvegardeJoueur.LvlLombaireChad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DefenseBonusFlat += 10;
+                SauvegardeJoueur.LvlLombaireChad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnTricepsChad_Click(object sender, RoutedEventArgs e)
+        {
+            if (SauvegardeJoueur.LvlGigaChad == 0) return; // Dépend de Giga Chad
+            int cout = 1;
+            if (SauvegardeJoueur.LvlTricepsChad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DefenseBonusFlat += 10;
+                SauvegardeJoueur.LvlTricepsChad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnCorpGigachad_Click(object sender, RoutedEventArgs e)
+        {
+            if (SauvegardeJoueur.LvlPecsChad == 0) return; // Dépend de Pecs Chad
+            int cout = 1;
+            if (SauvegardeJoueur.LvlCorpGigachad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                // Le passif (+30% def) est calculé dynamiquement dans Personnage.cs
+                SauvegardeJoueur.LvlCorpGigachad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnMegaChad_Click(object sender, RoutedEventArgs e)
+        {
+            if (SauvegardeJoueur.LvlLombaireChad == 0) return; // Dépend de Lombaire Chad
+            int cout = 1;
+            if (SauvegardeJoueur.LvlMegaChad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                // La stat (atk + def/1.5) est calculée dynamiquement dans Personnage.cs
+                SauvegardeJoueur.LvlMegaChad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnMuscleGigaChad_Click(object sender, RoutedEventArgs e)
+        {
+            if (SauvegardeJoueur.LvlTricepsChad == 0) return; // Dépend de Triceps Chad
+            int cout = 1;
+            if (SauvegardeJoueur.LvlMuscleGigaChad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                // Le passif est calculé dynamiquement dans Personnage.cs
+                SauvegardeJoueur.LvlMuscleGigaChad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnQuadricepsChad_Click(object sender, RoutedEventArgs e)
+        {
+            // Dépend de Corp de Gigachad OU Mega Chad
+            if (SauvegardeJoueur.LvlCorpGigachad == 0 || SauvegardeJoueur.LvlMegaChad == 0) return;
+            int cout = 1;
+            if (SauvegardeJoueur.LvlQuadricepsChad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DefenseBonusFlat += 10;
+                SauvegardeJoueur.LvlQuadricepsChad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnAbdoChad_Click(object sender, RoutedEventArgs e)
+        {
+            // Dépend de Mega Chad OU Muscle Giga Chad
+            if (SauvegardeJoueur.LvlMegaChad == 0 || SauvegardeJoueur.LvlMuscleGigaChad == 0) return;
+            int cout = 1;
+            if (SauvegardeJoueur.LvlAbdoChad == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                SauvegardeJoueur.DefenseBonusFlat += 10;
+                SauvegardeJoueur.LvlAbdoChad++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        private void BtnChadUltime_Click(object sender, RoutedEventArgs e)
+        {
+            // Dépend de Quadriceps Chad OU Abdo Chad
+            if (SauvegardeJoueur.LvlQuadricepsChad == 0 || SauvegardeJoueur.LvlAbdoChad == 0) return;
+            int cout = 5;
+            if (SauvegardeJoueur.LvlChadUltime == 0 && SauvegardeJoueur.Pierres >= cout)
+            {
+                SauvegardeJoueur.Pierres -= cout;
+                // Le passif (x3) est calculé dynamiquement dans Personnage.cs
+                SauvegardeJoueur.LvlChadUltime++;
+                RestaurerArbre();
+                RafraichirInterface();
+            }
+        }
+
+        #endregion
 
         #endregion
 

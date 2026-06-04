@@ -112,7 +112,7 @@ namespace Brainrot_idle.view
 
             player.Stop();
             player.Open(new Uri(prochaineMusique, UriKind.Absolute));
-            player.Volume = 1.0;
+            player.Volume = 0;
             player.Play();
         }
         public static void PreviousMusic()

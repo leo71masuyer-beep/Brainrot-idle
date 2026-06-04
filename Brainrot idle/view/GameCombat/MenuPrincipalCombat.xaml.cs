@@ -240,7 +240,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnSigmaBoy_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlSigmaAura == 1) return;
+            if (SauvegardeJoueur.LvlSigmaAura == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlSigmaBoy == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -254,7 +254,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btntungtungsahur_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlBase < 5) return;
+            if (SauvegardeJoueur.LvlSigmaBoy == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.Lvltungtungsahur == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -268,7 +268,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btnbombardilo_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlBase < 5) return;
+            if (SauvegardeJoueur.Lvltralala == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.Lvlbombardilo == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -282,7 +282,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Btnpatapim_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlBase < 5) return;
+            if (SauvegardeJoueur.Lvlbombardilo == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.Lvlpatapim == 0 && SauvegardeJoueur.Pierres >= cout)
             {

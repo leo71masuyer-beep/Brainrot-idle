@@ -140,15 +140,15 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                         break;
 
                     case 3:
-                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier 1", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
-                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier 2", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
+                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
+                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
                         break;
 
                     case 4:
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 1", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 2", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 3", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
-                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
+                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
+                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
+                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
+                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
                         break;
 
                     case 5:

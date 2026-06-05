@@ -15,11 +15,15 @@
     <None Remove="Ressources\music\Panic_Button_Joyride.mp3" />
     <None Remove="Ressources\music\Sahur_Overdrive.mp3" />
     <None Remove="Ressources\music\Turbo_Candy_Rampage.mp3" />
-    <None Remove="Ressources\prairie.jpg" />
     <None Remove="view\GameCombat\Ressources\abdo.png" />
     <None Remove="view\GameCombat\Ressources\alliance.png" />
+    <None Remove="view\GameCombat\Ressources\background\bar_background.png" />
     <None Remove="view\GameCombat\Ressources\bananini.jpg" />
     <None Remove="view\GameCombat\Ressources\bombardilo.jpg" />
+    <None Remove="view\GameCombat\Ressources\CappuccinoAssassino_atk1.png" />
+    <None Remove="view\GameCombat\Ressources\CappuccinoAssassino_atk2.png" />
+    <None Remove="view\GameCombat\Ressources\CappuccinoAssassino_atk3.png" />
+    <None Remove="view\GameCombat\Ressources\CappuccinoAssassino_idle.png" />
     <None Remove="view\GameCombat\Ressources\corps.png" />
     <None Remove="view\GameCombat\Ressources\frulifrula.jpg" />
     <None Remove="view\GameCombat\Ressources\gigachad.jpg" />
@@ -36,7 +40,22 @@
     <None Remove="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk2.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk3.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_idle.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BallerinoLololo_atk1.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BallerinoLololo_atk2.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BallerinoLololo_atk3.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BallerinoLololo_idle.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BobritoBandito_atk2.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BobritoBandito_atk3.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BobritoBandito_idle.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk1.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk2.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk3.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_idle.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\heros_idle.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\tungtunggod_atk1.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\tungtunggod_atk2.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\tungtunggod_atk3.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\tungtunggod_idle.png" />
     <None Remove="view\GameCombat\Ressources\SuperAura.jpg" />
     <None Remove="view\GameCombat\Ressources\tralala.jpg" />
     <None Remove="view\GameCombat\Ressources\triceps.png" />
@@ -61,12 +80,12 @@
     </Content>
     <Resource Include="view\GameCombat\Ressources\abdo.png" />
     <Resource Include="view\GameCombat\Ressources\alliance.png" />
+    <Resource Include="view\GameCombat\Ressources\background\bar_background.png" />
     <Resource Include="view\GameCombat\Ressources\bananini.jpg" />
     <Resource Include="view\GameCombat\Ressources\bombardilo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Ressources\prairie.jpg" />
     <Resource Include="view\GameCombat\Ressources\corps.png" />
     <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
     <Resource Include="view\GameCombat\Ressources\chadultime.jpg" />
@@ -84,14 +103,26 @@
     <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk2.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk3.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_idle.png" />
-    <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_idle.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BallerinoLololo_atk1.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BallerinoLololo_atk2.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BallerinoLololo_atk3.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BallerinoLololo_idle.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BobritoBandito_atk1.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BobritoBandito_atk2.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BobritoBandito_atk3.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BobritoBandito_idle.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk1.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk2.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk3.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_idle.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk2.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk3.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk1.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_idle.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\tungtungGod_atk1.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\tungtungGod_atk2.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\tungtungGod_atk3.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\tungtungGod_idle.png" />
     <Resource Include="view\GameCombat\Ressources\SuperAura.jpg" />
     <Resource Include="view\GameCombat\Ressources\tralala.jpg" />
     <Resource Include="view\GameCombat\Ressources\triceps.png" />

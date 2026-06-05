@@ -4,7 +4,7 @@
       Title="Combat" Background="Black">
 
     <Grid>
-        <Image Source="/Ressources/prairie.jpg" Stretch="UniformToFill"/>
+        <Image Source="pack://application:,,,/view/GameCombat/Ressources/background/bar_background.png" Stretch="UniformToFill"/>
         <Rectangle Fill="#60000000"/>
 
         <Grid Margin="20">
@@ -42,7 +42,7 @@
                 </Viewbox>
             </Grid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Margin="10,118,-10,108" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>

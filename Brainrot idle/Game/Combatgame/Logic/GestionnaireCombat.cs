@@ -135,28 +135,23 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                         break;
 
                     case 2:
-                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
-                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
+                        ennemisDeLaVague.Add(new Personnage("BallerinoLololo", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
                         break;
 
                     case 3:
-                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
-                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
+                        ennemisDeLaVague.Add(new Personnage("BobritoBandito", 150, 8, 2, 2, 0, 0, 500, false, 15, 7));
                         break;
 
                     case 4:
-                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
-                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
-                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
                         ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
                         break;
 
                     case 5:
-                        ennemisDeLaVague.Add(new Personnage("Boss Lutin", 300, 25, 10, 10, 10, 50, 300, false, 150, 200));
+                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 506, 26, 5, 10, 10, 15, 500, false, 168, 84));
                         break;
 
                     default:
-                        ennemisDeLaVague.Add(new Personnage($"Lutin Enragé", 150, 20, 8, 12, 10, 50, 150, false, 50, 50));
+                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 506, 26, 5, 10, 10, 15, 500, false, 168, 84));
                         break;
                 }
             }

@@ -30,7 +30,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void ChargerStatistiquesPersonnage()
         {
-            _monHero = new Personnage("Tung Tung Sahur", 100, 100, 5, 10, 5, 150, 100, true);
+            _monHero = new Personnage("Tung Tung Sahur", 100, 10, 5, 10, 5, 150, 100, true);
             MettreAJourStatsUI();
         }
 

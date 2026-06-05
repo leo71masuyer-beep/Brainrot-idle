@@ -131,17 +131,12 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                 switch (vague)
                 {
                     case 1:
-                        AddEnnemisAleatoire(
-                            new Personnage("Petit Lutin", 20, 3, 1, 15, 0, 0, 20, false, 5, 5),
-                            new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25),
-                            new Personnage("Lutin Enragé", 150, 20, 8, 12, 10, 50, 150, false, 50, 50)
-                        );
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 2", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
                         break;
 
                     case 2:
-                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
+                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
                         break;
 
                     case 3:

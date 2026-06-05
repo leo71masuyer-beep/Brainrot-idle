@@ -16,18 +16,30 @@
     <None Remove="Ressources\music\Sahur_Overdrive.mp3" />
     <None Remove="Ressources\music\Turbo_Candy_Rampage.mp3" />
     <None Remove="Ressources\prairie.jpg" />
+    <None Remove="view\GameCombat\Ressources\abdo.png" />
     <None Remove="view\GameCombat\Ressources\alliance.png" />
     <None Remove="view\GameCombat\Ressources\bananini.jpg" />
     <None Remove="view\GameCombat\Ressources\bombardilo.jpg" />
+    <None Remove="view\GameCombat\Ressources\corps.png" />
     <None Remove="view\GameCombat\Ressources\frulifrula.jpg" />
     <None Remove="view\GameCombat\Ressources\gigachad.jpg" />
     <None Remove="view\GameCombat\Ressources\larila.jpg" />
+    <None Remove="view\GameCombat\Ressources\lombaire.jpg" />
+    <None Remove="view\GameCombat\Ressources\megachad.png" />
+    <None Remove="view\GameCombat\Ressources\muscles.jpg" />
     <None Remove="view\GameCombat\Ressources\patapim.jpg" />
+    <None Remove="view\GameCombat\Ressources\pecs.png" />
+    <None Remove="view\GameCombat\Ressources\quadriceps.png" />
     <None Remove="view\GameCombat\Ressources\sahur.jpg" />
     <None Remove="view\GameCombat\Ressources\SigmaBoy.jpg" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk1.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk2.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk3.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_idle.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\heros_idle.png" />
     <None Remove="view\GameCombat\Ressources\SuperAura.jpg" />
     <None Remove="view\GameCombat\Ressources\tralala.jpg" />
+    <None Remove="view\GameCombat\Ressources\triceps.png" />
     <None Remove="view\GameCombat\Ressources\Udindindindun.png" />
   </ItemGroup>
 
@@ -47,6 +59,7 @@
     <Content Include="Ressources\music\Turbo_Candy_Rampage.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="view\GameCombat\Ressources\abdo.png" />
     <Resource Include="view\GameCombat\Ressources\alliance.png" />
     <Resource Include="view\GameCombat\Ressources\bananini.jpg" />
     <Resource Include="view\GameCombat\Ressources\bombardilo.jpg" />
@@ -54,18 +67,34 @@
 
   <ItemGroup>
     <Resource Include="Ressources\prairie.jpg" />
+    <Resource Include="view\GameCombat\Ressources\corps.png" />
     <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
+    <Resource Include="view\GameCombat\Ressources\chadultime.jpg" />
     <Resource Include="view\GameCombat\Ressources\gigachad.jpg" />
     <Resource Include="view\GameCombat\Ressources\larila.jpg" />
+    <Resource Include="view\GameCombat\Ressources\lombaire.jpg" />
+    <Resource Include="view\GameCombat\Ressources\megachad.png" />
+    <Resource Include="view\GameCombat\Ressources\muscles.jpg" />
     <Resource Include="view\GameCombat\Ressources\patapim.jpg" />
+    <Resource Include="view\GameCombat\Ressources\pecs.png" />
+    <Resource Include="view\GameCombat\Ressources\quadriceps.png" />
     <Resource Include="view\GameCombat\Ressources\sahur.jpg" />
     <Resource Include="view\GameCombat\Ressources\SigmaBoy.jpg" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk1.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk2.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk3.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_idle.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_idle.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk1.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk2.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk3.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk2.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk3.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk1.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_idle.png" />
     <Resource Include="view\GameCombat\Ressources\SuperAura.jpg" />
     <Resource Include="view\GameCombat\Ressources\tralala.jpg" />
+    <Resource Include="view\GameCombat\Ressources\triceps.png" />
     <Resource Include="view\GameCombat\Ressources\Udindindindun.png" />
   </ItemGroup>
 

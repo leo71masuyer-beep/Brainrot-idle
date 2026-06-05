@@ -461,7 +461,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordurePecsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/pecs.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -479,7 +479,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureLombaireChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/lombaire.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -497,7 +497,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureTricepsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/triceps.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -515,7 +515,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureCorpGigachad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/corps.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -533,7 +533,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureMegaChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/megachad.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -551,7 +551,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureMuscleGigaChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/muscles.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -569,7 +569,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureQuadricepsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/quadriceps.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -587,7 +587,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureAbdoChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/abdo.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -605,7 +605,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureChadUltime" BorderBrush="#333333" BorderThickness="4" CornerRadius="50">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/chadultime.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>

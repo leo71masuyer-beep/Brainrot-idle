@@ -1,7 +1,8 @@
 ﻿<Page x:Class="Brainrot_idle.view.GameCombat.MenuPrincipalCombat"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Menu Principal Combat" Background="#0A0410">
+      Title="Menu Principal Combat" Background="#0A0410"
+      Loaded="Page_Loaded">
 
     <!-- Grille principale -->
     <Grid Margin="10">
@@ -116,7 +117,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Onglets -->
             <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0">
                 <Button x:Name="BtnOngletStats" Click="BtnOngletStats_Click" Background="Transparent" BorderThickness="0" Padding="0" Margin="0,0,5,0">
                     <Border x:Name="FondOngletStats" Background="#2A004D" BorderBrush="#9D00FF" BorderThickness="3,3,3,0" Padding="30,10" CornerRadius="10,10,0,0">
@@ -124,10 +124,15 @@
                     </Border>
                 </Button>
 
-            <!-- Onglets -->
-                <Button x:Name="BtnOngletArbre" Click="BtnOngletArbre_Click" Background="Transparent" BorderThickness="0" Padding="0">
+                <Button x:Name="BtnOngletArbre" Click="BtnOngletArbre_Click" Background="Transparent" BorderThickness="0" Padding="0" Margin="0,0,5,0">
                     <Border x:Name="FondOngletArbre" Background="#0A0410" BorderBrush="#4D0099" BorderThickness="3,3,3,0" Padding="30,10" CornerRadius="10,10,0,0">
                         <TextBlock x:Name="TexteOngletArbre" Text="ARBRE DE COMPÉTENCES" Foreground="#A080C0" FontWeight="Bold"/>
+                    </Border>
+                </Button>
+
+                <Button x:Name="BtnOngletGacha" Click="BtnOngletGacha_Click" Background="Transparent" BorderThickness="0" Padding="0">
+                    <Border x:Name="FondOngletGacha" Background="#0A0410" BorderBrush="#4D0099" BorderThickness="3,3,3,0" Padding="30,10" CornerRadius="10,10,0,0">
+                        <TextBlock x:Name="TexteOngletGacha" Text="TIRAGE GACHA" Foreground="#A080C0" FontWeight="Bold"/>
                     </Border>
                 </Button>
             </StackPanel>
@@ -138,64 +143,50 @@
                     <!-- PANNEAU 1 : L'ARBRE GÉANT (CACHÉ PAR DÉFAUT) -->
                     <!-- ========================================== -->
                     <Grid x:Name="PanneauArbre" Visibility="Collapsed">
-
                         <ScrollViewer x:Name="CarteScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-
                             <Canvas x:Name="ZoneArbre" Width="3500" Height="3500" Background="#0A0410"
-                            MouseLeftButtonDown="ZoneArbre_MouseLeftButtonDown"
-                            MouseLeftButtonUp="ZoneArbre_MouseLeftButtonUp"
-                            MouseMove="ZoneArbre_MouseMove">
+                                MouseLeftButtonDown="ZoneArbre_MouseLeftButtonDown"
+                                MouseLeftButtonUp="ZoneArbre_MouseLeftButtonUp"
+                                MouseMove="ZoneArbre_MouseMove">
 
-                                <!-- ========================================== -->
-                                <!-- 1. TOUTES LES LIGNES DE L'ARBRE            -->
-                                <!-- ========================================== -->
+                                <Line X1="1735" Y1="1135" X2="1735" Y2="1335" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1735" Y1="1335" X2="1735" Y2="1535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1735" Y1="1535" X2="1735" Y2="1735" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1735" Y1="1735" X2="1535" Y2="1985" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1535" Y1="1985" X2="1535" Y2="2235" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1535" Y1="2235" X2="1323" Y2="2323" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1323" Y1="2323" X2="1235" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1235" Y1="2535" X2="1323" Y2="2747" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1323" Y1="2747" X2="1535" Y2="2835" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1535" Y1="2835" X2="1747" Y2="2747" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1747" Y1="2747" X2="1835" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1835" Y1="2535" X2="1747" Y2="2323" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1535" Y1="2235" X2="1747" Y2="2323" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1535" Y1="2235" X2="1535" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1323" Y1="2323" X2="1535" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1235" Y1="2535" X2="1535" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1323" Y1="2747" X2="1535" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1535" Y1="2835" X2="1535" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1747" Y1="2747" X2="1535" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1835" Y1="2535" X2="1535" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1747" Y1="2323" X2="1535" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
 
-                                <Line X1="1535" Y1="1535" X2="1535" Y2="1685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1535" Y1="1685" X2="1535" Y2="1835" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1535" Y1="1835" X2="1535" Y2="1985" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1535" Y1="1985" X2="1335" Y2="2185" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1535" Y1="1985" X2="1735" Y2="2185" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1335" Y1="2185" X2="1185" Y2="2385" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1185" Y1="2385" X2="985"  Y2="2535" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1185" Y1="2385" X2="1185" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1185" Y1="2385" X2="1385" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="985"  Y1="2535" X2="1185" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1385" Y1="2535" X2="1185" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="835"  Y1="2685" X2="1185" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1535" Y1="2685" X2="1185" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="885"  Y1="2885" X2="1185" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1485" Y1="2885" X2="1185" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1185" Y1="2985" X2="1185" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="985"  Y1="2535" X2="835"  Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="835"  Y1="2685" X2="885"  Y2="2885" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="885"  Y1="2885" X2="1185" Y2="2985" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1185" Y1="2985" X2="1485" Y2="2885" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1485" Y1="2885" X2="1535" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1535" Y1="2685" X2="1385" Y2="2535" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1735" Y1="2185" X2="1985" Y2="2085" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1735" Y1="2185" X2="1935" Y2="2285" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1735" Y1="2185" X2="1685" Y2="2385" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1985" Y1="2085" X2="2235" Y2="2235" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1935" Y1="2285" X2="2085" Y2="2485" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1685" Y1="2385" X2="1835" Y2="2685" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="2235" Y1="2235" X2="2285" Y2="2485" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="2085" Y1="2485" X2="2285" Y2="2485" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="2085" Y1="2485" X2="2185" Y2="2735" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="1835" Y1="2685" X2="2185" Y2="2735" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="2285" Y1="2485" X2="2435" Y2="2835" Stroke="#333333" StrokeThickness="4"/>
-                                <Line X1="2185" Y1="2735" X2="2435" Y2="2835" Stroke="#333333" StrokeThickness="4"/>
-
-                                <!-- Gauche // Alliance BrainRot -->
-                                <Line X1="1535" Y1="1835" X2="1535" Y2="1985" Stroke="#333333" StrokeThickness="4"/>
-
-                                <!-- ========================================== -->
-
-                                <!-- 2. TOUS LES NOEUDS (BOUTONS)               -->
-
-                                <!-- ========================================== -->
+                                <Line X1="1735" Y1="1735" X2="1935" Y2="1935" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1935" Y1="1935" X2="2135" Y2="1785" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1935" Y1="1935" X2="2135" Y2="2085" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1935" Y1="1935" X2="1935" Y2="2235" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="2135" Y1="1785" X2="2335" Y2="1935" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="2135" Y1="2085" X2="2335" Y2="2235" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="1935" Y1="2235" X2="2135" Y2="2435" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="2335" Y1="1935" X2="2535" Y2="2085" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="2335" Y1="2235" X2="2535" Y2="2085" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="2335" Y1="2235" X2="2335" Y2="2435" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="2135" Y1="2435" X2="2335" Y2="2435" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="2535" Y1="2085" X2="2700" Y2="2225" Stroke="#333333" StrokeThickness="4"/>
+                                <Line X1="2335" Y1="2435" X2="2700" Y2="2225" Stroke="#333333" StrokeThickness="4"/>
                                 
-                                <StackPanel Canvas.Left="1500" Canvas.Top="1500" Width="70">
-                                    <Button x:Name="BtnCompBase" ToolTip="atk +10 " Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnCompBase_Click">
+                                <StackPanel Canvas.Left="1700" Canvas.Top="1100" Width="70">
+                                    <Button x:Name="BtnCompBase" ToolTip="atk +10" Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnCompBase_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureBase" BorderBrush="Gold" BorderThickness="3" CornerRadius="35" Background="#1A1A1A">
@@ -205,231 +196,425 @@
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="+10 Attaque" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierres" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="atk +10" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtNiveauBase" Text="0/5" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="1500" Canvas.Top="1650" Width="70">
+                                <StackPanel Canvas.Left="1700" Canvas.Top="1300" Width="70">
                                     <Button x:Name="BtnSuperAura" ToolTip="aura 5%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnSuperAura_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSuperAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" 
-                                                            Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Super Aura" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="aura 5%" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtSuperAura" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="1500" Canvas.Top="1800" Width="70">
+                                <StackPanel Canvas.Left="1700" Canvas.Top="1500" Width="70">
                                     <Button x:Name="BtnMegaAura" ToolTip="atk +10%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnMegaAura_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureMegaAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" 
-                                                           Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Mega Aura" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="atk 10%" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtMegaAura" Text="0/2" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="1500" Canvas.Top="1950" Width="70">
+                                <StackPanel Canvas.Left="1700" Canvas.Top="1700" Width="70">
                                     <Button x:Name="BtnSigmaAura" ToolTip="aura +20%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnSigmaAura_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSigmaAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Sigma Aura" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 3 Pierres" Foreground="#FFD700" FontSize="10" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="aura 20%" Foreground="#A080C0" FontSize="9" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtSigmaAura" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="1300" Canvas.Top="2150" Width="70">
+                                <StackPanel Canvas.Left="1500" Canvas.Top="1950" Width="70">
                                     <Button x:Name="BtnSigmaBoy" ToolTip="+atk 25%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnSigmaBoy_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSigmaBoy" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SigmaBoy.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SigmaBoy.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="Sigma Boy" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="+atk 25%" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="TxtSigmaBoy" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="1150" Canvas.Top="2350" Width="70">
+
+                                <StackPanel Canvas.Left="1500" Canvas.Top="2200" Width="70">
                                     <Button x:Name="Btntungtungsahur" ToolTip="+atk 50" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btntungtungsahur_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Borduretungtungsahur" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de Tung Tung Sahur" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="+atk 50" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txttungtungsahur" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-
-                                <StackPanel Canvas.Left="950" Canvas.Top="2500" Width="70">
+                                <StackPanel Canvas.Left="1288" Canvas.Top="2288" Width="70">
                                     <Button x:Name="Btntralala" ToolTip="chance de cout critique + 5%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btntralala_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Borduretralala" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/tralala.jpg" 
-                                                         Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/tralala.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de tralalero tralala" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="chance de cout critique + 5%" Foreground="#A080C0" TextWrapping="Wrap" FontSize="9" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txttralala" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="1350" Canvas.Top="2500" Width="70">
+                                <StackPanel Canvas.Left="1712" Canvas.Top="2288" Width="70">
                                     <Button x:Name="Btnfrulifrula" ToolTip="deg crit +15%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnfrulifrula_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurefrulifrula" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/frulifrula.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/frulifrula.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de fruli frula" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="deg crit +15%" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtfrulifrula" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="800" Canvas.Top="2650" Width="70">
+                                <StackPanel Canvas.Left="1200" Canvas.Top="2500" Width="70">
                                     <Button x:Name="Btnbombardilo" ToolTip="chance de cout critique + 5%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnbombardilo_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurebombardilo" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bombardilo.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bombardilo.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de bombardilo crocodilo" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="chance de cout critique + 5%" Foreground="#A080C0" TextWrapping="Wrap"  FontSize="9" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtbombardilo" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="1500" Canvas.Top="2650" Width="70">
+                                <StackPanel Canvas.Left="1800" Canvas.Top="2500" Width="70">
                                     <Button x:Name="Btnudindindindun" ToolTip="degat crit +15%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnudindindindun_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordureudindindindun" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de udindindindun" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="degat crit +15%" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtudindindindun" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="850" Canvas.Top="2850" Width="70">
+                                <StackPanel Canvas.Left="1288" Canvas.Top="2712" Width="70">
                                     <Button x:Name="Btnpatapim" ToolTip="chance de cout critique + 5%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnpatapim_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurepatapim" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/patapim.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/Udindindindun.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de brr brr patapim" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="chance de cout critique + 5%" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtpatapim" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Canvas.Left="1450" Canvas.Top="2850" Width="70">
-                                    <Button x:Name="Btnbananini" ToolTip="degat crit + 15%%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnbananini_Click">
+                                <StackPanel Canvas.Left="1712" Canvas.Top="2712" Width="70">
+                                    <Button x:Name="Btnbananini" ToolTip="degat crit + 15%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnbananini_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurebananini" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bananini.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bananini.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de chimpanzini bananini" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="degat crit + 15%" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtbananini" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-
-                                <StackPanel Canvas.Left="1150" Canvas.Top="2950" Width="70">
-                                    <Button x:Name="Btnlarila" ToolTip="chance de cout critique + 5% et degat crit + 15%%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnlarila_Click">
+                                <StackPanel Canvas.Left="1500" Canvas.Top="2800" Width="70">
+                                    <Button x:Name="Btnlarila" ToolTip="chance de cout critique + 5% et degat crit + 15%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnlarila_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurelarila" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/larila.jpg" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/larila.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de lirili larila" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="chance de cout critique + 5% et degat crit + 15%" Foreground="#A080C0" TextWrapping="Wrap" FontSize="9" HorizontalAlignment="Center"/>
                                     <TextBlock x:Name="Txtlarila" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
 
-                                <StackPanel Canvas.Left="1150" Canvas.Top="2650" Width="70">
-                                    <Button x:Name="Btnalliance" ToolTip="quand un ennemie est tuer d’un cout critique x10 aura gagné%" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btnalliance_Click">
+                                <StackPanel Canvas.Left="1475" Canvas.Top="2500" Width="120">
+                                    <Button x:Name="Btnalliance" ToolTip="quand un ennemie est tuer d’un cout critique x10 aura gagné%" Width="100" Height="100" Cursor="Hand" Background="#111" Click="Btnalliance_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurealliance" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/alliance.png" 
-                                                        Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/alliance.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
                                     </Button>
                                     <TextBlock Text="puissance de  alliance Brainrot" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
-                                    <TextBlock x:Name="Txtalliance" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Prix : 5 Pierres" Foreground="Red" FontSize="10" TextWrapping="Wrap" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="quand un ennemie est tuer d’un cout critique x10 aura gagné" TextWrapping="Wrap" Foreground="#A080C0" FontSize="9" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="Txtalliance" Text="0/1" Foreground="#00FF40" FontWeight="Bold"  HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="1885" Canvas.Top="1900" Width="100">
+                                    <Button x:Name="BtnGigaChad" ToolTip="atk + (def/2)" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnGigaChad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureGigaChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="Giga chad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="atk + (def/2)" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtGigaChad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="2085" Canvas.Top="1750" Width="100">
+                                    <Button x:Name="BtnPecsChad" ToolTip="def +10" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnPecsChad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordurePecsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/pecs.png" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="pecs chad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="def +10" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtPecsChad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="2085" Canvas.Top="2050" Width="100">
+                                    <Button x:Name="BtnLombaireChad" ToolTip="def +10" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnLombaireChad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureLombaireChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/lombaire.jpg" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="lombaire chad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="def +10" Foreground="#A080C0" FontSize="9"  TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtLombaireChad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="1885" Canvas.Top="2200" Width="100">
+                                    <Button x:Name="BtnTricepsChad" ToolTip="def +10" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnTricepsChad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureTricepsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/triceps.png" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="Triceps chad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="def +10" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtTricepsChad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="2285" Canvas.Top="1900" Width="100">
+                                    <Button x:Name="BtnCorpGigachad" ToolTip="defense +30%" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnCorpGigachad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureCorpGigachad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/corps.png" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="corp de Gigachad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="defense +30%" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtCorpGigachad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="2285" Canvas.Top="2200" Width="100">
+                                    <Button x:Name="BtnMegaChad" ToolTip="atk+ (def/1.5)" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnMegaChad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureMegaChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/megachad.png" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="Mega chad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="atk+ (def/1.5)" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtMegaChad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="2085" Canvas.Top="2400" Width="100">
+                                    <Button x:Name="BtnMuscleGigaChad" ToolTip="atk + 50% quand la vie &lt; 50%" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnMuscleGigaChad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureMuscleGigaChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/muscles.jpg" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="muscle giga chad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="atk + 50% (vie &lt; 50%)" Foreground="#A080C0" FontSize="9" TextAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="TxtMuscleGigaChad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="2485" Canvas.Top="2050" Width="100">
+                                    <Button x:Name="BtnQuadricepsChad" ToolTip="def +10" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnQuadricepsChad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureQuadricepsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/quadriceps.png" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="quadriceps chad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="def +10" Foreground="#A080C0" FontSize="9"  TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtQuadricepsChad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="2285" Canvas.Top="2400" Width="100">
+                                    <Button x:Name="BtnAbdoChad" ToolTip="def +10" Width="70" Height="70" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnAbdoChad_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureAbdoChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/abdo.png" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="abdo chad" TextWrapping="Wrap" TextAlignment="Center" Foreground="#D0C0E0" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 1 Pierre" Foreground="Cyan" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="def +10" Foreground="#A080C0" FontSize="9" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtAbdoChad" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Canvas.Left="2640" Canvas.Top="2175" Width="120">
+                                    <Button x:Name="BtnChadUltime" ToolTip="def x 3 quand muscle giga chad actif" Width="100" Height="100" HorizontalAlignment="Center" Cursor="Hand" Background="#111" Click="BtnChadUltime_Click">
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border x:Name="BordureChadUltime" BorderBrush="#333333" BorderThickness="4" CornerRadius="50">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/chadultime.jpg" Stretch="UniformToFill"/>
+                                                    </Border.Background>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <TextBlock Text="Chad Ultime" TextWrapping="Wrap" TextAlignment="Center" Foreground="#FFD700" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Prix : 5 Pierre" Foreground="Red" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="si muscle actif : def x3" Foreground="#A080C0" FontSize="10" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBlock x:Name="TxtChadUltime" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                             </Canvas>
@@ -439,39 +624,292 @@
                     <!-- ========================================== -->
                     <!-- PANNEAU 2 : LES STATS (CACHÉ PAR DÉFAUT)   -->
                     <!-- ========================================== -->
-                    <Grid x:Name="PanneauStats" Visibility="Collapsed">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="STATISTIQUES DU HÉROS" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <Grid x:Name="PanneauStats" Visibility="Visible" Background="Transparent">
+                        <Border Background="#1A0A2E" BorderBrush="#9D00FF" BorderThickness="3" CornerRadius="20" 
+            HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
+                            <StackPanel>
+                                <TextBlock Text="📊 Statistiques" Foreground="White" FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,40"/>
 
-                            <Grid Width="250">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                                <TextBlock Grid.Row="0" Text="🗡️  ATTAQUE" Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatAttaque" Grid.Row="0" Text="0" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                    <StackPanel Width="350" Margin="0,0,60,0">
+                                        <Border Background="#2A004D" CornerRadius="8" Padding="12" Margin="0,0,0,25">
+                                            <TextBlock Text="⚔️ COMBAT DE BASE" Foreground="#D0C0E0" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                        </Border>
 
-                                <TextBlock Grid.Row="1" Text="🛡️  DÉFENSE" Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatDefense" Grid.Row="1" Text="0" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="❤️  Santé Max" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatSante" Text="0" Foreground="#00FF40" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
 
-                                <TextBlock Grid.Row="2" Text="❤️  SANTÉ" Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatSante" Grid.Row="2" Text="0" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="🗡️  Attaque" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatAttaque" Text="0" Foreground="#00FF40" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
 
-                                <TextBlock Grid.Row="3" Text="⚡  VITESSE" Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatVitesse" Grid.Row="3" Text="0" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="🛡️  Défense" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatDefense" Text="0" Foreground="#00FF40" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
 
-                                <TextBlock Grid.Row="4" Text="💥  CHANCE CRIT." Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatCritique" Grid.Row="4" Text="0%" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="⚡  Vitesse" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatVitesse" Text="0" Foreground="#00FF40" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </StackPanel>
 
-                                <TextBlock Grid.Row="5" Text="🔥  DÉGÂTS CRIT." Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatDegatCritique" Grid.Row="5" Text="0%" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
-                            </Grid>
+                                    <StackPanel Width="350">
+                                        <Border Background="#4D0000" BorderBrush="#FF4040" BorderThickness="2" CornerRadius="8" Padding="12" Margin="0,0,0,25">
+                                            <TextBlock Text="🔥 SPÉCIAL &amp; CRITIQUE" Foreground="#FFC0C0" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                        </Border>
+
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="💥  Chance Crit." Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatCritique" Text="0%" Foreground="#FFD700" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="💢  Dégâts Crit." Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatDegatCritique" Text="0%" Foreground="#FFD700" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="✨  Aura Brute (Flat)" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatAura" Text="0" Foreground="#00FFFF" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="📈  Aura (Multiplicateur)" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatAuraMulti" Text="+0%" Foreground="#00FFFF" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <Border Background="#0A0410" BorderBrush="#4D0099" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,30,0,0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Text="Multiplicateur d'Attaque :" Foreground="#A080C0" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                        <TextBlock x:Name="TxtStatBonusAtk" Text="+0%" Foreground="#FF00FF" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,50,0"/>
+
+                                        <TextBlock Text="Multiplicateur de Défense :" Foreground="#A080C0" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                        <TextBlock x:Name="TxtStatBonusDef" Text="+0%" Foreground="#FF00FF" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- ========================================== -->
+                    <!-- PANNEAU 3 : GACHA (CACHÉ PAR DÉFAUT)       -->
+                    <!-- ========================================== -->
+                    <Grid x:Name="PanneauGacha" Visibility="Collapsed" Background="Transparent">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,20,0,20">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="💰 Or disponible : " Foreground="#FFD700" FontSize="24" FontWeight="Bold"/>
+                                <TextBlock x:Name="TxtOrGacha" Text="0" Foreground="#00FF40" FontSize="24" FontWeight="Bold"/>
+                            </StackPanel>
+                            <TextBlock x:Name="TxtResultatTirage" Text="Choisis un coffre à ouvrir..." Foreground="White" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,15,0,0"/>
                         </StackPanel>
+
+                        <Grid Grid.Row="1" Margin="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260">
+                                <Border Background="#2A004D" BorderBrush="#9D00FF" BorderThickness="2" CornerRadius="8" Padding="15" Margin="0,0,0,20">
+                                    <StackPanel>
+                                        <TextBlock Text="Contenance :" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="Commun" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Rien" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Attaque + 5" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Defense + 5" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       PV + 5" Foreground="#D0C0E0"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Rare" Foreground="Cyan"/>
+                                                <TextBlock Text="       Or + 250" Foreground="Cyan"/>
+                                                <TextBlock Text="       Pierres + 1" Foreground="Cyan"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Épique" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Or + 2000" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Vitesse + 5" Foreground="#FF00FF"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                                <TextBlock Text="80%" Foreground="White"/>
+                                                <TextBlock Text="50%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="18%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="8%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="2%" Foreground="White"/>
+                                                <TextBlock Text="1%" Foreground="White"/>
+                                                <TextBlock Text="1%" Foreground="White"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Background="#444444" CornerRadius="5" Height="60" Margin="0,0,0,20">
+                                    <TextBlock Text="COMMUN" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+
+                                <TextBlock Text="Prix : 1 000 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                                <Button x:Name="BtnOuvrirCommun" Content="Ouvrir" Background="#9D00FF" Foreground="White" FontSize="24" FontWeight="Bold" Height="60" Cursor="Hand" Click="BtnOuvrirCommun_Click">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="8"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260">
+                                <Border Background="#2A004D" BorderBrush="#9D00FF" BorderThickness="2" CornerRadius="8" Padding="15" Margin="0,0,0,20">
+                                    <StackPanel>
+                                        <TextBlock Text="Contenance :" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="Commun" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Pierres + 1" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Rien" Foreground="#D0C0E0"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Rare" Foreground="Cyan"/>
+                                                <TextBlock Text="       Atk &amp; Def + 20" Foreground="Cyan"/>
+                                                <TextBlock Text="       PV + 50" Foreground="Cyan"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Épique" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Pierres + 5" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Or + 5000" Foreground="#FF00FF"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Légendaire" Foreground="Gold"/>
+                                                <TextBlock Text="       Aura + 10" Foreground="Gold"/>
+                                                <TextBlock Text="       Stats Critiques" Foreground="Gold"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                                <TextBlock Text="40%" Foreground="White"/>
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="40%" Foreground="White"/>
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="15%" Foreground="White"/>
+                                                <TextBlock Text="7%" Foreground="White"/>
+                                                <TextBlock Text="8%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="5%" Foreground="White"/>
+                                                <TextBlock Text="2%" Foreground="White"/>
+                                                <TextBlock Text="3%" Foreground="White"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Background="#0055FF" CornerRadius="5" Height="60" Margin="0,0,0,20">
+                                    <TextBlock Text="RARE" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+
+                                <TextBlock Text="Prix : 10 000 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                                <Button x:Name="BtnOuvrirRare" Content="Ouvrir" Background="#9D00FF" Foreground="White" FontSize="24" FontWeight="Bold" Height="60" Cursor="Hand" Click="BtnOuvrirRare_Click">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="8"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260">
+                                <Border Background="#2A004D" BorderBrush="#9D00FF" BorderThickness="2" CornerRadius="8" Padding="15" Margin="0,0,0,20">
+                                    <StackPanel>
+                                        <TextBlock Text="Contenance :" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="Commun" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Rien" Foreground="#D0C0E0"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Rare" Foreground="Cyan"/>
+                                                <TextBlock Text="       PV + 200" Foreground="Cyan"/>
+                                                <TextBlock Text="       Or + 15000" Foreground="Cyan"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Épique" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Pierres + 15" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Atk &amp; Def + 150" Foreground="#FF00FF"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Légendaire" Foreground="Gold"/>
+                                                <TextBlock Text="       Stats Critiques" Foreground="Gold"/>
+                                                <TextBlock Text="       Aura + 25" Foreground="Gold"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="Mythique" Foreground="Red"/>
+                                                <TextBlock Text="       Reliques Uniques" Foreground="Red"/>
+                                                <TextBlock Text="       Vitesse + 15" Foreground="Red"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="30%" Foreground="White"/>
+                                                <TextBlock Text="15%" Foreground="White"/>
+                                                <TextBlock Text="15%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="35%" Foreground="White"/>
+                                                <TextBlock Text="17%" Foreground="White"/>
+                                                <TextBlock Text="18%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text=" " />
+                                                <TextBlock Text="5%" Foreground="White"/>
+                                                <TextBlock Text="4%" Foreground="White"/>
+                                                <TextBlock Text="1%" Foreground="White"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Background="#8B0000" CornerRadius="5" Height="60" Margin="0,0,0,20">
+                                    <TextBlock Text="MYTHIQUE" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+
+                                <TextBlock Text="Prix : 100 000 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                                <Button x:Name="BtnOuvrirMythique" Content="Ouvrir" Background="#9D00FF" Foreground="White" FontSize="24" FontWeight="Bold" Height="60" Cursor="Hand" Click="BtnOuvrirMythique_Click">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="8"/>
+                                        </Style>
+                                    </Button.Resources>
+                                </Button>
+                            </StackPanel>
+
+                        </Grid>
                     </Grid>
 
                 </Grid>

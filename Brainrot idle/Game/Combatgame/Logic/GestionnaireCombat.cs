@@ -7,6 +7,8 @@ namespace MonJeuCombat.Games.CombatGame.Logic
 {
     public class GestionnaireCombat
     {
+        public event Action<Personnage> OnAttaque;
+
         public List<Personnage> participants = new List<Personnage>();
 
         public int OrCumule { get; private set; }
@@ -26,17 +28,31 @@ namespace MonJeuCombat.Games.CombatGame.Logic
 
         public void ExecuterTick()
         {
+            // 1. On charge les jauges de TOUS les personnages vivants en même temps
             foreach (var p in participants)
             {
-                if (p.PointsDeVie <= 0) continue;
-
-                p.JaugeAction += p.VitesseAttaque;
-
-                if (p.JaugeAction >= 100)
+                if (p.PointsDeVie > 0)
                 {
-                    FaireAttaquer(p);
-                    p.JaugeAction -= 100;
+                    p.JaugeAction += p.VitesseAttaque;
                 }
+            }
+
+            // 2. On récupère ceux qui ont atteint 100 de jauge, et on les TRIE 
+            // Celui qui a la plus grande jauge (le plus rapide) est placé en premier
+            var pretsAAttaquer = participants
+                .Where(p => p.PointsDeVie > 0 && p.JaugeAction >= 100)
+                .OrderByDescending(p => p.JaugeAction)
+                .ToList();
+
+            // 3. On les fait attaquer dans le bon ordre
+            foreach (var attaquant in pretsAAttaquer)
+            {
+                // SÉCURITÉ CRUCIALE : Si un monstre a été tué par le héros 
+                // juste avant dans cette même milliseconde, il ne peut plus attaquer !
+                if (attaquant.PointsDeVie <= 0) continue;
+
+                FaireAttaquer(attaquant);
+                attaquant.JaugeAction -= 100;
             }
 
             VerifierFinDeCombat();
@@ -57,6 +73,9 @@ namespace MonJeuCombat.Games.CombatGame.Logic
 
             if (cible != null)
             {
+                // On déclenche l'animation juste avant d'infliger les dégâts
+                OnAttaque?.Invoke(attaquant);
+
                 double degats = attaquant.CalculerDegatsSortants();
                 cible.RecevoirDegats(degats);
 
@@ -112,37 +131,27 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                 switch (vague)
                 {
                     case 1:
-                        AddEnnemisAleatoire(
-                            new Personnage("Petit Lutin", 20, 3, 1, 15, 0, 0, 20, false, 5, 5),
-                            new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25),
-                            new Personnage("Lutin Enragé", 150, 20, 8, 12, 10, 50, 150, false, 50, 50)
-                        );
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 2", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 50, 5, 1, 5, 0, 0, 50, false, 10, 5));
                         break;
 
                     case 2:
-                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
+                        ennemisDeLaVague.Add(new Personnage("BallerinoLololo", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
                         break;
 
                     case 3:
-                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier 1", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
-                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier 2", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
+                        ennemisDeLaVague.Add(new Personnage("BobritoBandito", 150, 8, 2, 2, 0, 0, 150, false, 15, 7));
                         break;
 
                     case 4:
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 1", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 2", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
-                        ennemisDeLaVague.Add(new Personnage("Petit Lutin 3", 20, 3, 1, 15, 0, 0, 20, false, 5, 5));
-                        ennemisDeLaVague.Add(new Personnage("Lutin Guerrier", 60, 10, 5, 8, 5, 50, 60, false, 20, 25));
+                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 75, 8, 2, 5, 0, 0, 75, false, 15, 7));
                         break;
 
                     case 5:
-                        ennemisDeLaVague.Add(new Personnage("Boss Lutin", 300, 25, 10, 10, 10, 50, 300, false, 150, 200));
+                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 500, 26, 5, 10, 10, 15, 500, false, 168, 84));
                         break;
 
                     default:
-                        ennemisDeLaVague.Add(new Personnage($"Lutin Enragé", 150, 20, 8, 12, 10, 50, 150, false, 50, 50));
+                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 500, 26, 5, 10, 10, 15, 500, false, 168, 84));
                         break;
                 }
             }

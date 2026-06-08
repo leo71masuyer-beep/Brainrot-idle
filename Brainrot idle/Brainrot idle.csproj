@@ -109,6 +109,7 @@
     <Resource Include="view\GameCombat\Ressources\corps.png" />
     <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
     <Resource Include="view\GameCombat\Ressources\chadultime.jpg" />
+    <Resource Include="view\GameCombat\Ressources\abdo.jpg" />
     <Resource Include="view\GameCombat\Ressources\gigachad.jpg" />
     <Resource Include="view\GameCombat\Ressources\larila.jpg" />
     <Resource Include="view\GameCombat\Ressources\lombaire.jpg" />

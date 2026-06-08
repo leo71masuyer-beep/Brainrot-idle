@@ -123,14 +123,35 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnOngletArbre_Click(object sender, RoutedEventArgs e)
         {
+            // 1. On vérifie que les éléments existent bien avant de les activer
+            if (PanneauArbre == null || FondOngletArbre == null || TexteOngletArbre == null)
+            {
+                MessageBox.Show("Erreur : Un des éléments de l'onglet Arbre est introuvable dans le XAML.");
+                return;
+            }
+
             ActiverOnglet(PanneauArbre, FondOngletArbre, TexteOngletArbre);
 
-            // On force l'attente maximale pour que la fenêtre soit 100% calculée et on centre la vue
+            // 2. On sécurise le scroll pour le recentrage
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                CarteScroll.UpdateLayout();
-                CarteScroll.ScrollToHorizontalOffset(1535 - (CarteScroll.ViewportWidth / 2));
-                CarteScroll.ScrollToVerticalOffset(1535 - (CarteScroll.ViewportHeight / 2));
+                try
+                {
+                    if (CarteScroll != null)
+                    {
+                        CarteScroll.UpdateLayout();
+                        // On s'assure que le Viewport n'est pas à 0 pour éviter une division absurde
+                        double width = CarteScroll.ViewportWidth > 0 ? CarteScroll.ViewportWidth : 800;
+                        double height = CarteScroll.ViewportHeight > 0 ? CarteScroll.ViewportHeight : 600;
+
+                        CarteScroll.ScrollToHorizontalOffset(1535 - (width / 2));
+                        CarteScroll.ScrollToVerticalOffset(1535 - (height / 2));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erreur lors du centrage de la carte : " + ex.Message);
+                }
             }), System.Windows.Threading.DispatcherPriority.ContextIdle);
         }
 

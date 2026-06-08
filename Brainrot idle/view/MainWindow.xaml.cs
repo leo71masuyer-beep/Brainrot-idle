@@ -31,6 +31,13 @@ namespace Brainrot_idle
         {
             InitializeComponent();
 
+            // ==========================================
+            // CONFIGURATION PLEIN ÉCRAN
+            // ==========================================
+            this.WindowStyle = WindowStyle.None;
+            this.WindowState = WindowState.Maximized;
+            this.ResizeMode = ResizeMode.NoResize;
+
             // 1. Initialisation du volume global
             player.Volume = CurrentVolume;
 

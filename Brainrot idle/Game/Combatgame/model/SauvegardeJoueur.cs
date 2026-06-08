@@ -16,13 +16,25 @@ namespace Brainrot_idle.Game.Combatgame.model
         // STATS BONUS (Issues de l'arbre)
         // ==========================================
         public static int AttaqueBonusFlat { get; set; } = 0;
-        public static float AttaqueBonus { get; set; } = 1f;
+        public static float AttaqueBonus { get; set; } = 0f;
 
         public static double DefenseBonusFlat { get; set; } = 0;
         public static double DefenseBonus { get; set; } = 0;
 
         public static float ChanceCritique { get; set; } = 0f;
         public static float DegatCritique { get; set; } = 0f;
+
+        // ==========================================
+        // STATS BONUS GACHA (Permanentes)
+        // ==========================================
+        public static double PvBonusFlat { get; set; } = 0;
+        public static double VitesseBonusFlat { get; set; } = 0;
+
+        // ==========================================
+        // RELIQUES UNIQUES MYTHIQUES (Gacha)
+        // ==========================================
+        public static bool PassifEpeeDeLAnomalie { get; set; } = false;
+        public static bool PassifArmureEtoilee { get; set; } = false;
 
         // ==========================================
         // Variables pour sauvegarder l'état de l'arbre de compétences

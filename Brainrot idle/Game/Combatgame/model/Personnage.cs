@@ -71,26 +71,38 @@ namespace Brainrot_idle.Game.Combatgame.model
 
         private static Random _rng = new Random();
 
+        // Le constructeur corrigé qui applique les bonus du Gacha UNE SEULE FOIS
         public Personnage(string nom, double pv, double atk, double def, double vit, int pourcentageCrit, int degCrit, double pvmax, bool EstJ, int orBase = 0, int expBase = 0)
         {
             Nom = nom;
-            PointsDeVie = pv;
-            PointsDeVieMax = pvmax;
             Attaque = atk;
             Defense = def;
-            VitesseAttaque = vit;
             ChanceCritique = pourcentageCrit;
             DegatCritique = degCrit;
             EstJoueur = EstJ;
             OrDeBase = orBase;
             ExpDeBase = expBase;
+
+            if (EstJoueur)
+            {
+                // Ajout des bonus permanents uniquement pour le joueur
+                PointsDeVieMax = pvmax + SauvegardeJoueur.PvBonusFlat;
+                PointsDeVie = pv + SauvegardeJoueur.PvBonusFlat;
+                VitesseAttaque = vit + SauvegardeJoueur.VitesseBonusFlat;
+            }
+            else
+            {
+                // Les monstres n'ont pas de bonus
+                PointsDeVieMax = pvmax;
+                PointsDeVie = pv;
+                VitesseAttaque = vit;
+            }
         }
 
         #region ================= CALCUL DES PASSIFS (FLATS ET MULTIPLICATEURS) =================
 
         // --- ATTAQUE ---
 
-        // C'est cette fonction qui manquait pour lier la défense à l'attaque !
         private double ObtenirFlatsAttaque()
         {
             double flat = 0;
@@ -197,7 +209,7 @@ namespace Brainrot_idle.Game.Combatgame.model
                     break;
             }
         }
-
+            
         public void SoignerTotalement()
         {
             PointsDeVie = PointsDeVieMax;

@@ -69,6 +69,20 @@ namespace Brainrot_idle.view.GameCombat
 
             TxtStatCritique.Text = chanceCritFinale.ToString("0") + "%";
             TxtStatDegatCritique.Text = degatCritFinal.ToString("0") + "%";
+
+            TxtStatAura.Text = GameState.AuraBonusFlat.ToString("0");
+            TxtStatAuraMulti.Text = "+" + GameState.AuraBonus.ToString("0") + "%";
+
+            TxtStatBonusAtk.Text = "+" + SauvegardeJoueur.AttaqueBonus.ToString("0") + "%";
+
+            double vraiBonusDef = SauvegardeJoueur.DefenseBonus;
+
+            if (SauvegardeJoueur.LvlCorpGigachad > 0)
+            {
+                vraiBonusDef += 30;
+            }
+
+            TxtStatBonusDef.Text = "+" + vraiBonusDef.ToString("0") + "%";
         }
 
         #endregion
@@ -205,7 +219,7 @@ namespace Brainrot_idle.view.GameCombat
             if (SauvegardeJoueur.Pierres >= cout && SauvegardeJoueur.LvlBase < 5)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                SauvegardeJoueur.AttaqueBonus += 10;
+                SauvegardeJoueur.AttaqueBonusFlat += 10;
                 SauvegardeJoueur.LvlBase++;
                 RestaurerArbre();
                 RafraichirInterface();
@@ -550,73 +564,231 @@ namespace Brainrot_idle.view.GameCombat
         #endregion
 
         #endregion
-
         #region ================== SYSTÈME DE GACHA ==================
 
         private void BtnOuvrirCommun_Click(object sender, RoutedEventArgs e)
         {
-            int cout = 500;
+            int cout = 1000;
             if (SauvegardeJoueur.OrTotal >= cout)
             {
                 SauvegardeJoueur.OrTotal -= cout;
-                RafraichirInterface();
 
                 int tirage = _rngGacha.Next(1, 101);
 
                 // ÉPIQUE (Total 2%)
-                if (tirage <= 1) { AfficherResultat("ÉPIQUE!!! gold + 2000", Brushes.Magenta); }        
-                else if (tirage <= 2) { AfficherResultat("ÉPIQUE!!! vitesse + 5", Brushes.Magenta); }   
+                if (tirage <= 1)
+                {
+                    SauvegardeJoueur.OrTotal += 2000;
+                    AfficherResultat("ÉPIQUE!!! Or + 2000", Brushes.Magenta);
+                }
+                else if (tirage <= 2)
+                {
+                    SauvegardeJoueur.VitesseBonusFlat += 5;
+                    _monHero?.AmeliorerStatistique("Vitesse", 5);
+                    AfficherResultat("ÉPIQUE!!! Vitesse + 5", Brushes.Magenta);
+                }
 
                 // RARE (Total 18%)
-                else if (tirage <= 10) { AfficherResultat("RARE Pierres + 1", Brushes.Blue); }         
-                else if (tirage <= 20) { AfficherResultat("RARE gold + 250", Brushes.Blue); }         
+                else if (tirage <= 10)
+                {
+                    SauvegardeJoueur.Pierres += 1;
+                    AfficherResultat("RARE Pierres + 1", Brushes.Blue);
+                }
+                else if (tirage <= 20)
+                {
+                    SauvegardeJoueur.OrTotal += 250;
+                    AfficherResultat("RARE Or + 250", Brushes.Blue);
+                }
 
                 // COMMUN (Total 80%)
-                else if (tirage <= 30) { AfficherResultat("COMMUN PV + 5", Brushes.Black); }         
-                else if (tirage <= 40) { AfficherResultat("COMMUN Defense + 5", Brushes.Black); }       
-                else if (tirage <= 50) { AfficherResultat("COMMUN Attaque + 5", Brushes.Black); }       
-                else { AfficherResultat("COMMUN RIEN", Brushes.Black); }                                
+                else if (tirage <= 30)
+                {
+                    SauvegardeJoueur.PvBonusFlat += 5;
+                    _monHero?.AmeliorerStatistique("Sante", 5);
+                    AfficherResultat("COMMUN PV + 5", Brushes.Black);
+                }
+                else if (tirage <= 40)
+                {
+                    SauvegardeJoueur.DefenseBonusFlat += 5;
+                    AfficherResultat("COMMUN Defense + 5", Brushes.Black);
+                }
+                else if (tirage <= 50)
+                {
+                    SauvegardeJoueur.AttaqueBonusFlat += 5;
+                    AfficherResultat("COMMUN Attaque + 5", Brushes.Black);
+                }
+                else
+                {
+                    AfficherResultat("COMMUN RIEN", Brushes.Black);
+                }
+
+                RafraichirInterface();
             }
         }
 
         private void BtnOuvrirRare_Click(object sender, RoutedEventArgs e)
         {
-            int cout = 2000;
+            int cout = 10000;
             if (SauvegardeJoueur.OrTotal >= cout)
             {
                 SauvegardeJoueur.OrTotal -= cout;
-                RafraichirInterface();
 
                 int tirage = _rngGacha.Next(1, 101);
 
-                if (tirage <= 5) { AfficherResultat("LÉGENDAIRE", Brushes.Orange); }
-                else if (tirage <= 20) { AfficherResultat("ÉPIQUE", Brushes.Magenta); }
-                else if (tirage <= 60) { AfficherResultat("RARE", Brushes.Blue); }
-                else { AfficherResultat("COMMUN", Brushes.Black); }
+                // LÉGENDAIRE (Total 5%)
+                if (tirage <= 2)
+                {
+                    GameState.AuraBonusFlat += 10;
+                    AfficherResultat("LÉGENDAIRE !!! Aura Flat + 10", Brushes.Orange);
+                }
+                else if (tirage <= 5)
+                {
+                    SauvegardeJoueur.ChanceCritique += 2;
+                    SauvegardeJoueur.DegatCritique += 10;
+                    AfficherResultat("LÉGENDAIRE !! Crit +2% / Dégât Crit +10%", Brushes.Orange);
+                }
+
+                // ÉPIQUE (Total 15%)
+                else if (tirage <= 12)
+                {
+                    SauvegardeJoueur.Pierres += 5;
+                    AfficherResultat("ÉPIQUE ! Pierres + 5", Brushes.Magenta);
+                }
+                else if (tirage <= 20)
+                {
+                    SauvegardeJoueur.OrTotal += 5000;
+                    AfficherResultat("ÉPIQUE ! Or + 5000", Brushes.Magenta);
+                }
+
+                // RARE (Total 40%)
+                else if (tirage <= 40)
+                {
+                    SauvegardeJoueur.AttaqueBonusFlat += 20;
+                    SauvegardeJoueur.DefenseBonusFlat += 20;
+                    AfficherResultat("RARE. Attaque & Défense + 20", Brushes.Blue);
+                }
+                else if (tirage <= 60)
+                {
+                    SauvegardeJoueur.PvBonusFlat += 50;
+                    _monHero?.AmeliorerStatistique("Sante", 50);
+                    AfficherResultat("RARE. PV + 50", Brushes.Blue);
+                }
+
+                // COMMUN (Total 40%)
+                else if (tirage <= 80)
+                {
+                    SauvegardeJoueur.Pierres += 1;
+                    AfficherResultat("COMMUN. Pierres + 1", Brushes.Black);
+                }
+                else
+                {
+                    AfficherResultat("COMMUN. Rien d'intéressant...", Brushes.Black);
+                }
+
+                RafraichirInterface();
             }
         }
 
         private void BtnOuvrirMythique_Click(object sender, RoutedEventArgs e)
         {
-            int cout = 10000;
+            int cout = 100000;
             if (SauvegardeJoueur.OrTotal >= cout)
             {
                 SauvegardeJoueur.OrTotal -= cout;
-                RafraichirInterface();
 
                 int tirage = _rngGacha.Next(1, 101);
 
-                if (tirage <= 5) { AfficherResultat("MYTHIQUE", Brushes.Red); }
-                else if (tirage <= 25) { AfficherResultat("LÉGENDAIRE", Brushes.Orange); }
-                else if (tirage <= 60) { AfficherResultat("ÉPIQUE", Brushes.Magenta); }
-                else if (tirage <= 90) { AfficherResultat("RARE", Brushes.Blue); }
-                else { AfficherResultat("COMMUN", Brushes.Black); }
+                // MYTHIQUE (Total 5%)
+                if (tirage <= 2)
+                {
+                    if (!SauvegardeJoueur.PassifEpeeDeLAnomalie)
+                    {
+                        SauvegardeJoueur.PassifEpeeDeLAnomalie = true;
+                        SauvegardeJoueur.ChanceCritique += 15;
+                        SauvegardeJoueur.DegatCritique += 100;
+                        AfficherResultat("🏆 UNIQUE : ÉPÉE DE L'ANOMALIE (Crit +15%, Dgts Crit +100%)", Brushes.Red);
+                    }
+                    else
+                    {
+                        GameState.AuraBonus += 25;
+                        AfficherResultat("MYTHIQUE !!! Aura +25%", Brushes.Red);
+                    }
+                }
+                else if (tirage <= 4)
+                {
+                    if (!SauvegardeJoueur.PassifArmureEtoilee)
+                    {
+                        SauvegardeJoueur.PassifArmureEtoilee = true;
+                        SauvegardeJoueur.DefenseBonusFlat += 500;
+                        SauvegardeJoueur.PvBonusFlat += 2000;
+                        _monHero?.AmeliorerStatistique("Sante", 2000);
+                        AfficherResultat("🏆 UNIQUE : ARMURE ÉTOILÉE (Défense +500, PV +2000)", Brushes.Red);
+                    }
+                    else
+                    {
+                        GameState.AuraBonusFlat += 50;
+                        AfficherResultat("MYTHIQUE !!! Aura Flat +50", Brushes.Red);
+                    }
+                }
+                else if (tirage <= 5)
+                {
+                    SauvegardeJoueur.VitesseBonusFlat += 15;
+                    _monHero?.AmeliorerStatistique("Vitesse", 15);
+                    AfficherResultat("MYTHIQUE !!! Vitesse + 15", Brushes.Red);
+                }
+
+                // LÉGENDAIRE (Total 20%)
+                else if (tirage <= 15)
+                {
+                    SauvegardeJoueur.ChanceCritique += 5;
+                    SauvegardeJoueur.DegatCritique += 25;
+                    AfficherResultat("LÉGENDAIRE !! Crit +5% / Dégât Crit +25%", Brushes.Orange);
+                }
+                else if (tirage <= 25)
+                {
+                    GameState.AuraBonusFlat += 25;
+                    AfficherResultat("LÉGENDAIRE !! Aura Flat + 25", Brushes.Orange);
+                }
+
+                // ÉPIQUE (Total 35%)
+                else if (tirage <= 42)
+                {
+                    SauvegardeJoueur.Pierres += 15;
+                    AfficherResultat("ÉPIQUE ! Pierres + 15", Brushes.Magenta);
+                }
+                else if (tirage <= 60)
+                {
+                    SauvegardeJoueur.AttaqueBonusFlat += 150;
+                    SauvegardeJoueur.DefenseBonusFlat += 150;
+                    AfficherResultat("ÉPIQUE ! Attaque & Défense + 150", Brushes.Magenta);
+                }
+
+                // RARE (Total 30%)
+                else if (tirage <= 75)
+                {
+                    SauvegardeJoueur.PvBonusFlat += 200;
+                    _monHero?.AmeliorerStatistique("Sante", 200);
+                    AfficherResultat("RARE. PV + 200", Brushes.Blue);
+                }
+                else if (tirage <= 90)
+                {
+                    SauvegardeJoueur.OrTotal += 15000;
+                    AfficherResultat("RARE. Or + 15000", Brushes.Blue);
+                }
+
+                // COMMUN (Total 10%)
+                else
+                {
+                    AfficherResultat("COMMUN... Dommage, RIEN !", Brushes.Black);
+                }
+
+                RafraichirInterface();
             }
         }
 
         private void AfficherResultat(string rarete, Brush couleur)
         {
-            TxtResultatTirage.Text = $"Tu as obtenu un objet {rarete} !";
+            TxtResultatTirage.Text = $"Tu as obtenu : {rarete}";
             TxtResultatTirage.Foreground = couleur;
         }
 

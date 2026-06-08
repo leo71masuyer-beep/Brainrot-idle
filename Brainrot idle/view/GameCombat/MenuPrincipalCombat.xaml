@@ -624,39 +624,80 @@
                     <!-- ========================================== -->
                     <!-- PANNEAU 2 : LES STATS (CACHÉ PAR DÉFAUT)   -->
                     <!-- ========================================== -->
-                    <Grid x:Name="PanneauStats" Visibility="Collapsed">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="STATISTIQUES DU HÉROS" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <Grid x:Name="PanneauStats" Visibility="Visible" Background="Transparent">
+                        <Border Background="#1A0A2E" BorderBrush="#9D00FF" BorderThickness="3" CornerRadius="20" 
+            HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
+                            <StackPanel>
+                                <TextBlock Text="📊 Statistiques" Foreground="White" FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,40"/>
 
-                            <Grid Width="250">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                    <RowDefinition Height="35"/>
-                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                                <TextBlock Grid.Row="0" Text="🗡️  ATTAQUE" Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatAttaque" Grid.Row="0" Text="0" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                    <StackPanel Width="350" Margin="0,0,60,0">
+                                        <Border Background="#2A004D" CornerRadius="8" Padding="12" Margin="0,0,0,25">
+                                            <TextBlock Text="⚔️ COMBAT DE BASE" Foreground="#D0C0E0" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                        </Border>
 
-                                <TextBlock Grid.Row="1" Text="🛡️  DÉFENSE" Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatDefense" Grid.Row="1" Text="0" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="❤️  Santé Max" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatSante" Text="0" Foreground="#00FF40" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
 
-                                <TextBlock Grid.Row="2" Text="❤️  SANTÉ" Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatSante" Grid.Row="2" Text="0" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="🗡️  Attaque" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatAttaque" Text="0" Foreground="#00FF40" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
 
-                                <TextBlock Grid.Row="3" Text="⚡  VITESSE" Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatVitesse" Grid.Row="3" Text="0" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="🛡️  Défense" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatDefense" Text="0" Foreground="#00FF40" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
 
-                                <TextBlock Grid.Row="4" Text="💥  CHANCE CRIT." Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatCritique" Grid.Row="4" Text="0%" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="⚡  Vitesse" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatVitesse" Text="0" Foreground="#00FF40" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </StackPanel>
 
-                                <TextBlock Grid.Row="5" Text="🔥  DÉGÂTS CRIT." Foreground="#D0C0E0" VerticalAlignment="Center" FontWeight="Bold" />
-                                <TextBlock x:Name="TxtStatDegatCritique" Grid.Row="5" Text="0%" Foreground="#00FF40" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
-                            </Grid>
-                        </StackPanel>
+                                    <StackPanel Width="350">
+                                        <Border Background="#4D0000" BorderBrush="#FF4040" BorderThickness="2" CornerRadius="8" Padding="12" Margin="0,0,0,25">
+                                            <TextBlock Text="🔥 SPÉCIAL &amp; CRITIQUE" Foreground="#FFC0C0" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                        </Border>
+
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="💥  Chance Crit." Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatCritique" Text="0%" Foreground="#FFD700" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="💢  Dégâts Crit." Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatDegatCritique" Text="0%" Foreground="#FFD700" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="✨  Aura Brute (Flat)" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatAura" Text="0" Foreground="#00FFFF" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                        <Grid Margin="0,0,0,20">
+                                            <TextBlock Text="📈  Aura (Multiplicateur)" Foreground="White" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="TxtStatAuraMulti" Text="+0%" Foreground="#00FFFF" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right"/>
+                                        </Grid>
+
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <Border Background="#0A0410" BorderBrush="#4D0099" BorderThickness="2" CornerRadius="10" Padding="20" Margin="0,30,0,0">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                        <TextBlock Text="Multiplicateur d'Attaque :" Foreground="#A080C0" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                        <TextBlock x:Name="TxtStatBonusAtk" Text="+0%" Foreground="#FF00FF" FontSize="24" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,50,0"/>
+
+                                        <TextBlock Text="Multiplicateur de Défense :" Foreground="#A080C0" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                        <TextBlock x:Name="TxtStatBonusDef" Text="+0%" Foreground="#FF00FF" FontSize="24" FontWeight="Bold" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Border>
+
+                            </StackPanel>
+                        </Border>
                     </Grid>
 
                     <!-- ========================================== -->
@@ -668,7 +709,6 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <!-- EN-TÊTE -->
                         <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,20,0,20">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Text="💰 Or disponible : " Foreground="#FFD700" FontSize="24" FontWeight="Bold"/>
@@ -677,7 +717,6 @@
                             <TextBlock x:Name="TxtResultatTirage" Text="Choisis un coffre à ouvrir..." Foreground="White" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,15,0,0"/>
                         </StackPanel>
 
-                        <!-- LES 3 COLONNES DE COFFRES -->
                         <Grid Grid.Row="1" Margin="20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -685,8 +724,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <!-- COLONNE 1 : COFFRE COMMUN -->
-                            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="220">
+                            <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260">
                                 <Border Background="#2A004D" BorderBrush="#9D00FF" BorderThickness="2" CornerRadius="8" Padding="15" Margin="0,0,0,20">
                                     <StackPanel>
                                         <TextBlock Text="Contenance :" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
@@ -701,14 +739,14 @@
                                                 <TextBlock Text="       Attaque + 5" Foreground="#D0C0E0"/>
                                                 <TextBlock Text="       Defense + 5" Foreground="#D0C0E0"/>
                                                 <TextBlock Text="       PV + 5" Foreground="#D0C0E0"/>
-                                                <TextBlock Text="       " />
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Rare" Foreground="Cyan"/>
-                                                <TextBlock Text="       gold + 250" Foreground="Cyan"/>
-                                                <TextBlock Text="       Pirres + 1" Foreground="Cyan"/>
-                                                <TextBlock Text="       " />
+                                                <TextBlock Text="       Or + 250" Foreground="Cyan"/>
+                                                <TextBlock Text="       Pierres + 1" Foreground="Cyan"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Épique" Foreground="#FF00FF"/>
-                                                <TextBlock Text="       gold + 2000 " Foreground="#FF00FF"/>
-                                                <TextBlock Text="       vitesse + 5" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Or + 2000" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Vitesse + 5" Foreground="#FF00FF"/>
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                                                 <TextBlock Text="80%" Foreground="White"/>
@@ -716,15 +754,11 @@
                                                 <TextBlock Text="10%" Foreground="White"/>
                                                 <TextBlock Text="10%" Foreground="White"/>
                                                 <TextBlock Text="10%" Foreground="White"/>
-
-                                                <TextBlock Text="" Foreground="White"/>
-
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="18%" Foreground="White"/>
                                                 <TextBlock Text="10%" Foreground="White"/>
                                                 <TextBlock Text="8%" Foreground="White"/>
-
-                                                <TextBlock Text="" Foreground="White"/>
-
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="2%" Foreground="White"/>
                                                 <TextBlock Text="1%" Foreground="White"/>
                                                 <TextBlock Text="1%" Foreground="White"/>
@@ -737,7 +771,7 @@
                                     <TextBlock Text="COMMUN" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
 
-                                <TextBlock Text="Prix : 500 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                                <TextBlock Text="Prix : 1 000 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                                 <Button x:Name="BtnOuvrirCommun" Content="Ouvrir" Background="#9D00FF" Foreground="White" FontSize="24" FontWeight="Bold" Height="60" Cursor="Hand" Click="BtnOuvrirCommun_Click">
                                     <Button.Resources>
                                         <Style TargetType="Border">
@@ -747,8 +781,7 @@
                                 </Button>
                             </StackPanel>
 
-                            <!-- COLONNE 2 : COFFRE RARE -->
-                            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="220">
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260">
                                 <Border Background="#2A004D" BorderBrush="#9D00FF" BorderThickness="2" CornerRadius="8" Padding="15" Margin="0,0,0,20">
                                     <StackPanel>
                                         <TextBlock Text="Contenance :" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
@@ -759,15 +792,37 @@
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0">
                                                 <TextBlock Text="Commun" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Pierres + 1" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Rien" Foreground="#D0C0E0"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Rare" Foreground="Cyan"/>
+                                                <TextBlock Text="       Atk &amp; Def + 20" Foreground="Cyan"/>
+                                                <TextBlock Text="       PV + 50" Foreground="Cyan"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Épique" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Pierres + 5" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Or + 5000" Foreground="#FF00FF"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Légendaire" Foreground="Gold"/>
+                                                <TextBlock Text="       Aura + 10" Foreground="Gold"/>
+                                                <TextBlock Text="       Stats Critiques" Foreground="Gold"/>
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                                                 <TextBlock Text="40%" Foreground="White"/>
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="40%" Foreground="White"/>
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="15%" Foreground="White"/>
+                                                <TextBlock Text="7%" Foreground="White"/>
+                                                <TextBlock Text="8%" Foreground="White"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="5%" Foreground="White"/>
+                                                <TextBlock Text="2%" Foreground="White"/>
+                                                <TextBlock Text="3%" Foreground="White"/>
                                             </StackPanel>
                                         </Grid>
                                     </StackPanel>
@@ -777,7 +832,7 @@
                                     <TextBlock Text="RARE" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
 
-                                <TextBlock Text="Prix : 2 000 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                                <TextBlock Text="Prix : 10 000 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                                 <Button x:Name="BtnOuvrirRare" Content="Ouvrir" Background="#9D00FF" Foreground="White" FontSize="24" FontWeight="Bold" Height="60" Cursor="Hand" Click="BtnOuvrirRare_Click">
                                     <Button.Resources>
                                         <Style TargetType="Border">
@@ -787,8 +842,7 @@
                                 </Button>
                             </StackPanel>
 
-                            <!-- COLONNE 3 : COFFRE MYTHIQUE -->
-                            <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Width="220">
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260">
                                 <Border Background="#2A004D" BorderBrush="#9D00FF" BorderThickness="2" CornerRadius="8" Padding="15" Margin="0,0,0,20">
                                     <StackPanel>
                                         <TextBlock Text="Contenance :" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
@@ -799,17 +853,43 @@
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0">
                                                 <TextBlock Text="Commun" Foreground="#D0C0E0"/>
+                                                <TextBlock Text="       Rien" Foreground="#D0C0E0"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Rare" Foreground="Cyan"/>
+                                                <TextBlock Text="       PV + 200" Foreground="Cyan"/>
+                                                <TextBlock Text="       Or + 15000" Foreground="Cyan"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Épique" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Pierres + 15" Foreground="#FF00FF"/>
+                                                <TextBlock Text="       Atk &amp; Def + 150" Foreground="#FF00FF"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Légendaire" Foreground="Gold"/>
+                                                <TextBlock Text="       Stats Critiques" Foreground="Gold"/>
+                                                <TextBlock Text="       Aura + 25" Foreground="Gold"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="Mythique" Foreground="Red"/>
+                                                <TextBlock Text="       Reliques Uniques" Foreground="Red"/>
+                                                <TextBlock Text="       Vitesse + 15" Foreground="Red"/>
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" HorizontalAlignment="Right">
                                                 <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="30%" Foreground="White"/>
+                                                <TextBlock Text="15%" Foreground="White"/>
+                                                <TextBlock Text="15%" Foreground="White"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="35%" Foreground="White"/>
+                                                <TextBlock Text="17%" Foreground="White"/>
+                                                <TextBlock Text="18%" Foreground="White"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="20%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text="10%" Foreground="White"/>
+                                                <TextBlock Text=" " />
                                                 <TextBlock Text="5%" Foreground="White"/>
+                                                <TextBlock Text="4%" Foreground="White"/>
+                                                <TextBlock Text="1%" Foreground="White"/>
                                             </StackPanel>
                                         </Grid>
                                     </StackPanel>
@@ -819,7 +899,7 @@
                                     <TextBlock Text="MYTHIQUE" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
 
-                                <TextBlock Text="Prix : 10 000 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                                <TextBlock Text="Prix : 100 000 🪙" FontWeight="Bold" FontSize="14" Foreground="#FFD700" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                                 <Button x:Name="BtnOuvrirMythique" Content="Ouvrir" Background="#9D00FF" Foreground="White" FontSize="24" FontWeight="Bold" Height="60" Cursor="Hand" Click="BtnOuvrirMythique_Click">
                                     <Button.Resources>
                                         <Style TargetType="Border">

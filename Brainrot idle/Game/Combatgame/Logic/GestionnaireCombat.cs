@@ -139,7 +139,7 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                         break;
 
                     case 3:
-                        ennemisDeLaVague.Add(new Personnage("BobritoBandito", 150, 8, 2, 2, 0, 0, 500, false, 15, 7));
+                        ennemisDeLaVague.Add(new Personnage("BobritoBandito", 150, 8, 2, 2, 0, 0, 150, false, 15, 7));
                         break;
 
                     case 4:
@@ -147,11 +147,11 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                         break;
 
                     case 5:
-                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 506, 26, 5, 10, 10, 15, 500, false, 168, 84));
+                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 500, 26, 5, 10, 10, 15, 500, false, 168, 84));
                         break;
 
                     default:
-                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 506, 26, 5, 10, 10, 15, 500, false, 168, 84));
+                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 500, 26, 5, 10, 10, 15, 500, false, 168, 84));
                         break;
                 }
             }

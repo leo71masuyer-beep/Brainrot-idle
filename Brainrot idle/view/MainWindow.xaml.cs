@@ -111,7 +111,8 @@ namespace Brainrot_idle
         {
             currentTutoStep++;
 
-            if (currentTutoStep <= 3)
+            // CORRECTION : Changé 3 par 4 pour autoriser l'affichage de l'étape 4
+            if (currentTutoStep <= 4)
             {
                 DeclencherEtapeTuto(currentTutoStep);
             }

@@ -94,10 +94,13 @@ namespace Brainrot_idle.view
             double multiplicateurSnake = 1.0 + (GameState.MeilleurScoreSnake * 0.15);
             double auraBoosteParSec = GameState.auraParSeconde * multiplicateurSnake;
 
+            double multiplicateurClic = GameState.MultiplicateurAuraParClic <= 0 ? 1.0 : GameState.MultiplicateurAuraParClic;
+            double pointsClicsCeSeconde = GameState.ClicsParSeconde * multiplicateurClic;
+            double productionTotaleParSec = auraBoosteParSec + pointsClicsCeSeconde;
+
             // Affichage des textes d'Aura principaux
             AuraPoints.Content = "AuraPoints : " + FormatterNombre(GameState.points);
-            AuraPointsParSec.Content = "Points/seconde : " + FormatterNombre(auraBoosteParSec);
-
+            AuraPointsParSec.Content = "Points/seconde : " + FormatterNombre(productionTotaleParSec);
             // Quantités possédées
             NbAmelioration1.Content = "Possédé : " + GameState.nbAmeliorations[0];
             NbAmelioration2.Content = "Possédé : " + GameState.nbAmeliorations[1];

@@ -140,11 +140,11 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                         break;
 
                     case 3:
-                        ennemisDeLaVague.Add(new Personnage("BobritoBandito", 300, 10, 2, 10, 0, 0, 150, false, 45, 20));
+                        ennemisDeLaVague.Add(new Personnage("BobritoBandito", 300, 10, 2, 10, 0, 0, 300, false, 45, 20));
                         break;
 
                     case 4:
-                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 125, 14, 20, 15, 0, 0, 75, false, 30, 20));
+                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 125, 14, 20, 15, 0, 0, 125, false, 30, 20));
                         break;
 
                     case 5:

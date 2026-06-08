@@ -587,7 +587,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureAbdoChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/abdo.png" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/abdo.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -624,7 +624,7 @@
                     <!-- ========================================== -->
                     <!-- PANNEAU 2 : LES STATS (CACHÉ PAR DÉFAUT)   -->
                     <!-- ========================================== -->
-                    <Grid x:Name="PanneauStats" Visibility="Visible" Background="Transparent">
+                    <Grid x:Name="PanneauStats" Visibility="Collapsed" Background="Transparent">
                         <Border Background="#1A0A2E" BorderBrush="#9D00FF" BorderThickness="3" CornerRadius="20" 
             HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
                             <StackPanel>

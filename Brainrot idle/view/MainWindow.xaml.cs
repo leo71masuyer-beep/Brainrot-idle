@@ -8,17 +8,12 @@ namespace Brainrot_idle.view
     public partial class MainWindow : Window
     {
         public static MediaPlayer player = new MediaPlayer();
-
+        public static double CurrentVolume = 1.0;
         private static MainWindow? instance;
-
         private readonly Random random = new();
-
         private List<string> toutesLesMusiques = new();
-
         private string? musiqueActuelle;
-
         private readonly Stack<string> historiqueMusiques = new();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -112,7 +107,7 @@ namespace Brainrot_idle.view
 
             player.Stop();
             player.Open(new Uri(prochaineMusique, UriKind.Absolute));
-            player.Volume = 1.0;
+            player.Volume = CurrentVolume;
             player.Play();
         }
         public static void PreviousMusic()
@@ -130,7 +125,7 @@ namespace Brainrot_idle.view
 
             player.Stop();
             player.Open(new Uri(precedente, UriKind.Absolute));
-            player.Volume = 1.0;
+            player.Volume = CurrentVolume;
             player.Play();
         }
     }

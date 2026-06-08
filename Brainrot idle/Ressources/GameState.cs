@@ -10,6 +10,7 @@ namespace Brainrot_idle.Ressources
         public static double points = 0;
         public static double auraParSeconde = 0;
         public static double clicsCetteSeconde = 0;
+        public static double ClicsParSeconde { get; set; } = 0;
 
         // ---------------- AMÉLIORATIONS DE BASE ----------------
         public static int[] nbAmeliorations = new int[10];
@@ -29,6 +30,7 @@ namespace Brainrot_idle.Ressources
 
         // ---------------- MINI-JEUX ----------------
         public static int MeilleurScoreSnake { get; set; } = 0;
+        public static int MeilleurScoreMorpion { get; set; } = 0;
 
         // ---------------- SYSTÈME DE NIVEAUX DANS L'ARBRE ----------------
         public static double XpActuelle { get; set; } = 0;
@@ -71,6 +73,8 @@ namespace Brainrot_idle.Ressources
 
             // 3. Injection automatique des points dans le solde du joueur (Fonctionne en arrière-plan global)
             points += auraBoosteParSec;
+
+            ClicsParSeconde = clicsCetteSeconde;
 
             // 4. Réinitialisation automatique des clics pour le calcul de la seconde suivante
             clicsCetteSeconde = 0;

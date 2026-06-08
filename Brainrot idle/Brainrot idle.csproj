@@ -44,6 +44,27 @@
     <Content Include="Ressources\music\Turbo_Candy_Rampage.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Ressources\cover\boss_level_overdrive.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\cover\dopamine_grand_prix.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\cover\level_failure.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\cover\panic_button.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\cover\sahur_overdrive.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\cover\sahur_speedrun.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\cover\turbo_candy.PNG">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="view\GameCombat\Ressources\alliance.png" />
     <Resource Include="view\GameCombat\Ressources\bananini.jpg" />
     <Resource Include="view\GameCombat\Ressources\bombardilo.jpg" />

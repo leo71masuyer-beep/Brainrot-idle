@@ -28,5 +28,9 @@ namespace Brainrot_idle.view
         {
             NavigationService.Navigate(new MenuPrincipalCombat());
         }
+        private void Morpion_Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MorpionFrame());
+        }
     }
 }

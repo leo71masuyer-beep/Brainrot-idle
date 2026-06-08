@@ -10,6 +10,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <!-- Bouton retour -->
         <Button x:Name="BoutonRetour"
                 Grid.Row="0"
                 Content="Retour"
@@ -19,23 +20,62 @@
                 HorizontalAlignment="Left"
                 Click="Return_Button_Click"/>
 
-        <ScrollViewer Grid.Row="1">
-            <StackPanel x:Name="MusicListPanel"
-                        Margin="20"/>
-        </ScrollViewer>
+        <!-- Contenu principal -->
+        <Grid Grid.Row="1">
 
-        <Button Content="⏮ Précédente"
-            Width="150"
-            Height="40"
-            Margin="5"
-            Click="PreviousButton_Click"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Button Grid.Row="2"
-                Content="⏭ Skip"
-                Width="150"
-                Height="40"
-                Margin="20"
-                HorizontalAlignment="Center"
-                Click="SkipButton_Click"/>
+            <!-- Musique actuelle -->
+            <StackPanel Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        Margin="20">
+
+                <Image x:Name="CurrentMusicImage"
+                       Width="250"
+                       Height="250"
+                       Stretch="UniformToFill"/>
+
+                <TextBlock x:Name="CurrentMusicText"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"/>
+
+            </StackPanel>
+
+            <!-- Liste des musiques -->
+            <ScrollViewer Grid.Row="1">
+
+                <StackPanel x:Name="MusicListPanel"
+                            Margin="20"/>
+
+            </ScrollViewer>
+
+        </Grid>
+
+        <!-- Navigation -->
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="20">
+
+            <Button Content="⏮ Précédente"
+                    Width="150"
+                    Height="40"
+                    Margin="5"
+                    Click="PreviousButton_Click"/>
+
+            <Button Content="⏭ Suivante"
+                    Width="150"
+                    Height="40"
+                    Margin="5"
+                    Click="SkipButton_Click"/>
+
+        </StackPanel>
+
     </Grid>
+
 </Page>

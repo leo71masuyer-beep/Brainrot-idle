@@ -21,6 +21,7 @@ namespace Brainrot_idle.view
         public ParametreFrame()
         {
             InitializeComponent();
+            VolumeSlider.Value = MainWindow.CurrentVolume * 100;
         }
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -28,9 +29,11 @@ namespace Brainrot_idle.view
         }
         private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            MainWindow.CurrentVolume = e.NewValue / 100.0;
+
             if (MainWindow.player != null)
             {
-                MainWindow.player.Volume = e.NewValue / 100.0;
+                MainWindow.player.Volume = MainWindow.CurrentVolume;
             }
         }
     }

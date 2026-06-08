@@ -51,7 +51,7 @@ namespace Brainrot_idle.view
             double pointsGagnes = 1.0 * GameState.MultiplicateurAuraParClic;
 
             GameState.points += pointsGagnes;
-            GameState.clicsCetteSeconde += pointsGagnes;
+            GameState.clicsCetteSeconde += 1;
 
             UpdateUI();
         }

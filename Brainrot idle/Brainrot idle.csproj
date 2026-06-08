@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Ressources\image\chaine.png" />
     <None Remove="Ressources\music\Boss_Level_Overdrive.mp3" />
     <None Remove="Ressources\music\Level_Failure.mp3" />
     <None Remove="Ressources\music\Panic_Button_Joyride.mp3" />
@@ -98,6 +99,9 @@
     </Resource>
     <Resource Include="Ressources\cover\turbo_candy.PNG">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Ressources\image\chaine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="view\GameCombat\Ressources\alliance.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

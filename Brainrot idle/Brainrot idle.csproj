@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Ressources\cover\**" />
+    <EmbeddedResource Remove="Ressources\cover\**" />
+    <None Remove="Ressources\cover\**" />
+    <Page Remove="Ressources\cover\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Ressources\image\chaine.png" />
     <None Remove="Ressources\music\Boss_Level_Overdrive.mp3" />
     <None Remove="Ressources\music\Level_Failure.mp3" />
@@ -80,27 +87,6 @@
     <Content Include="Ressources\systememusic\music\Turbo_Candy_Rampage.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Ressources\cover\boss_level_overdrive.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\dopamine_grand_prix.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\level_failure.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\panic_button.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\sahur_overdrive.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\sahur_speedrun.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\turbo_candy.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="Ressources\image\chaine.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

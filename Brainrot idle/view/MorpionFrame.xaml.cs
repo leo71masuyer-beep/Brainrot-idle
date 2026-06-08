@@ -179,7 +179,7 @@ namespace Brainrot_idle.view
 
         private void UpdateScore()
         {
-            ScoreText.Text = $"Victoires : {playerScore}";
+            ScoreText.Text = $"Victoires : {Brainrot_idle.Ressources.GameState.MeilleurScoreMorpion}";
         }
 
         private void ResetBoard()
@@ -197,10 +197,6 @@ namespace Brainrot_idle.view
         }
         private void Return_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (playerScore > Brainrot_idle.Ressources.GameState.MeilleurScoreMorpion)
-            {
-                Brainrot_idle.Ressources.GameState.MeilleurScoreMorpion = playerScore;
-            }
             NavigationService.Navigate(new MiniGamesFrame());
         }
     }

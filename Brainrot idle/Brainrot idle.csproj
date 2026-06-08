@@ -94,25 +94,54 @@
     <Resource Include="Ressources\systememusic\cover\Turbo_Candy_Rampage.png" />
     <Resource Include="view\GameCombat\Ressources\alliance.png" />
     <Resource Include="view\GameCombat\Ressources\background\bar_background.png" />
-    <Resource Include="view\GameCombat\Ressources\bananini.jpg" />
-    <Resource Include="view\GameCombat\Ressources\bombardilo.jpg" />
+    <Resource Include="view\GameCombat\Ressources\bananini.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\bombardilo.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="view\GameCombat\Ressources\corps.png" />
-    <Resource Include="view\GameCombat\Ressources\frulifrula.jpg" />
-    <Resource Include="view\GameCombat\Ressources\chadultime.jpg" />
-    <Resource Include="view\GameCombat\Ressources\abdo.jpg" />
-    <Resource Include="view\GameCombat\Ressources\gigachad.jpg" />
-    <Resource Include="view\GameCombat\Ressources\larila.jpg" />
-    <Resource Include="view\GameCombat\Ressources\lombaire.jpg" />
-    <Resource Include="view\GameCombat\Ressources\megachad.png" />
-    <Resource Include="view\GameCombat\Ressources\muscles.jpg" />
-    <Resource Include="view\GameCombat\Ressources\patapim.jpg" />
-    <Resource Include="view\GameCombat\Ressources\pecs.png" />
-    <Resource Include="view\GameCombat\Ressources\quadriceps.png" />
-    <Resource Include="view\GameCombat\Ressources\sahur.jpg" />
-    <Resource Include="view\GameCombat\Ressources\SigmaBoy.jpg" />
+    <Resource Include="view\GameCombat\Ressources\corps.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\frulifrula.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\chadultime.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\gigachad.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\larila.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\lombaire.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\megachad.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\muscles.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\patapim.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\pecs.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\quadriceps.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\sahur.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\SigmaBoy.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk1.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk2.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\BallerinaCappuccina_atk3.png" />
@@ -137,10 +166,18 @@
     <Resource Include="view\GameCombat\Ressources\Sprites\tungtungGod_atk2.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\tungtungGod_atk3.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\tungtungGod_idle.png" />
-    <Resource Include="view\GameCombat\Ressources\SuperAura.jpg" />
-    <Resource Include="view\GameCombat\Ressources\tralala.jpg" />
-    <Resource Include="view\GameCombat\Ressources\triceps.png" />
-    <Resource Include="view\GameCombat\Ressources\Udindindindun.png" />
+    <Resource Include="view\GameCombat\Ressources\SuperAura.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\tralala.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\triceps.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="view\GameCombat\Ressources\Udindindindun.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

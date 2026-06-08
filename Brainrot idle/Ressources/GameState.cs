@@ -32,6 +32,12 @@ namespace Brainrot_idle.Ressources
         public static int MeilleurScoreSnake { get; set; } = 0;
         public static int MeilleurScoreMorpion { get; set; } = 0;
 
+
+        // États de déblocage des jeux
+        public static bool IsSnakeDebloque { get; set; } = false;
+        public static bool IsCombatDebloque { get; set; } = false;
+        public static bool IsMorpionDebloque { get; set; } = false;
+
         // ---------------- SYSTÈME DE NIVEAUX DANS L'ARBRE ----------------
         public static double XpActuelle { get; set; } = 0;
         public static double XpRequise { get; set; } = 10; // XP de départ pour le niveau 1

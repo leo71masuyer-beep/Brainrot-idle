@@ -12,23 +12,24 @@
         <Style x:Key="RoundSkillButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="95"/>
             <Setter Property="Height" Value="95"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="11"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Grid>
-                            <Ellipse x:Name="BackgroundEllipse" Fill="#EBF0F6" Stroke="#34495E" StrokeThickness="2.5"/>
+                            <Ellipse x:Name="BackgroundEllipse" Fill="#120524" Stroke="#9D00FF" StrokeThickness="3"/>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="BackgroundEllipse" Property="Fill" Value="#D2D7DF"/>
+                                <Setter TargetName="BackgroundEllipse" Property="Fill" Value="#2A004D"/>
+                                <Setter TargetName="BackgroundEllipse" Property="Stroke" Value="#00FF40"/>
                                 <Setter Property="Cursor" Value="Hand"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="BackgroundEllipse" Property="Fill" Value="#BDC3C7"/>
+                                <Setter TargetName="BackgroundEllipse" Property="Fill" Value="#4A00E0"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -37,135 +38,158 @@
         </Style>
 
         <Style x:Key="TreeLineStyle" TargetType="Line">
-            <Setter Property="Stroke" Value="#BDC3C7"/>
-            <Setter Property="StrokeThickness" Value="3"/>
+            <Setter Property="Stroke" Value="#4D0099"/>
+            <Setter Property="StrokeThickness" Value="4"/>
         </Style>
     </Page.Resources>
 
-    <Grid Background="#F4F6F9">
+    <Grid Background="#0A0410">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="30,20,30,10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" BorderBrush="#9D00FF" BorderThickness="3" Background="#120524" CornerRadius="10" Margin="15,15,15,5">
+            <Grid Margin="15,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="← Retour" 
-                    VerticalAlignment="Center" 
-                    Padding="12,6"
-                    Click="Close_Button_Click"/>
+                <Button Grid.Column="0" Content="← RETOUR" Background="#2A004D" Foreground="White" 
+                        BorderBrush="#9D00FF" BorderThickness="2" FontWeight="Bold" Padding="15,8" 
+                        VerticalAlignment="Center" Cursor="Hand"
+                        Click="Close_Button_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
 
-            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock Text="Arbre de Compétences" 
-                           FontSize="26" 
-                           FontWeight="Bold" 
-                           Foreground="#2C3E50"
-                           HorizontalAlignment="Center"/>
-                <TextBlock x:Name="TextePointsDispo" 
-                           Text="Points disponibles : 0" 
-                           FontSize="14" FontWeight="SemiBold" Foreground="#27AE60"
-                           HorizontalAlignment="Center" Margin="0,4,0,0"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                <StackPanel VerticalAlignment="Center" Margin="0,0,15,0">
-                    <TextBlock x:Name="TexteNiveau" Text="Niveau : 1" FontWeight="Bold" Foreground="#2C3E50" HorizontalAlignment="Right"/>
-                    <ProgressBar x:Name="BarreXp" Width="150" Height="14" Margin="0,4,0,0" Minimum="0"/>
-                    <TextBlock x:Name="TexteXp" Text="0 / 10 XP" FontSize="10" Foreground="#7F8C8D" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="ARBRE DE COMPÉTENCES" 
+                               FontSize="24" 
+                               FontWeight="Bold" 
+                               Foreground="White"
+                               HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="TextePointsDispo" 
+                               Text="Points disponibles : 0" 
+                               FontSize="14" FontWeight="Bold" Foreground="#00FF40"
+                               HorizontalAlignment="Center" Margin="0,4,0,0"/>
                 </StackPanel>
 
-                <Button Content="+1 XP" 
-                        Padding="15,10" 
-                        FontWeight="Bold"
-                        Background="#9B59B6" 
-                        Foreground="White"
-                        Click="XpButton_Click"/>
-            </StackPanel>
-        </Grid>
+                <StackPanel Grid.Column="2" VerticalAlignment="Center" Width="200">
+                    <TextBlock x:Name="TexteNiveau" Text="Niveau : 1" FontWeight="Bold" Foreground="#00FF40" FontSize="14" HorizontalAlignment="Right"/>
+                    <Grid Margin="0,4,0,0">
+                        <ProgressBar x:Name="BarreXp" Height="10" Background="#0A0410" BorderBrush="#9D00FF" Foreground="#00FF40" Minimum="0"/>
+                        <TextBlock x:Name="TexteXp" Text="0 / 10 XP" FontSize="10" FontWeight="Bold" Foreground="#D0C0E0" HorizontalAlignment="Right" Margin="0,-14,0,0"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
 
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <Canvas Width="1000" Height="650" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,20">
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="15,5">
+            <Border BorderBrush="#9D00FF" BorderThickness="3" Background="#120524" CornerRadius="10">
+                <Canvas Width="1000" Height="620" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,10">
 
-                <Line Style="{StaticResource TreeLineStyle}" X1="350" Y1="95" X2="200" Y2="245"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="350" Y1="95" X2="370" Y2="245"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="650" Y1="95" X2="630" Y2="245"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="650" Y1="95" X2="800" Y2="245"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="200" Y1="245" X2="230" Y2="395"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="370" Y1="245" X2="230" Y2="395"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="370" Y1="245" X2="500" Y2="395"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="630" Y1="245" X2="500" Y2="395"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="630" Y1="245" X2="770" Y2="395"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="800" Y1="245" X2="770" Y2="395"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="230" Y1="395" X2="500" Y2="545"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="500" Y1="395" X2="500" Y2="545"/>
-                <Line Style="{StaticResource TreeLineStyle}" X1="770" Y1="395" X2="500" Y2="545"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="350" Y1="95" X2="200" Y2="245"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="350" Y1="95" X2="370" Y2="245"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="650" Y1="95" X2="630" Y2="245"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="650" Y1="95" X2="800" Y2="245"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="200" Y1="245" X2="230" Y2="395"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="370" Y1="245" X2="230" Y2="395"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="370" Y1="245" X2="500" Y2="395"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="630" Y1="245" X2="500" Y2="395"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="630" Y1="245" X2="770" Y2="395"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="800" Y1="245" X2="770" Y2="395"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="230" Y1="395" X2="500" Y2="545"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="500" Y1="395" X2="500" Y2="545"/>
+                    <Line Style="{StaticResource TreeLineStyle}" X1="770" Y1="395" X2="500" Y2="545"/>
 
-                <Button Content="Apprenti" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="300" Canvas.Top="50"
-                        ToolTip="Génère 1 point/sec automatiquement."
-                        Click="Apprenti_Click"/>
+                    <Button Content="Apprenti" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="300" Canvas.Top="50"
+                            ToolTip="Génère 1 point/sec automatiquement."
+                            Click="Apprenti_Click"/>
 
-                <Button Content="Cliqueur" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="600" Canvas.Top="50"
-                        ToolTip="Améliore l'efficacité globale de 10%."
-                        Click="Cliqueur_Click"/>
+                    <Button Content="Cliqueur" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="600" Canvas.Top="50"
+                            ToolTip="Améliore l'efficacité globale de 10%."
+                            Click="Cliqueur_Click"/>
 
-                <Button Content="Jeu de combat" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="150" Canvas.Top="200"
-                        ToolTip="Débloque le multiplicateur x2 sur les gains."
-                        Click="JeuDeCombat_Click"/>
+                    <Button Content="Jeu de combat" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="150" Canvas.Top="200"
+                            ToolTip="Débloque le multiplicateur x2 sur les gains."
+                            Click="JeuDeCombat_Click"/>
 
-                <Button Content="Jeu 3" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="320" Canvas.Top="200"
-                        ToolTip="Réduit le coût des prochaines améliorations."
-                        Click="Jeu3_Click"/>
+                    <Button Content="Jeu 3" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="320" Canvas.Top="200"
+                            ToolTip="Réduit le coût des prochaines améliorations."
+                            Click="Jeu3_Click"/>
 
-                <Button Content="Jeu 4" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="580" Canvas.Top="200"
-                        ToolTip="Augmente la limite de stockage des points."
-                        Click="Jeu4_Click"/>
+                    <Button Content="Jeu 4" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="580" Canvas.Top="200"
+                            ToolTip="Augmente la limite de stockage des points."
+                            Click="Jeu4_Click"/>
 
-                <Button Content="Jeu 5" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="750" Canvas.Top="200"
-                        ToolTip="Augmente la vitesse de production de 15%."
-                        Click="Jeu5_Click"/>
+                    <Button Content="Jeu 5" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="750" Canvas.Top="200"
+                            ToolTip="Augmente la vitesse de production de 15%."
+                            Click="Jeu5_Click"/>
 
-                <Button Content="Jeu 6" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="180" Canvas.Top="350"
-                        ToolTip="Multiplie les gains passifs par le nombre de compétences débloquées."
-                        Click="Jeu6_Click"/>
+                    <Button Content="Jeu 6" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="180" Canvas.Top="350"
+                            ToolTip="Multiplie les gains passifs par le nombre de compétences débloquées."
+                            Click="Jeu6_Click"/>
 
-                <Button Content="Multiplicateur" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="450" Canvas.Top="350"
-                        ToolTip="Fusionne les bonus de Stratégie et Gestion (+25%)."
-                        Click="Multiplicateur_Click"/>
+                    <Button Content="Multiplicateur" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="450" Canvas.Top="350"
+                            ToolTip="Fusionne les bonus de Stratégie et Gestion (+25%)."
+                            Click="Multiplicateur_Click"/>
 
-                <Button Content="Boost 1" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="720" Canvas.Top="350"
-                        ToolTip="Achète automatiquement les améliorations les moins chères."
-                        Click="Boost1_Click"/>
+                    <Button Content="Boost 1" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="720" Canvas.Top="350"
+                            ToolTip="Achète automatiquement les améliorations les moins chères."
+                            Click="Boost1_Click"/>
 
-                <Button Content="Boost 2" 
-                        Style="{StaticResource RoundSkillButtonStyle}" 
-                        Canvas.Left="450" Canvas.Top="500"
-                        ToolTip="Multiplie l'Aura globale par 5. Fin de l'arbre."
-                        Click="Boost2_Click"/>
+                    <Button Content="Boost 2" 
+                            Style="{StaticResource RoundSkillButtonStyle}" 
+                            Canvas.Left="450" Canvas.Top="500"
+                            ToolTip="Multiplie l'Aura globale par 5. Fin de l'arbre."
+                            Click="Boost2_Click"/>
 
-            </Canvas>
+                </Canvas>
+            </Border>
         </ScrollViewer>
+
+        <Grid Grid.Row="2" Margin="0,5,0,15">
+            <Button Content="+1 XP" 
+                    Width="180" Height="45"
+                    FontWeight="Bold" FontSize="16"
+                    Background="#9D00FF" 
+                    Foreground="White"
+                    HorizontalAlignment="Center"
+                    Cursor="Hand"
+                    Click="XpButton_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                        <Setter Property="BorderBrush" Value="#00FF40"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

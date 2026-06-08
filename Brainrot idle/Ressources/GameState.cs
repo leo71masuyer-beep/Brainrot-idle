@@ -92,5 +92,7 @@ namespace Brainrot_idle.Ressources
         // ---------------- Musique ----------------
         public static List<string> MusiquesDisponibles { get; set; } = new();
         public static HashSet<string> MusiquesActives { get; set; } = new();
+
+        public static event Action OnMusicChanged;
     }
 }

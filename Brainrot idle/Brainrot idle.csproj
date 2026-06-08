@@ -10,11 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Ressources\music\Boss_Level_Overdrive.mp3" />
-    <None Remove="Ressources\music\Level_Failure.mp3" />
-    <None Remove="Ressources\music\Panic_Button_Joyride.mp3" />
-    <None Remove="Ressources\music\Sahur_Overdrive.mp3" />
-    <None Remove="Ressources\music\Turbo_Candy_Rampage.mp3" />
+    <None Remove="Ressources\systememusic\cover\Boss_Level_Overdrive.png" />
+    <None Remove="Ressources\systememusic\cover\Level_Failure.png" />
+    <None Remove="Ressources\systememusic\cover\Panic_Button_Joyride.png" />
+    <None Remove="Ressources\systememusic\cover\Sahur_Overdrive.png" />
+    <None Remove="Ressources\systememusic\cover\Sahur_Speedrun.png" />
+    <None Remove="Ressources\systememusic\cover\Turbo_Candy_Rampage.png" />
+    <None Remove="Ressources\systememusic\music\Boss_Level_Overdrive.mp3" />
+    <None Remove="Ressources\systememusic\music\Level_Failure.mp3" />
+    <None Remove="Ressources\systememusic\music\Panic_Button_Joyride.mp3" />
+    <None Remove="Ressources\systememusic\music\Sahur_Overdrive.mp3" />
+    <None Remove="Ressources\systememusic\music\Sahur_Speedrun.mp3" />
+    <None Remove="Ressources\systememusic\music\Turbo_Candy_Rampage.mp3" />
     <None Remove="view\GameCombat\Ressources\abdo.png" />
     <None Remove="view\GameCombat\Ressources\alliance.png" />
     <None Remove="view\GameCombat\Ressources\background\bar_background.png" />
@@ -63,42 +70,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Ressources\music\Boss_Level_Overdrive.mp3">
+    <Content Include="Ressources\systememusic\music\Boss_Level_Overdrive.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ressources\music\Level_Failure.mp3">
+    <Content Include="Ressources\systememusic\music\Level_Failure.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ressources\music\Panic_Button_Joyride.mp3">
+    <Content Include="Ressources\systememusic\music\Panic_Button_Joyride.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ressources\music\Sahur_Overdrive.mp3">
+    <Content Include="Ressources\systememusic\music\Sahur_Overdrive.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ressources\music\Turbo_Candy_Rampage.mp3">
+    <Content Include="Ressources\systememusic\music\Sahur_Speedrun.mp3" />
+    <Content Include="Ressources\systememusic\music\Turbo_Candy_Rampage.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Ressources\cover\boss_level_overdrive.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\dopamine_grand_prix.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\level_failure.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\panic_button.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\sahur_overdrive.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\sahur_speedrun.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Ressources\cover\turbo_candy.PNG">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Ressources\systememusic\cover\Boss_Level_Overdrive.png" />
+    <Resource Include="Ressources\systememusic\cover\Level_Failure.png" />
+    <Resource Include="Ressources\systememusic\cover\Panic_Button_Joyride.png" />
+    <Resource Include="Ressources\systememusic\cover\Sahur_Overdrive.png" />
+    <Resource Include="Ressources\systememusic\cover\Sahur_Speedrun.png" />
+    <Resource Include="Ressources\systememusic\cover\Turbo_Candy_Rampage.png" />
     <Resource Include="view\GameCombat\Ressources\alliance.png" />
     <Resource Include="view\GameCombat\Ressources\background\bar_background.png" />
     <Resource Include="view\GameCombat\Ressources\bananini.jpg" />

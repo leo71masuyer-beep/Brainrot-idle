@@ -1,81 +1,130 @@
 ﻿<Page x:Class="Brainrot_idle.view.MusicFrame"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="MusicPage">
 
-    <Grid Background="White">
+    <Page.Resources>
+        <SolidColorBrush x:Key="NeonGreenBrush" Color="#00FF00"/>
+        <SolidColorBrush x:Key="NeonPurpleBrush" Color="#9333EA"/>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        <Style x:Key="NeonButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#222222"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource NeonPurpleBrush}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#333333"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource NeonGreenBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <!-- Bouton retour -->
-        <Button x:Name="BoutonRetour"
-                Grid.Row="0"
-                Content="Retour"
-                Width="100"
-                Height="30"
-                Margin="10"
-                HorizontalAlignment="Left"
-                Click="Return_Button_Click"/>
+        <Style x:Key="DA_CheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0,10"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Border x:Name="Border" BorderBrush="{StaticResource NeonPurpleBrush}" BorderThickness="2" CornerRadius="4" Height="20" Width="20" Background="Transparent">
+                                    <Path x:Name="CheckMark" Data="M2,7 L6,11 L14,3" Stroke="{StaticResource NeonGreenBrush}" StrokeThickness="2" Visibility="Collapsed" Margin="2,2,0,0"/>
+                                </Border>
+                            </BulletDecorator.Bullet>
+                            <ContentPresenter Margin="15,0,0,0" VerticalAlignment="Center"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource NeonGreenBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource NeonGreenBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
-        <!-- Contenu principal -->
-        <Grid Grid.Row="1">
+    <Grid Background="#1E1E1E">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
+        <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Musique actuelle -->
-            <StackPanel Grid.Row="0"
-                        HorizontalAlignment="Center"
-                        Margin="20">
+            <Button Grid.Row="0" Content="⮘ Retour" Style="{StaticResource NeonButtonStyle}" 
+                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" Width="100" Height="35"
+                    Click="BtnRetour_Click" FontWeight="Bold"/>
 
-                <Image x:Name="CurrentMusicImage"
-                       Width="250"
-                       Height="250"
-                       Stretch="UniformToFill"/>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <TextBlock x:Name="CurrentMusicText"
-                           FontSize="20"
-                           FontWeight="Bold"
-                           HorizontalAlignment="Center"
-                           Margin="0,10,0,0"/>
+                <Border Width="400" Height="400" Margin="0,0,0,25" CornerRadius="15" 
+                        BorderBrush="{StaticResource NeonPurpleBrush}" BorderThickness="3">
+                    <Image Source="{Binding CurrentTrack.CoverPath}" Stretch="UniformToFill">
+                        <Image.Clip>
+                            <RectangleGeometry Rect="0,0,394,394" RadiusX="12" RadiusY="12"/>
+                        </Image.Clip>
+                    </Image>
+                </Border>
 
+                <TextBlock Text="{Binding CurrentTrack.Title}" FontSize="36" FontWeight="Bold" 
+                           Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,10"/>
             </StackPanel>
 
-            <!-- Liste des musiques -->
-            <ScrollViewer Grid.Row="1">
-
-                <StackPanel x:Name="MusicListPanel"
-                            Margin="20"/>
-
-            </ScrollViewer>
-
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,40">
+                <Button Content="⏮ Précédent" Width="120" Height="45" Margin="10" 
+                        Style="{StaticResource NeonButtonStyle}" FontSize="16" Click="BtnPrevious_Click"/>
+                <Button Content="Suivant ⏭" Width="120" Height="45" Margin="10" 
+                        Style="{StaticResource NeonButtonStyle}" FontSize="16" Click="BtnNext_Click"/>
+            </StackPanel>
         </Grid>
 
-        <!-- Navigation -->
-        <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Margin="20">
+        <Border Grid.Column="1" Background="#111111" BorderBrush="{StaticResource NeonGreenBrush}" 
+                BorderThickness="2" CornerRadius="10" Margin="15">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Button Content="⏮ Précédente"
-                    Width="150"
-                    Height="40"
-                    Margin="5"
-                    Click="PreviousButton_Click"/>
+                <TextBlock Grid.Row="0" Text="PLAYLIST" FontSize="24" FontWeight="Bold" 
+                           Foreground="{StaticResource NeonGreenBrush}" HorizontalAlignment="Center" Margin="0,20,0,20"/>
 
-            <Button Content="⏭ Suivante"
-                    Width="150"
-                    Height="40"
-                    Margin="5"
-                    Click="SkipButton_Click"/>
-
-        </StackPanel>
-
+                <ListBox Grid.Row="1" ItemsSource="{Binding Playlist}" Background="Transparent" 
+                         BorderThickness="0" Margin="15,0,10,10">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsSelected}" 
+                                      Content="{Binding Title}" 
+                                      Style="{StaticResource DA_CheckBoxStyle}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
     </Grid>
-
 </Page>

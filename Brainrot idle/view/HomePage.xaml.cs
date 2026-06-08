@@ -1,4 +1,5 @@
 ﻿using Brainrot_idle.Ressources;
+using Brainrot_idle.view;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -145,7 +146,6 @@ namespace Brainrot_idle.view
         private void MiniGames_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MiniGamesFrame());
         private void SkillTree_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new SkillTreeFrame());
         private void Statistiques_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new StatistiquesFrames());
-        //private void button4_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new ParametreFrame());
         private void Music_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MusicFrame());
         private void Parametre_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new ParametreFrame());
     }

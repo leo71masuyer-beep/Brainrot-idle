@@ -64,19 +64,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Ressources\music\Boss_Level_Overdrive.mp3">
+    <Content Include="Ressources\systememusic\music\Boss_Level_Overdrive.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ressources\music\Level_Failure.mp3">
+    <Content Include="Ressources\systememusic\music\Level_Failure.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ressources\music\Panic_Button_Joyride.mp3">
+    <Content Include="Ressources\systememusic\music\Panic_Button_Joyride.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ressources\music\Sahur_Overdrive.mp3">
+    <Content Include="Ressources\systememusic\music\Sahur_Overdrive.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Ressources\music\Turbo_Candy_Rampage.mp3">
+    <Content Include="Ressources\systememusic\music\Sahur_Speedrun.mp3" />
+    <Content Include="Ressources\systememusic\music\Turbo_Candy_Rampage.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Ressources\cover\boss_level_overdrive.PNG">

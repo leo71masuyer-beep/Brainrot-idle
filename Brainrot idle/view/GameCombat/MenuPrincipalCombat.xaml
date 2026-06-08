@@ -4,7 +4,6 @@
       Title="Menu Principal Combat" Background="#0A0410"
       Loaded="Page_Loaded">
 
-    <!-- Grille principale -->
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="320"/>
@@ -15,9 +14,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- ========================================== -->
-        <!-- EN-TÊTE GAUCHE : Avatar, Nom, Niveau, XP   -->
-        <!-- ========================================== -->
         <Border Grid.Row="0" Grid.Column="0" BorderBrush="#9D00FF" BorderThickness="3" Background="#120524" CornerRadius="10" Margin="0,0,10,10">
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
@@ -41,9 +37,6 @@
             </Grid>
         </Border>
 
-        <!-- ========================================== -->
-        <!-- EN-TÊTE DROITE : Ressources et Retour      -->
-        <!-- ========================================== -->
         <Border Grid.Row="0" Grid.Column="1" BorderBrush="#9D00FF" BorderThickness="3" Background="#120524" CornerRadius="10" Margin="0,0,0,10">
             <Grid Margin="15,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
@@ -70,9 +63,6 @@
             </Grid>
         </Border>
 
-        <!-- ========================================== -->
-        <!-- PANNEAU GAUCHE BAS : Portrait ET JOUER     -->
-        <!-- ========================================== -->
         <Border Grid.Row="1" Grid.Column="0" BorderBrush="#9D00FF" BorderThickness="3" Background="#120524" CornerRadius="10" Margin="0,0,10,0">
             <StackPanel>
                 <TextBlock Text="TUNG TUNG SAHUR" Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Margin="0,20,0,15" />
@@ -108,9 +98,6 @@
             </StackPanel>
         </Border>
 
-        <!-- ========================================== -->
-        <!-- PANNEAU DROIT BAS : Onglets et Contenu     -->
-        <!-- ========================================== -->
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -139,15 +126,12 @@
 
             <Border Grid.Row="1" BorderBrush="#9D00FF" BorderThickness="3" Background="#120524" CornerRadius="10" Padding="20">
                 <Grid>
-                    <!-- ========================================== -->
-                    <!-- PANNEAU 1 : L'ARBRE GÉANT (CACHÉ PAR DÉFAUT) -->
-                    <!-- ========================================== -->
                     <Grid x:Name="PanneauArbre" Visibility="Collapsed">
                         <ScrollViewer x:Name="CarteScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                             <Canvas x:Name="ZoneArbre" Width="3500" Height="3500" Background="#0A0410"
-                                MouseLeftButtonDown="ZoneArbre_MouseLeftButtonDown"
-                                MouseLeftButtonUp="ZoneArbre_MouseLeftButtonUp"
-                                MouseMove="ZoneArbre_MouseMove">
+                                    MouseLeftButtonDown="ZoneArbre_MouseLeftButtonDown"
+                                    MouseLeftButtonUp="ZoneArbre_MouseLeftButtonUp"
+                                    MouseMove="ZoneArbre_MouseMove">
 
                                 <Line X1="1735" Y1="1135" X2="1735" Y2="1335" Stroke="#333333" StrokeThickness="4"/>
                                 <Line X1="1735" Y1="1335" X2="1735" Y2="1535" Stroke="#333333" StrokeThickness="4"/>
@@ -184,7 +168,7 @@
                                 <Line X1="2135" Y1="2435" X2="2335" Y2="2435" Stroke="#333333" StrokeThickness="4"/>
                                 <Line X1="2535" Y1="2085" X2="2700" Y2="2225" Stroke="#333333" StrokeThickness="4"/>
                                 <Line X1="2335" Y1="2435" X2="2700" Y2="2225" Stroke="#333333" StrokeThickness="4"/>
-                                
+
                                 <StackPanel Canvas.Left="1700" Canvas.Top="1100" Width="70">
                                     <Button x:Name="BtnCompBase" ToolTip="atk +10" Width="70" Height="70" Cursor="Hand" Background="#111" Click="BtnCompBase_Click">
                                         <Button.Template>
@@ -207,7 +191,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSuperAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -225,7 +209,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureMegaAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -243,7 +227,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSigmaAura" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/SuperAura.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -261,7 +245,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureSigmaBoy" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/SigmaBoy.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/SigmaBoy.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -273,14 +257,13 @@
                                     <TextBlock x:Name="TxtSigmaBoy" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-
                                 <StackPanel Canvas.Left="1500" Canvas.Top="2200" Width="70">
                                     <Button x:Name="Btntungtungsahur" ToolTip="+atk 50" Width="70" Height="70" Cursor="Hand" Background="#111" Click="Btntungtungsahur_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Borduretungtungsahur" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/sahur.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -298,7 +281,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Borduretralala" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/tralala.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/tralala.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -316,7 +299,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurefrulifrula" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/frulifrula.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/frulifrula.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -334,7 +317,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurebombardilo" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bombardilo.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/bombardilo.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -352,7 +335,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordureudindindindun" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/sahur.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/sahur.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -370,7 +353,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurepatapim" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/Udindindindun.png" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/Udindindindun.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -388,7 +371,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurebananini" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/bananini.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/bananini.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -406,7 +389,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurelarila" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/larila.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/larila.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -418,14 +401,13 @@
                                     <TextBlock x:Name="Txtlarila" Text="0/1" Foreground="#00FF40" FontWeight="Bold" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
-
                                 <StackPanel Canvas.Left="1475" Canvas.Top="2500" Width="120">
                                     <Button x:Name="Btnalliance" ToolTip="quand un ennemie est tuer d’un cout critique x10 aura gagné%" Width="100" Height="100" Cursor="Hand" Background="#111" Click="Btnalliance_Click">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="Bordurealliance" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/alliance.png" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/alliance.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -443,7 +425,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureGigaChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/gigachad.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/gigachad.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -461,7 +443,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordurePecsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/pecs.png" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/pecs.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -479,7 +461,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureLombaireChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/lombaire.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/lombaire.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -497,7 +479,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureTricepsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/triceps.png" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/triceps.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -515,7 +497,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureCorpGigachad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/corps.png" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/corps.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -533,7 +515,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureMegaChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/megachad.png" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/megachad.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -551,7 +533,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureMuscleGigaChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/muscles.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/muscles.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -569,7 +551,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureQuadricepsChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/quadriceps.png" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/quadriceps.png" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -587,7 +569,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureAbdoChad" BorderBrush="#333333" BorderThickness="3" CornerRadius="35">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/abdo.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/abdo.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -605,7 +587,7 @@
                                             <ControlTemplate TargetType="Button">
                                                 <Border x:Name="BordureChadUltime" BorderBrush="#333333" BorderThickness="4" CornerRadius="50">
                                                     <Border.Background>
-                                                        <ImageBrush ImageSource="pack://application:,,,/view/GameCombat/Ressources/chadultime.jpg" Stretch="UniformToFill"/>
+                                                        <ImageBrush ImageSource="Ressources/chadultime.jpg" Stretch="UniformToFill"/>
                                                     </Border.Background>
                                                 </Border>
                                             </ControlTemplate>
@@ -621,12 +603,9 @@
                         </ScrollViewer>
                     </Grid>
 
-                    <!-- ========================================== -->
-                    <!-- PANNEAU 2 : LES STATS (CACHÉ PAR DÉFAUT)   -->
-                    <!-- ========================================== -->
                     <Grid x:Name="PanneauStats" Visibility="Collapsed" Background="Transparent">
                         <Border Background="#1A0A2E" BorderBrush="#9D00FF" BorderThickness="3" CornerRadius="20" 
-            HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
+                                HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
                             <StackPanel>
                                 <TextBlock Text="📊 Statistiques" Foreground="White" FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,40"/>
 
@@ -700,9 +679,6 @@
                         </Border>
                     </Grid>
 
-                    <!-- ========================================== -->
-                    <!-- PANNEAU 3 : GACHA (CACHÉ PAR DÉFAUT)       -->
-                    <!-- ========================================== -->
                     <Grid x:Name="PanneauGacha" Visibility="Collapsed" Background="Transparent">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -913,7 +889,6 @@
                     </Grid>
 
                 </Grid>
-                <!-- FIN DE LA GRID MAGIQUE DU BORDER -->
             </Border>
         </Grid>
     </Grid>

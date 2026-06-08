@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Brainrot_idle.view.GameCombat;
+using Brainrot_idle.Ressources;
 
 
 namespace Brainrot_idle.view
@@ -21,16 +22,37 @@ namespace Brainrot_idle.view
         }
         private void Snake_Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Snake());
+            if (GameState.IsSnakeDebloque)
+            {
+                NavigationService.Navigate(new Snake());
+            }
+            else
+            {
+                MessageBox.Show("Ce jeu est verrouillé ! Débloque-le dans l'arbre des talents.", "Jeu Verrouillé", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void Combat_Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MenuPrincipalCombat());
+            if (GameState.IsCombatDebloque)
+            {
+                NavigationService.Navigate(new MenuPrincipalCombat());
+            }
+            else
+            {
+                MessageBox.Show("Ce jeu est verrouillé ! Débloque-le dans l'arbre des talents.", "Jeu Verrouillé", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
         private void Morpion_Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MorpionFrame());
+            if (GameState.IsMorpionDebloque)
+            {
+                NavigationService.Navigate(new MorpionFrame());
+            }
+            else
+            {
+                MessageBox.Show("Ce jeu est verrouillé ! Débloque-le dans l'arbre des talents.", "Jeu Verrouillé", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

@@ -22,10 +22,9 @@ public class MusicViewModel : INotifyPropertyChanged
         _player = new MediaPlayer();
         _player.MediaEnded += (s, e) => SkipNext();
 
-        // Exemple d'initialisation (remplace par tes vrais chemins)
-        // Les chemins d'images peuvent être relatifs si elles sont dans ton projet (ex: "Images/cover1.jpg")
+        // Initialisation propre de ta Playlist
         Playlist = new ObservableCollection<Track>
-{
+        {
             new Track {
                 Title = "Boss_Level_Overdrive",
                 FilePath = @"pack://application:,,,/Ressources/systememusic/music/Boss_Level_Overdrive.mp3",
@@ -76,13 +75,11 @@ public class MusicViewModel : INotifyPropertyChanged
 
     public void SkipNext()
     {
-        // S'il n'y a aucune musique cochée, on ne fait rien
         if (!Playlist.Any(t => t.IsSelected)) return;
 
         int currentIndex = Playlist.IndexOf(CurrentTrack);
         int nextIndex = (currentIndex + 1) % Playlist.Count;
 
-        // Cherche la prochaine musique cochée
         while (!Playlist[nextIndex].IsSelected)
         {
             nextIndex = (nextIndex + 1) % Playlist.Count;
@@ -100,7 +97,6 @@ public class MusicViewModel : INotifyPropertyChanged
         int prevIndex = currentIndex - 1;
         if (prevIndex < 0) prevIndex = Playlist.Count - 1;
 
-        // Cherche la précédente musique cochée
         while (!Playlist[prevIndex].IsSelected)
         {
             prevIndex--;
@@ -111,9 +107,9 @@ public class MusicViewModel : INotifyPropertyChanged
         PlayCurrentTrack();
     }
 
-    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler PropertyChanged;
     protected void OnPropertyChanged(string propertyName)
     {
-        PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

@@ -19,7 +19,6 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="#120020">
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -35,93 +34,95 @@
             <Button Grid.Column="3" Content="Button 4" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="4" Content="Musiques" Click="Music_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="5" Content="Paramètres" Click="Parametre_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
-
         </Grid>
 
-        <Border Grid.Row="0"
+        <Button x:Name="MainAuraButton"
+                Grid.Row="0"
                 Grid.Column="0"
                 Margin="20"
-                CornerRadius="20"
-                Background="#120020"
-                BorderBrush="#7A00FF"
-                BorderThickness="3">
+                Click="AuraButton_Click"
+                Cursor="Hand">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
 
-            <Grid>
+            <Border CornerRadius="20"
+                    Background="#120020"
+                    BorderBrush="#7A00FF"
+                    BorderThickness="3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+                <Grid>
+                    <Ellipse Width="420"
+                             Height="420"
+                             Fill="#2A003D"
+                             Stroke="#B300FF"
+                             StrokeThickness="10"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"/>
 
-                <Ellipse Width="420"
-                         Height="420"
-                         Fill="#2A003D"
-                         Stroke="#B300FF"
-                         StrokeThickness="10"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"/>
+                    <Ellipse Width="360"
+                             Height="360"
+                             Fill="#120020"
+                             Stroke="#E100FF"
+                             StrokeThickness="5"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"/>
 
-                <Ellipse Width="360"
-                         Height="360"
-                         Fill="#120020"
-                         Stroke="#E100FF"
-                         StrokeThickness="5"
-                         HorizontalAlignment="Center"
-                         VerticalAlignment="Center"/>
+                    <TextBlock Text="😈"
+                               FontSize="150"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="0,0,0,30"/>
 
-                <TextBlock Text="😈"
-                           FontSize="150"
-                           Foreground="White"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
+                    <TextBlock Text=""
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="#B300FF"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Bottom"
+                               Margin="0,0,0,65"/>
 
-                <Button Content="CLIQUE !"
-                        Width="240"
-                        Height="90"
-                        FontSize="28"
-                        FontWeight="Bold"
-                        Background="#7A00FF"
-                        Foreground="White"
-                        BorderBrush="#C300FF"
-                        BorderThickness="4"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom"
-                        Margin="0,0,0,50"
-                        Click="AuraButton_Click"/>
+                    <StackPanel HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Margin="20">
+                        <Border Background="#1A0028"
+                                CornerRadius="15"
+                                Padding="15"
+                                BorderBrush="#7A00FF"
+                                BorderThickness="2">
+                            <StackPanel>
+                                <TextBlock Text="AURA ACTUELLE"
+                                           Foreground="#A0FF00"
+                                           FontWeight="Bold"
+                                           FontSize="18"/>
 
-                <StackPanel HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Margin="20">
+                                <Label x:Name="AuraPoints"
+                                       Content="2.45T"
+                                       Foreground="White"
+                                       FontSize="38"
+                                       FontWeight="Bold"/>
 
-                    <Border Background="#1A0028"
-                            CornerRadius="15"
-                            Padding="15"
-                            BorderBrush="#7A00FF"
-                            BorderThickness="2">
-
-                        <StackPanel>
-
-                            <TextBlock Text="AURA ACTUELLE"
-                                       Foreground="#A0FF00"
-                                       FontWeight="Bold"
-                                       FontSize="18"/>
-
-                            <Label x:Name="AuraPoints"
-                                   Content="2.45T"
-                                   Foreground="White"
-                                   FontSize="38"
-                                   FontWeight="Bold"/>
-
-                            <Label x:Name="AuraPointsParSec"
-                                   Content="+12.45B / sec"
-                                   Foreground="#00FF66"
-                                   FontSize="20"
-                                   FontWeight="Bold"/>
-
-                        </StackPanel>
-
-                    </Border>
-
-                </StackPanel>
-
-            </Grid>
-
-        </Border>
+                                <Label x:Name="AuraPointsParSec"
+                                       Content="+12.45B / sec"
+                                       Foreground="#00FF66"
+                                       FontSize="20"
+                                       FontWeight="Bold"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Button>
 
         <ScrollViewer Grid.Row="0"
                       Grid.Column="1"
@@ -137,17 +138,14 @@
                         CornerRadius="20"
                         Margin="10"
                         Padding="10">
-
                     <TextBlock Text="AMÉLIORATIONS"
                                Foreground="White"
                                FontSize="30"
                                FontWeight="Bold"
                                HorizontalAlignment="Center"/>
-
                 </Border>
 
                 <StackPanel Margin="10">
-
                     <Border Background="#1A0028" BorderBrush="#7A00FF" BorderThickness="2" CornerRadius="15" Margin="0,10" Padding="10">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -317,11 +315,9 @@
                             <Label Grid.Column="4" x:Name="NbAmelioration10" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
-
                 </StackPanel>
 
             </StackPanel>
-
         </ScrollViewer>
 
     </Grid>

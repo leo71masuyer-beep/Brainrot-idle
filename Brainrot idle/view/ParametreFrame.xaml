@@ -8,23 +8,85 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ParametreFrame">
 
-    <Grid>
+    <Page.Resources>
+        <Style x:Key="SettingLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="#D0C0E0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="ValueLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="#00FF40"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#0A0410" Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Grid.Column="3" Content="Fermer" Margin="100,5,5,5" Click="Close_Button_Click"/>
-        <!--volume-->
-        <Slider x:Name="VolumeSlider" Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="100" Margin="50,50,50,5" ValueChanged="VolumeSlider_ValueChanged"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Volume" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="50,0,10,-20"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="{Binding ElementName=VolumeSlider, Path=Value}" ContentStringFormat="{}{0:0}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,50,-20"/>
-        <!--2nd parametre-->
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="#9D00FF" BorderThickness="3" Background="#120524" CornerRadius="10" Margin="5,5,5,25">
+            <Grid Margin="15,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Content="← FERMER" Background="#2A004D" Foreground="White" 
+                        BorderBrush="#9D00FF" BorderThickness="2" FontWeight="Bold" Padding="15,8" 
+                        VerticalAlignment="Center" Cursor="Hand"
+                        Click="Close_Button_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <TextBlock Grid.Column="1" Text="PARAMÈTRES DU JEU" 
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"
+                           Margin="0,0,100,0"/>
+            </Grid>
+        </Border>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Volume Général" Style="{StaticResource SettingLabelStyle}" Margin="50,0,0,0"/>
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10,0,50,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="VolumeSlider" Grid.Column="0" Minimum="0" Maximum="100" ValueChanged="VolumeSlider_ValueChanged" VerticalAlignment="Center" Margin="0,0,20,0">
+                <Slider.Resources>
+                    <Style TargetType="Thumb">
+                        <Setter Property="Background" Value="#9D00FF"/>
+                        <Setter Property="BorderBrush" Value="#00FF40"/>
+                    </Style>
+                </Slider.Resources>
+            </Slider>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="{Binding ElementName=VolumeSlider, Path=Value}" ContentStringFormat="{}{0:0}" Style="{StaticResource ValueLabelStyle}"/>
+                <TextBlock Text="%" Foreground="#00FF40" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Margin="-2,0,0,0"/>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </Page>

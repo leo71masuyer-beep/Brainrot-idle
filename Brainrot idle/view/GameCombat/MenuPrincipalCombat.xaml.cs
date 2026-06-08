@@ -14,6 +14,9 @@ namespace Brainrot_idle.view.GameCombat
         private bool _enDeplacement = false;
         private Random _rngGacha = new Random();
 
+        // Variable statique pour détecter le TOUT PREMIER lancement du menu de combat
+        private static bool estLePremierLancementCombat = true;
+
         public MenuPrincipalCombat()
         {
             InitializeComponent();
@@ -22,6 +25,20 @@ namespace Brainrot_idle.view.GameCombat
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            // Si c'est le tout premier lancement de la session
+            if (estLePremierLancementCombat)
+            {
+                MessageBox.Show(
+                    "Tung Tung Tung Sahur meurt d'envie de partir à l'aventure aide le à combattre de terribles ennemis durant cette aventure.\n",
+                    "Histoire du jeu",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
+
+                // Désactive l'affichage pour les prochaines fois
+                estLePremierLancementCombat = false;
+            }
+
             RestaurerArbre();
             RafraichirInterface();
         }
@@ -89,7 +106,6 @@ namespace Brainrot_idle.view.GameCombat
 
         #region ================== GESTION DES ONGLETS ==================
 
-        // Fonction centralisée pour changer d'onglet proprement sans répéter le code
         private void ActiverOnglet(Grid panneauActif, Border fondActif, TextBlock texteActif)
         {
             // 1. On cache tout
@@ -140,7 +156,6 @@ namespace Brainrot_idle.view.GameCombat
                     if (CarteScroll != null)
                     {
                         CarteScroll.UpdateLayout();
-                        // On s'assure que le Viewport n'est pas à 0 pour éviter une division absurde
                         double width = CarteScroll.ViewportWidth > 0 ? CarteScroll.ViewportWidth : 800;
                         double height = CarteScroll.ViewportHeight > 0 ? CarteScroll.ViewportHeight : 600;
 
@@ -329,8 +344,6 @@ namespace Brainrot_idle.view.GameCombat
             }
         }
 
-
-
         private void Btntralala_Click(object sender, RoutedEventArgs e)
         {
             if (SauvegardeJoueur.Lvltungtungsahur == 0) return;
@@ -441,12 +454,11 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnGigaChad_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlSigmaAura == 0) return; // Dépend de Sigma Aura
+            if (SauvegardeJoueur.LvlSigmaAura == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlGigaChad == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                // La stat (atk + def/2) est calculée dynamiquement dans Personnage.cs
                 SauvegardeJoueur.LvlGigaChad++;
                 RestaurerArbre();
                 RafraichirInterface();
@@ -455,7 +467,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnPecsChad_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlGigaChad == 0) return; // Dépend de Giga Chad
+            if (SauvegardeJoueur.LvlGigaChad == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlPecsChad == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -469,7 +481,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnLombaireChad_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlGigaChad == 0) return; // Dépend de Giga Chad
+            if (SauvegardeJoueur.LvlGigaChad == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlLombaireChad == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -483,7 +495,7 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnTricepsChad_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlGigaChad == 0) return; // Dépend de Giga Chad
+            if (SauvegardeJoueur.LvlGigaChad == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlTricepsChad == 0 && SauvegardeJoueur.Pierres >= cout)
             {
@@ -497,12 +509,11 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnCorpGigachad_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlPecsChad == 0) return; // Dépend de Pecs Chad
+            if (SauvegardeJoueur.LvlPecsChad == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlCorpGigachad == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                // Le passif (+30% def) est calculé dynamiquement dans Personnage.cs
                 SauvegardeJoueur.LvlCorpGigachad++;
                 RestaurerArbre();
                 RafraichirInterface();
@@ -511,12 +522,11 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnMegaChad_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlLombaireChad == 0) return; // Dépend de Lombaire Chad
+            if (SauvegardeJoueur.LvlLombaireChad == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlMegaChad == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                // La stat (atk + def/1.5) est calculée dynamiquement dans Personnage.cs
                 SauvegardeJoueur.LvlMegaChad++;
                 RestaurerArbre();
                 RafraichirInterface();
@@ -525,12 +535,11 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnMuscleGigaChad_Click(object sender, RoutedEventArgs e)
         {
-            if (SauvegardeJoueur.LvlTricepsChad == 0) return; // Dépend de Triceps Chad
+            if (SauvegardeJoueur.LvlTricepsChad == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlMuscleGigaChad == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                // Le passif est calculé dynamiquement dans Personnage.cs
                 SauvegardeJoueur.LvlMuscleGigaChad++;
                 RestaurerArbre();
                 RafraichirInterface();
@@ -539,7 +548,6 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnQuadricepsChad_Click(object sender, RoutedEventArgs e)
         {
-            // Dépend de Corp de Gigachad OU Mega Chad
             if (SauvegardeJoueur.LvlCorpGigachad == 0 || SauvegardeJoueur.LvlMegaChad == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlQuadricepsChad == 0 && SauvegardeJoueur.Pierres >= cout)
@@ -554,7 +562,6 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnAbdoChad_Click(object sender, RoutedEventArgs e)
         {
-            // Dépend de Mega Chad OU Muscle Giga Chad
             if (SauvegardeJoueur.LvlMegaChad == 0 || SauvegardeJoueur.LvlMuscleGigaChad == 0) return;
             int cout = 1;
             if (SauvegardeJoueur.LvlAbdoChad == 0 && SauvegardeJoueur.Pierres >= cout)
@@ -569,13 +576,11 @@ namespace Brainrot_idle.view.GameCombat
 
         private void BtnChadUltime_Click(object sender, RoutedEventArgs e)
         {
-            // Dépend de Quadriceps Chad OU Abdo Chad
             if (SauvegardeJoueur.LvlQuadricepsChad == 0 || SauvegardeJoueur.LvlAbdoChad == 0) return;
             int cout = 5;
             if (SauvegardeJoueur.LvlChadUltime == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
-                // Le passif (x3) est calculé dynamiquement dans Personnage.cs
                 SauvegardeJoueur.LvlChadUltime++;
                 RestaurerArbre();
                 RafraichirInterface();
@@ -585,6 +590,7 @@ namespace Brainrot_idle.view.GameCombat
         #endregion
 
         #endregion
+
         #region ================== SYSTÈME DE GACHA ==================
 
         private void BtnOuvrirCommun_Click(object sender, RoutedEventArgs e)

@@ -23,6 +23,9 @@ namespace Brainrot_idle.view
         // Nouvelle variable pour suivre le score
         private int score = 0;
 
+        // Variable statique pour détecter le TOUT PREMIER lancement de l'application
+        private static bool estLePremierLancementGlobal = true;
+
         public Snake()
         {
             InitializeComponent();
@@ -40,8 +43,25 @@ namespace Brainrot_idle.view
 
         private void Snake_Loaded(object sender, RoutedEventArgs e)
         {
+            // Si c'est la première fois qu'on ouvre la page de toute la session
+            if (estLePremierLancementGlobal)
+            {
+                // Affiche les règles du jeu avant de démarrer
+                MessageBox.Show(
+                "Crocodilo Bombardilo meurt de faim et aimerait manger des pommes pour se rassasier.\n" +
+                "Récupère le plus de pommes pour pouvoir augmenter sa productivité !",
+                "histoire du jeu",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information
+);
+
+                // On passe la variable à false pour que la fenêtre ne revienne plus jamais
+                estLePremierLancementGlobal = false;
+            }
+
             DemarrerNouvellePartie();
         }
+
         private void Snake_Unloaded(object sender, RoutedEventArgs e)
         {
             timerJeu.Stop();
@@ -173,7 +193,6 @@ namespace Brainrot_idle.view
 
         private void AjouterMorceauSnake(double x, double y)
         {
-
             Rectangle morceau = new Rectangle
             {
                 Width = TailleCase,

@@ -41,6 +41,14 @@
             <Setter Property="Stroke" Value="#4D0099"/>
             <Setter Property="StrokeThickness" Value="4"/>
         </Style>
+
+        <Style x:Key="PriceLabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Cyan"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,5,0,0"/>
+        </Style>
     </Page.Resources>
 
     <Grid Background="#0A0410">
@@ -81,13 +89,17 @@
                                HorizontalAlignment="Center" Margin="0,4,0,0"/>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2" VerticalAlignment="Center" Width="200">
-                    <TextBlock x:Name="TexteNiveau" Text="Niveau : 1" FontWeight="Bold" Foreground="#00FF40" FontSize="14" HorizontalAlignment="Right"/>
-                    <Grid Margin="0,4,0,0">
-                        <ProgressBar x:Name="BarreXp" Height="10" Background="#0A0410" BorderBrush="#9D00FF" Foreground="#00FF40" Minimum="0"/>
-                        <TextBlock x:Name="TexteXp" Text="0 / 10 XP" FontSize="10" FontWeight="Bold" Foreground="#D0C0E0" HorizontalAlignment="Right" Margin="0,-14,0,0"/>
-                    </Grid>
-                </StackPanel>
+                <Grid Grid.Column="2" VerticalAlignment="Center" Width="220">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" x:Name="TexteNiveau" Text="Niveau : 1" FontWeight="Bold" Foreground="#00FF40" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                    <TextBlock Grid.Row="0" x:Name="TexteXp" Text="0 / 10 XP" FontSize="10" FontWeight="Bold" Foreground="#D0C0E0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
+
+                    <ProgressBar Grid.Row="1" x:Name="BarreXp" Height="8" Background="#0A0410" BorderBrush="#9D00FF" Foreground="#00FF40" Minimum="0" Margin="0,4,0,0"/>
+                </Grid>
             </Grid>
         </Border>
 
@@ -109,65 +121,55 @@
                     <Line Style="{StaticResource TreeLineStyle}" X1="500" Y1="395" X2="500" Y2="545"/>
                     <Line Style="{StaticResource TreeLineStyle}" X1="770" Y1="395" X2="500" Y2="545"/>
 
-                    <Button Content="Apprenti" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="300" Canvas.Top="50"
-                            ToolTip="Génère 1 point/sec automatiquement."
-                            Click="Apprenti_Click"/>
+                    <StackPanel Canvas.Left="302.5" Canvas.Top="47.5" Width="95">
+                        <Button x:Name="BtnApprenti" Content="Apprenti" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="multiplicateur de 50%" Click="Apprenti_Click"/>
+                        <TextBlock x:Name="LblPrixApprenti" Text="Prix : 1 Pt" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Cliqueur" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="600" Canvas.Top="50"
-                            ToolTip="Améliore l'efficacité globale de 10%."
-                            Click="Cliqueur_Click"/>
+                    <StackPanel Canvas.Left="602.5" Canvas.Top="47.5" Width="95">
+                        <Button x:Name="BtnCliqueur" Content="Cliqueur" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Valeur clique x1.5" Click="Cliqueur_Click"/>
+                        <TextBlock x:Name="LblPrixCliqueur" Text="Prix : 1 Pt" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Jeu de combat" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="150" Canvas.Top="200"
-                            ToolTip="Débloque le multiplicateur x2 sur les gains."
-                            Click="JeuDeCombat_Click"/>
+                    <StackPanel Canvas.Left="152.5" Canvas.Top="197.5" Width="95">
+                        <Button Content="Jeu de combat" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Débloque le jeu de combat" Click="JeuDeCombat_Click"/>
+                        <TextBlock x:Name="LblPrixCombat" Text="Prix : 2 Pts" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Jeu 3" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="320" Canvas.Top="200"
-                            ToolTip="Réduit le coût des prochaines améliorations."
-                            Click="Jeu3_Click"/>
+                    <StackPanel Canvas.Left="322.5" Canvas.Top="197.5" Width="95">
+                        <Button Content="morpion" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Débloque le jeu morpion" Click="Morpion_Click"/>
+                        <TextBlock x:Name="LblPrixMorpion" Text="Prix : 2 Pts" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Jeu 4" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="580" Canvas.Top="200"
-                            ToolTip="Augmente la limite de stockage des points."
-                            Click="Jeu4_Click"/>
+                    <StackPanel Canvas.Left="582.5" Canvas.Top="197.5" Width="95">
+                        <Button Content="Jeu 4" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Débloque le jeu 4" Click="Jeu4_Click"/>
+                        <TextBlock x:Name="LblPrixJeu4" Text="Prix : 2 Pts" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Jeu 5" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="750" Canvas.Top="200"
-                            ToolTip="Augmente la vitesse de production de 15%."
-                            Click="Jeu5_Click"/>
+                    <StackPanel Canvas.Left="752.5" Canvas.Top="197.5" Width="95">
+                        <Button Content="Jeu 5" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Débloque le jeu 5" Click="Jeu5_Click"/>
+                        <TextBlock x:Name="LblPrixJeu5" Text="Prix : 2 Pts" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Jeu 6" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="180" Canvas.Top="350"
-                            ToolTip="Multiplie les gains passifs par le nombre de compétences débloquées."
-                            Click="Jeu6_Click"/>
+                    <StackPanel Canvas.Left="182.5" Canvas.Top="347.5" Width="95">
+                        <Button Content="Jeu 6" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Débloque le jeu 6" Click="Jeu6_Click"/>
+                        <TextBlock x:Name="LblPrixJeu6" Text="Prix : 3 Pts" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Multiplicateur" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="450" Canvas.Top="350"
-                            ToolTip="Fusionne les bonus de Stratégie et Gestion (+25%)."
-                            Click="Multiplicateur_Click"/>
+                    <StackPanel Canvas.Left="452.5" Canvas.Top="347.5" Width="95">
+                        <Button Content="Jeu 7" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Débloque le jeu 7" Click="Jeu7_Click"/>
+                        <TextBlock x:Name="LblPrixJeu7" Text="Prix : 3 Pts" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Boost 1" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="720" Canvas.Top="350"
-                            ToolTip="Achète automatiquement les améliorations les moins chères."
-                            Click="Boost1_Click"/>
+                    <StackPanel Canvas.Left="722.5" Canvas.Top="347.5" Width="95">
+                        <Button Content="Snake" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Débloque le Snake" Click="Snake_Click"/>
+                        <TextBlock x:Name="LblPrixSnake" Text="Prix : 3 Pts" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
-                    <Button Content="Boost 2" 
-                            Style="{StaticResource RoundSkillButtonStyle}" 
-                            Canvas.Left="450" Canvas.Top="500"
-                            ToolTip="Multiplie l'Aura globale par 5. Fin de l'arbre."
-                            Click="Boost2_Click"/>
+                    <StackPanel Canvas.Left="452.5" Canvas.Top="497.5" Width="95">
+                        <Button Content="Jeu 8" Style="{StaticResource RoundSkillButtonStyle}" ToolTip="Débloque le jeu 8" Click="Jeu8_Click"/>
+                        <TextBlock x:Name="LblPrixJeu8" Text="Prix : 5 Pts" Style="{StaticResource PriceLabelStyle}"/>
+                    </StackPanel>
 
                 </Canvas>
             </Border>

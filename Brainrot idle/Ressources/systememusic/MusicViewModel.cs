@@ -1,115 +1,118 @@
-﻿using System;
+﻿using Brainrot_idle.view;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
-using System.Windows.Media;
+using System.Runtime.CompilerServices;
 
-public class MusicViewModel : INotifyPropertyChanged
+namespace Brainrot_idle.Ressources.systememusic
 {
-    private MediaPlayer _player;
-    private Track _currentTrack;
-
-    public ObservableCollection<Track> Playlist { get; set; }
-
-    public Track CurrentTrack
+    public class MusicViewModel : INotifyPropertyChanged
     {
-        get => _currentTrack;
-        set { _currentTrack = value; OnPropertyChanged(nameof(CurrentTrack)); }
-    }
+        private Track _currentTrack;
 
-    public MusicViewModel()
-    {
-        _player = new MediaPlayer();
-        _player.MediaEnded += (s, e) => SkipNext();
+        public ObservableCollection<Track> Playlist { get; set; }
 
-        // Initialisation propre de ta Playlist
-        Playlist = new ObservableCollection<Track>
+        public Track CurrentTrack
         {
-            new Track {
-                Title = "Boss_Level_Overdrive",
-                FilePath = @"pack://application:,,,/Ressources/systememusic/music/Boss_Level_Overdrive.mp3",
-                CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Boss_Level_Overdrive.png"
-            },
-            new Track {
-                Title = "Level_Failure",
-                FilePath = @"pack://application:,,,/Ressources/systememusic/music/Level_Failure.mp3",
-                CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Level_Failure.png"
-            },
-            new Track {
-                Title = "Panic_Button_Joyride",
-                FilePath = @"pack://application:,,,/Ressources/systememusic/music/Panic_Button_Joyride.mp3",
-                CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Panic_Button_Joyride.png"
-            },
-            new Track {
-                Title = "Sahur_Overdrive",
-                FilePath = @"pack://application:,,,/Ressources/systememusic/music/Sahur_Overdrive.mp3",
-                CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Sahur_Overdrive.png"
-            },
-            new Track {
-                Title = "Sahur_Speedrun",
-                FilePath = @"pack://application:,,,/Ressources/systememusic/music/Sahur_Speedrun.mp3",
-                CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Sahur_Speedrun.png"
-            },
-            new Track {
-                Title = "Turbo_Candy_Rampage",
-                FilePath = @"pack://application:,,,/Ressources/systememusic/music/Turbo_Candy_Rampage.mp3",
-                CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Turbo_Candy_Rampage.png"
+            get => _currentTrack;
+            set
+            {
+                _currentTrack = value;
+                OnPropertyChanged();
             }
-        };
+        }
 
-        if (Playlist.Any())
+        public MusicViewModel()
         {
+            // On connecte la fin de piste au lecteur global
+            MainWindow.player.MediaEnded += (s, e) => SkipNext();
+
+            // Récupère le dossier où le jeu s'exécute
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            Playlist = new ObservableCollection<Track>
+            {
+                new Track {
+                    Title = "Boss_Level_Overdrive",
+                    FilePath = Path.Combine(baseDir, "Ressources", "systememusic", "music", "Boss_Level_Overdrive.mp3"),
+                    CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Boss_Level_Overdrive.png"
+                },
+                new Track {
+                    Title = "Level_Failure",
+                    FilePath = Path.Combine(baseDir, "Ressources", "systememusic", "music", "Level_Failure.mp3"),
+                    CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Level_Failure.png"
+                },
+                new Track {
+                    Title = "Panic_Button_Joyride",
+                    FilePath = Path.Combine(baseDir, "Ressources", "systememusic", "music", "Panic_Button_Joyride.mp3"),
+                    CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Panic_Button_Joyride.png"
+                },
+                new Track {
+                    Title = "Sahur_Overdrive",
+                    FilePath = Path.Combine(baseDir, "Ressources", "systememusic", "music", "Sahur_Overdrive.mp3"),
+                    CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Sahur_Overdrive.png"
+                },
+                new Track {
+                    Title = "Sahur_Speedrun",
+                    FilePath = Path.Combine(baseDir, "Ressources", "systememusic", "music", "Sahur_Speedrun.mp3"),
+                    CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Sahur_Speedrun.png"
+                },
+                new Track {
+                    Title = "Turbo_Candy_Rampage",
+                    FilePath = Path.Combine(baseDir, "Ressources", "systememusic", "music", "Turbo_Candy_Rampage.mp3"),
+                    CoverPath = "pack://application:,,,/Ressources/systememusic/cover/Turbo_Candy_Rampage.png"
+                }
+            };
+
             CurrentTrack = Playlist.First();
-            PlayCurrentTrack();
+            PlayTrack(CurrentTrack);
         }
-    }
 
-    public void PlayCurrentTrack()
-    {
-        if (CurrentTrack != null)
+        // C'est cette méthode qui manquait à ton fichier !
+        private void PlayTrack(Track track)
         {
-            _player.Open(new Uri(CurrentTrack.FilePath, UriKind.Absolute));
-            _player.Play();
+            if (track == null) return;
+
+            MainWindow.player.Stop();
+            MainWindow.player.Open(new Uri(track.FilePath, UriKind.Absolute));
+            MainWindow.player.Volume = MainWindow.CurrentVolume;
+            MainWindow.player.Play();
         }
-    }
 
-    public void SkipNext()
-    {
-        if (!Playlist.Any(t => t.IsSelected)) return;
-
-        int currentIndex = Playlist.IndexOf(CurrentTrack);
-        int nextIndex = (currentIndex + 1) % Playlist.Count;
-
-        while (!Playlist[nextIndex].IsSelected)
+        public void SkipNext()
         {
-            nextIndex = (nextIndex + 1) % Playlist.Count;
+            var activeTracks = Playlist.Where(t => t.IsSelected).ToList();
+            if (!activeTracks.Any()) return;
+
+            int index = activeTracks.IndexOf(CurrentTrack);
+            if (index == -1 || index >= activeTracks.Count - 1)
+                CurrentTrack = activeTracks.First();
+            else
+                CurrentTrack = activeTracks[index + 1];
+
+            PlayTrack(CurrentTrack);
         }
 
-        CurrentTrack = Playlist[nextIndex];
-        PlayCurrentTrack();
-    }
-
-    public void SkipPrevious()
-    {
-        if (!Playlist.Any(t => t.IsSelected)) return;
-
-        int currentIndex = Playlist.IndexOf(CurrentTrack);
-        int prevIndex = currentIndex - 1;
-        if (prevIndex < 0) prevIndex = Playlist.Count - 1;
-
-        while (!Playlist[prevIndex].IsSelected)
+        public void SkipPrevious()
         {
-            prevIndex--;
-            if (prevIndex < 0) prevIndex = Playlist.Count - 1;
+            var activeTracks = Playlist.Where(t => t.IsSelected).ToList();
+            if (!activeTracks.Any()) return;
+
+            int index = activeTracks.IndexOf(CurrentTrack);
+            if (index <= 0)
+                CurrentTrack = activeTracks.Last();
+            else
+                CurrentTrack = activeTracks[index - 1];
+
+            PlayTrack(CurrentTrack);
         }
 
-        CurrentTrack = Playlist[prevIndex];
-        PlayCurrentTrack();
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -1,14 +1,8 @@
-﻿using Brainrot_idle.view;
+﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Media;
-using Brainrot_idle.Ressources;
 using Brainrot_idle.view;
+using Brainrot_idle.Ressources.systememusic;
 
 namespace Brainrot_idle
 {
@@ -17,15 +11,12 @@ namespace Brainrot_idle
         // ==========================================
         // PROPRIÉTÉS ET GESTION DE LA MUSIQUE
         // ==========================================
-        public MusicViewModel GlobalMusicViewModel { get; set; }
+
+        // Rendue statique pour que MusicFrame puisse y accéder directement
+        public static MusicViewModel GlobalMusicSystem { get; set; }
+
         public static MediaPlayer player = new MediaPlayer();
         public static double CurrentVolume = 1.0;
-        private static MainWindow? instance;
-        private readonly Random random = new();
-        private List<string> toutesLesMusiques = new();
-        private string? musiqueActuelle;
-        private readonly Stack<string> historiqueMusiques = new();
-        public static event Action? MusicChanged;
 
         // ==========================================
         // PROPRIÉTÉS ET GESTION DU TUTORIEL
@@ -40,14 +31,16 @@ namespace Brainrot_idle
         {
             InitializeComponent();
 
-            // Initialisation du système de musique
-            GlobalMusicViewModel = new MusicViewModel();
-            instance = this;
+            // 1. Initialisation du volume global
+            player.Volume = CurrentVolume;
 
-            // Navigation initiale vers l'écran d'accueil
+            // 2. Initialisation du système de musique (la musique se lance ici)
+            GlobalMusicSystem = new MusicViewModel();
+
+            // 3. Navigation initiale vers l'écran d'accueil
             MainFrame.Navigate(new HomePage());
 
-            // Si le tutoriel est activé, on déclenche la première étape au chargement
+            // 4. Si le tutoriel est activé, on déclenche la première étape au chargement
             if (IsTutoActive)
             {
                 DeclencherEtapeTuto(1);

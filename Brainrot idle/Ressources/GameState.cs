@@ -97,6 +97,59 @@ namespace Brainrot_idle.Ressources
 
             // 4. Réinitialisation automatique des clics pour le calcul de la seconde suivante
             clicsCetteSeconde = 0;
+            VerifierSucces();
+        }
+
+        // ---------------- SYSTÈME DE SUCCÈS ----------------
+        public class Succes
+        {
+            public string? Id { get; set; }
+            public string? Titre { get; set; }
+            public string? Description { get; set; }
+            public bool EstDebloque { get; set; }
+            public double RecompensePoints { get; set; }
+
+            public bool EstSecret { get; set; }
+        }
+
+        // ---------------- SUCCÈS (ACHIEVEMENTS) ----------------
+        public static List<Succes> ListeSucces = new List<Succes>
+{
+    new Succes { Id = "CLIC_1", Titre = "Premier sang", Description = "Clique pour la première fois.", RecompensePoints = 10, EstDebloque = false, EstSecret = false },
+    new Succes { Id = "ECO_1", Titre = "Capitaliste", Description = "Accumule 1 000 AuraPoints.", RecompensePoints = 500, EstDebloque = false, EstSecret = false },
+    
+    new Succes { Id = "SNAKE_1", Titre = "Reptile", Description = "Atteins un score de 10 au Snake.", RecompensePoints = 200, EstDebloque = false, EstSecret = false },
+    
+    new Succes { Id = "COMBAT_1", Titre = "Guerrier", Description = "Gagne ton premier combat.", RecompensePoints = 1000, EstDebloque = false, EstSecret = false },
+    new Succes { Id = "LVL_10", Titre = "Niveau 10", Description = "Atteins le niveau 10.", RecompensePoints = 2000, EstDebloque = false, EstSecret = false },
+    
+    new Succes { Id = "SECRET_1", Titre = "Mode Brainrot", Description = "Accumule 1 000 000 points.", RecompensePoints = 50000, EstDebloque = false, EstSecret = true }
+};
+
+        private static void VerifierSucces()
+        {
+            foreach (var succes in ListeSucces)
+            {
+                if (succes.EstDebloque) continue;
+
+                switch (succes.Id)
+                {
+                    case "CLIC_1":
+                        if (points > 0) succes.EstDebloque = true;
+                        break;
+                    case "COMBAT_1":
+                        break;
+                    case "LVL_10":
+                        if (Niveau >= 10) succes.EstDebloque = true;
+                        break;
+                    case "SECRET_1":
+                        if (points >= 1000000) succes.EstDebloque = true;
+                        break;
+                        
+                }
+
+                if (succes.EstDebloque) points += succes.RecompensePoints;
+            }
         }
 
         // ---------------- Musique ----------------

@@ -290,6 +290,8 @@ namespace Brainrot_idle.view
 
         private void Parametre_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new ParametreFrame());
 
+        private void Achievements_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new AchievementsFrame());
+
     }
 
 }

@@ -31,7 +31,7 @@
             <Button Grid.Column="0" Content="Mini jeux" Click="MiniGames_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="1" Content="Arbre de compétences" Click="SkillTree_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="2" Content="Statistiques" Click="Statistiques_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
-            <Button Grid.Column="3" Content="Button 4" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
+            <Button Grid.Column="3" Content="Achievment" Click="Achievements_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="4" Content="Musiques" Click="Music_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
             <Button Grid.Column="5" Content="Paramètres" Click="Parametre_Button_Click" Margin="5" Height="45" Background="#1F102E" Foreground="#B6FF00" BorderBrush="#7A00FF" FontWeight="Bold"/>
         </Grid>

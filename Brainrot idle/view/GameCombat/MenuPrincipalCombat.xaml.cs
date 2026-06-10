@@ -418,7 +418,7 @@ namespace Brainrot_idle.view.GameCombat
         private void BtnSigmaAura_Click(object sender, RoutedEventArgs e)
         {
             if (SauvegardeJoueur.LvlMegaAura <= 1) return;
-            int cout = 5;
+            int cout = 3;
             if (SauvegardeJoueur.LvlSigmaAura == 0 && SauvegardeJoueur.Pierres >= cout)
             {
                 SauvegardeJoueur.Pierres -= cout;
@@ -832,6 +832,10 @@ namespace Brainrot_idle.view.GameCombat
             {
                 this.NavigationService.Navigate(new MonJeuCombatFrame(_monHero));
             }
+            else if(difficulte == "Moyen")
+            {
+                this.NavigationService.Navigate(new MonJeuCombatFrame2(_monHero));
+            }
             else
             {
                 MessageBox.Show("La difficulté " + difficulte + " n'est pas encore disponible !");
@@ -878,5 +882,10 @@ namespace Brainrot_idle.view.GameCombat
         }
 
         #endregion
+
+        private void ComboDifficulte_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
+using Brainrot_idle.Ressources;
 
 namespace Brainrot_idle.view
 {
@@ -9,12 +11,34 @@ namespace Brainrot_idle.view
     {
         private readonly Random random = new();
 
-        private int playerScore = 0;
+        // Variable statique pour détecter le TOUT PREMIER lancement de ce mini-jeu
+        private static bool estLePremierLancementMorpion = true;
 
         public MorpionFrame()
         {
             InitializeComponent();
+
+            // Événement déclenché à l'affichage de la page
+            Loaded += MorpionFrame_Loaded;
+
             UpdateScore();
+        }
+
+        private void MorpionFrame_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Si c'est le tout premier lancement de la session
+            if (estLePremierLancementMorpion)
+            {
+                MessageBox.Show(
+                    "Ballerina Capuccina t'a défié pour jouer au morpion montre lui qui est le plus fin stratège\n",
+                    "Comment Jouer ?",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
+
+                // Désactive l'affichage pour les prochaines fois
+                estLePremierLancementMorpion = false;
+            }
         }
 
         private void Cell_Click(object sender, RoutedEventArgs e)
@@ -29,7 +53,8 @@ namespace Brainrot_idle.view
 
             if (CheckWinner("X"))
             {
-                playerScore++;
+                // Mise à jour directe du score global dans le GameState
+                GameState.MeilleurScoreMorpion++;
                 UpdateScore();
 
                 MessageBox.Show("Vous avez gagné !");
@@ -179,7 +204,7 @@ namespace Brainrot_idle.view
 
         private void UpdateScore()
         {
-            ScoreText.Text = $"Victoires : {Brainrot_idle.Ressources.GameState.MeilleurScoreMorpion}";
+            ScoreText.Text = $"Victoires : {GameState.MeilleurScoreMorpion}";
         }
 
         private void ResetBoard()
@@ -195,6 +220,7 @@ namespace Brainrot_idle.view
 
             StatusText.Text = "Votre tour (X)";
         }
+
         private void Return_Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MiniGamesFrame());

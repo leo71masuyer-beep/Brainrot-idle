@@ -41,11 +41,34 @@ namespace Brainrot_idle.view
 
         private void MettreAjourInterfaceXP()
         {
+            // Mise à jour des textes principaux de l'en-tête
             TexteNiveau.Text = "Niveau : " + GameState.Niveau;
             TextePointsDispo.Text = "Points disponibles : " + GameState.PointsDeCompetence;
             BarreXp.Maximum = GameState.XpRequise;
             BarreXp.Value = GameState.XpActuelle;
             TexteXp.Text = $"{GameState.XpActuelle:0.0} / {GameState.XpRequise} XP";
+
+            // Mise à jour dynamique du coût textuel affiché dans l'arbre pour chaque bouton
+            // Rangée 1
+            BtnApprenti.Content = $"Apprenti\n(Niveau {GameState.NiveauApprenti})";
+            BtnCliqueur.Content = $"Cliqueur\n(Niveau {GameState.NiveauCliqueur})";
+
+            // Rangée 2 (Si débloqué, on affiche 'Acheté', sinon le prix)
+            LblPrixApprenti.Text = $"Prix : {GameState.NiveauApprenti + 1} Pt";
+            LblPrixCliqueur.Text = $"Prix : {GameState.NiveauCliqueur + 1} Pt";
+
+            LblPrixCombat.Text = GameState.IsCombatDebloque ? "Débloqué" : "Prix : 2 Pts";
+            LblPrixMorpion.Text = GameState.IsMorpionDebloque ? "Débloqué" : "Prix : 2 Pts";
+            LblPrixJeu4.Text = GameState.IsJeu4Debloque ? "Débloqué" : "Prix : 2 Pts";
+            LblPrixJeu5.Text = GameState.IsJeu5Debloque ? "Débloqué" : "Prix : 2 Pts";
+
+            // Rangée 3
+            LblPrixJeu6.Text = GameState.IsJeu6Debloque ? "Débloqué" : "Prix : 3 Pts";
+            LblPrixJeu7.Text = GameState.IsJeu7Debloque ? "Débloqué" : "Prix : 3 Pts";
+            LblPrixSnake.Text = GameState.IsSnakeDebloque ? "Débloqué" : "Prix : 3 Pts";
+
+            // Rangée 4
+            LblPrixJeu8.Text = GameState.IsJeu8Debloque ? "Débloqué" : "Prix : 5 Pts";
         }
 
         // ---------------- CLIC DE LA COMPÉTENCE APPRENTI ----------------
@@ -60,6 +83,10 @@ namespace Brainrot_idle.view
                 GameState.MultiplicateurXp *= 2.5;
 
                 MettreAjourInterfaceXP();
+            }
+            else
+            {
+                MessageBox.Show("Points de compétence insuffisants.");
             }
         }
 
@@ -76,16 +103,17 @@ namespace Brainrot_idle.view
 
                 MettreAjourInterfaceXP();
             }
+            else
+            {
+                MessageBox.Show("Points de compétence insuffisants.");
+            }
         }
 
-        // ---------------- SYSTÈME D'ACHAT GÉNÉRIQUE ----------------
+        // ---------------- SYSTÈME D'ACHAT GÉNÉRIQUE CONFIGURABLE ----------------
         /// <summary>
-        /// Tente d'acheter une compétence en consommant 1 point de compétence.
+        /// Tente d'acheter une compétence en consommant le nombre exact de points requis.
         /// </summary>
-        /// <param name="nomCompetence">Nom de la compétence affiché dans les messages.</param>
-        /// <param name="dejaAchete">Booléen du GameState indiquant si l'amélioration est possédée.</param>
-        /// <returns>True si l'achat a réussi, sinon False.</returns>
-        private bool TenterAchatCompetence(string nomCompetence, bool dejaAchete)
+        private bool TenterAchatCompetence(string nomCompetence, bool dejaAchete, int cout)
         {
             if (dejaAchete)
             {
@@ -93,51 +121,92 @@ namespace Brainrot_idle.view
                 return false;
             }
 
-            if (GameState.PointsDeCompetence > 0)
+            if (GameState.PointsDeCompetence >= cout)
             {
-                GameState.PointsDeCompetence -= 1;
+                GameState.PointsDeCompetence -= cout;
                 MettreAjourInterfaceXP();
                 MessageBox.Show($"{nomCompetence} débloqué avec succès !");
                 return true;
             }
             else
             {
-                MessageBox.Show("Points de compétence insuffisants.");
+                MessageBox.Show($"Points de compétence insuffisants (Il te faut {cout} Pts).");
                 return false;
             }
         }
 
         // ---------------- COMPÉTENCES LIÉES AUX MINI-JEUX ----------------
+
         private void JeuDeCombat_Click(object sender, RoutedEventArgs e)
         {
-            if (TenterAchatCompetence("Jeu de combat", GameState.IsCombatDebloque))
+            if (TenterAchatCompetence("Jeu de combat", GameState.IsCombatDebloque, 2))
             {
                 GameState.IsCombatDebloque = true;
+                MettreAjourInterfaceXP();
             }
         }
 
-        private void Jeu3_Click(object sender, RoutedEventArgs e)
+        private void Morpion_Click(object sender, RoutedEventArgs e)
         {
-            if (TenterAchatCompetence("Jeu Snake", GameState.IsSnakeDebloque))
+            if (TenterAchatCompetence("Jeu Morpion", GameState.IsMorpionDebloque, 2))
             {
-                GameState.IsSnakeDebloque = true;
+                GameState.IsMorpionDebloque = true;
+                MettreAjourInterfaceXP();
             }
         }
 
         private void Jeu4_Click(object sender, RoutedEventArgs e)
         {
-            if (TenterAchatCompetence("Jeu Morpion", GameState.IsMorpionDebloque))
+            if (TenterAchatCompetence("Jeu 4", GameState.IsJeu4Debloque, 2))
             {
-                GameState.IsMorpionDebloque = true;
+                GameState.IsJeu4Debloque = true;
+                MettreAjourInterfaceXP();
             }
         }
 
-        // ---------------- AUTRES COMPÉTENCES (PROVISOIRES) ----------------
-        // Ces boutons renvoient 'false' par défaut tant qu'ils n'ont pas de variables dédiées dans le GameState.
-        private void Jeu5_Click(object sender, RoutedEventArgs e) => TenterAchatCompetence("Jeu 5", false);
-        private void Jeu6_Click(object sender, RoutedEventArgs e) => TenterAchatCompetence("Jeu 6", false);
-        private void Multiplicateur_Click(object sender, RoutedEventArgs e) => TenterAchatCompetence("Multiplicateur", false);
-        private void Boost1_Click(object sender, RoutedEventArgs e) => TenterAchatCompetence("Boost 1", false);
-        private void Boost2_Click(object sender, RoutedEventArgs e) => TenterAchatCompetence("Boost 2", false);
+        private void Jeu5_Click(object sender, RoutedEventArgs e)
+        {
+            if (TenterAchatCompetence("Jeu 5", GameState.IsJeu5Debloque, 2))
+            {
+                GameState.IsJeu5Debloque = true;
+                MettreAjourInterfaceXP();
+            }
+        }
+
+        private void Jeu6_Click(object sender, RoutedEventArgs e)
+        {
+            if (TenterAchatCompetence("Jeu 6", GameState.IsJeu6Debloque, 3))
+            {
+                GameState.IsJeu6Debloque = true;
+                MettreAjourInterfaceXP();
+            }
+        }
+
+        private void Jeu7_Click(object sender, RoutedEventArgs e)
+        {
+            if (TenterAchatCompetence("Jeu 7", GameState.IsJeu7Debloque, 3))
+            {
+                GameState.IsJeu7Debloque = true;
+                MettreAjourInterfaceXP();
+            }
+        }
+
+        private void Snake_Click(object sender, RoutedEventArgs e)
+        {
+            if (TenterAchatCompetence("Jeu Snake", GameState.IsSnakeDebloque, 3))
+            {
+                GameState.IsSnakeDebloque = true;
+                MettreAjourInterfaceXP();
+            }
+        }
+
+        private void Jeu8_Click(object sender, RoutedEventArgs e)
+        {
+            if (TenterAchatCompetence("Jeu 8", GameState.IsJeu8Debloque, 5))
+            {
+                GameState.IsJeu8Debloque = true;
+                MettreAjourInterfaceXP();
+            }
+        }
     }
 }

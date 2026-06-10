@@ -70,22 +70,29 @@ namespace Brainrot_idle
             switch (etape)
             {
                 case 1:
-                    TutoTitleText.Text = "BIENVENUE (1/3)";
+                    TutoTitleText.Text = "BIENVENUE (1/4)";
                     TutoContentText.Text = "Voici ton espace de farm ! Clique sur le gros bouton central pour générer tes premiers points d'Aura 😈.";
                     TutoButton.Content = "C'est parti !";
                     TutoPopup.Visibility = Visibility.Visible;
                     break;
 
                 case 2:
-                    TutoTitleText.Text = "AMÉLIORATIONS (2/3)";
+                    TutoTitleText.Text = "AMÉLIORATIONS (2/4)";
                     TutoContentText.Text = "Bien joué ! Utilise ton Aura dans le panneau de droite pour acheter des améliorations (comme le Bananini 🍌) et générer de l'Aura automatiquement par seconde !";
                     TutoButton.Content = "Suivant";
                     TutoPopup.Visibility = Visibility.Visible;
                     break;
 
                 case 3:
-                    TutoTitleText.Text = "MINI-JEUX (3/3)";
+                    TutoTitleText.Text = "MINI-JEUX (3/4)";
                     TutoContentText.Text = "Clique sur le bouton 'Mini jeux' en bas pour jouer à des mini-jeux et augmente tes scores pour gagner des multiplicateurs et augmenter tes points par seconde !";
+                    TutoButton.Content = "Suivant";
+                    TutoPopup.Visibility = Visibility.Visible;
+                    break;
+
+                case 4:
+                    TutoTitleText.Text = "BUT (4/4)";
+                    TutoContentText.Text = "Essaie d'obtenir le plus de point possible pour aider Tung Tung Tung Sahur et ses amis";
                     TutoButton.Content = "Fin du tuto (Let's go)";
                     TutoPopup.Visibility = Visibility.Visible;
                     break;
@@ -104,7 +111,8 @@ namespace Brainrot_idle
         {
             currentTutoStep++;
 
-            if (currentTutoStep <= 3)
+            // CORRECTION : Changé 3 par 4 pour autoriser l'affichage de l'étape 4
+            if (currentTutoStep <= 4)
             {
                 DeclencherEtapeTuto(currentTutoStep);
             }

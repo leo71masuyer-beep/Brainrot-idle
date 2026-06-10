@@ -177,7 +177,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration1" Grid.Column="0" Content="Prix : 10" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/bananini.jpg" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration1" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 1" Click="Amelioration1_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration1" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Chimpanzini Bananini" Click="Amelioration1_Click"/>
                             <Label Grid.Column="3" Content="+1 Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration1" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -194,7 +194,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration2" Grid.Column="0" Content="Prix : 100" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/frulifrula.jpg" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration2" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 2" Click="Amelioration2_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration2" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="FruliFrula" Click="Amelioration2_Click"/>
                             <Label Grid.Column="3" Content="+10 Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration2" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -211,7 +211,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration3" Grid.Column="0" Content="Prix : 1K" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/larila.jpg" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration3" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 3" Click="Amelioration3_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration3" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Larili Larila" Click="Amelioration3_Click"/>
                             <Label Grid.Column="3" Content="+100 Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration3" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -228,7 +228,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration4" Grid.Column="0" Content="Prix : 10K" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/patapim.jpg" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration4" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 4" Click="Amelioration4_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration4" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Br Br Br Patapim" Click="Amelioration4_Click"/>
                             <Label Grid.Column="3" Content="+1K Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration4" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -245,7 +245,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration5" Grid.Column="0" Content="Prix : 100K" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/bombardilo.jpg" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration5" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 5" Click="Amelioration5_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration5" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Bombardilo Crocodilo" Click="Amelioration5_Click"/>
                             <Label Grid.Column="3" Content="+10K Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration5" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -262,7 +262,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration6" Grid.Column="0" Content="Prix : 1M" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/SigmaBoy.jpg" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration6" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 6" Click="Amelioration6_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration6" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="SigmaBoy" Click="Amelioration6_Click"/>
                             <Label Grid.Column="3" Content="+100K Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration6" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -279,7 +279,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration7" Grid.Column="0" Content="Prix : 10M" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/chadultime.jpg" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration7" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 7" Click="Amelioration7_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration7" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Chad ultime" Click="Amelioration7_Click"/>
                             <Label Grid.Column="3" Content="+1M Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration7" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -296,7 +296,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration8" Grid.Column="0" Content="Prix : 100M" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/gigachad.jpg" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration8" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 8" Click="Amelioration8_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration8" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Giga chad" Click="Amelioration8_Click"/>
                             <Label Grid.Column="3" Content="+10M Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration8" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -313,7 +313,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration9" Grid.Column="0" Content="Prix : 1T" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/megachad.png" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration9" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 9" Click="Amelioration9_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration9" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Mega chad" Click="Amelioration9_Click"/>
                             <Label Grid.Column="3" Content="+100M Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration9" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>
@@ -330,7 +330,7 @@
                             </Grid.ColumnDefinitions>
                             <Label x:Name="PrixAmelioration10" Grid.Column="0" Content="Prix : 10T" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Image Grid.Column="1" Source="/view/GameCombat/Ressources/alliance.png" Height="35" Width="35" Stretch="Uniform"/>
-                            <Button Grid.Column="2" x:Name="Amelioration10" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="Amélioration 10" Click="Amelioration10_Click"/>
+                            <Button Grid.Column="2" x:Name="Amelioration10" MinHeight="50" Margin="5" Background="#00B140" Foreground="White" Content="67 alliance" Click="Amelioration10_Click"/>
                             <Label Grid.Column="3" Content="+1B Aura/s" Foreground="#00FF66" VerticalAlignment="Center"/>
                             <Label x:Name="NbAmelioration10" Grid.Column="4" Content="Possédé : 0" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                         </Grid>

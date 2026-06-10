@@ -32,11 +32,15 @@ namespace Brainrot_idle.Ressources
         public static int MeilleurScoreSnake { get; set; } = 0;
         public static int MeilleurScoreMorpion { get; set; } = 0;
 
-
-        // États de déblocage des jeux
+        // États de déblocage de l'ensemble des jeux (Utilisés par MiniGamesFrame)
         public static bool IsSnakeDebloque { get; set; } = false;
         public static bool IsCombatDebloque { get; set; } = false;
         public static bool IsMorpionDebloque { get; set; } = false;
+        public static bool IsJeu4Debloque { get; set; } = false;
+        public static bool IsJeu5Debloque { get; set; } = false;
+        public static bool IsJeu6Debloque { get; set; } = false;
+        public static bool IsJeu7Debloque { get; set; } = false;
+        public static bool IsJeu8Debloque { get; set; } = false;
 
         // ---------------- SYSTÈME DE NIVEAUX DANS L'ARBRE ----------------
         public static double XpActuelle { get; set; } = 0;
@@ -78,7 +82,7 @@ namespace Brainrot_idle.Ressources
             double multiplicateurSnake = (MeilleurScoreSnake * 0.1);
 
             // 1. Calcul du multiplicateur lié au Bonus d'aura obtenu par le jeu GameCombat (No limit)
-            double multiplicateurGameCombat = (AuraBonus/100);
+            double multiplicateurGameCombat = (AuraBonus / 100);
 
             // 1. Somme de tout les multiplicateur
             double multiplicateurGlobal = 1.0 + multiplicateurSnake + multiplicateurGameCombat;

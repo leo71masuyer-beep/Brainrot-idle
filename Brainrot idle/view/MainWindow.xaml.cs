@@ -8,9 +8,7 @@ namespace Brainrot_idle
 {
     public partial class MainWindow : Window
     {
-        // ==========================================
         // PROPRIÉTÉS ET GESTION DE LA MUSIQUE
-        // ==========================================
 
         // Rendue statique pour que MusicFrame puisse y accéder directement
         public static MusicViewModel GlobalMusicSystem { get; set; }
@@ -18,22 +16,16 @@ namespace Brainrot_idle
         public static MediaPlayer player = new MediaPlayer();
         public static double CurrentVolume = 1.0;
 
-        // ==========================================
         // PROPRIÉTÉS ET GESTION DU TUTORIEL
-        // ==========================================
         public bool IsTutoActive { get; set; } = true; // Définir sur false pour désactiver complètement le tuto
         private int currentTutoStep = 1;
 
-        // ==========================================
         // CONSTRUCTEUR PRINCIPAL
-        // ==========================================
         public MainWindow()
         {
             InitializeComponent();
 
-            // ==========================================
             // CONFIGURATION PLEIN ÉCRAN
-            // ==========================================
             this.WindowStyle = WindowStyle.None;
             this.WindowState = WindowState.Maximized;
             this.ResizeMode = ResizeMode.NoResize;
@@ -54,9 +46,7 @@ namespace Brainrot_idle
             }
         }
 
-        // ==========================================
         // MÉTHODES DU TUTORIEL
-        // ==========================================
 
         /// <summary>
         /// Configure et affiche la fenêtre de tutoriel selon l'étape demandée.

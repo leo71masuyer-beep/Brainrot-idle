@@ -33,6 +33,7 @@
     <None Remove="view\GameCombat\Ressources\abdo.png" />
     <None Remove="view\GameCombat\Ressources\alliance.png" />
     <None Remove="view\GameCombat\Ressources\background\bar_background.png" />
+    <None Remove="view\GameCombat\Ressources\background\gigachad_background.png" />
     <None Remove="view\GameCombat\Ressources\bananini.jpg" />
     <None Remove="view\GameCombat\Ressources\bombardilo.jpg" />
     <None Remove="view\GameCombat\Ressources\CappuccinoAssassino_atk1.png" />
@@ -66,6 +67,10 @@
     <None Remove="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk2.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk3.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_idle.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\gigachad_atk1.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\gigachad_atk2.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\gigachad_atk3.png" />
+    <None Remove="view\GameCombat\Ressources\Sprites\gigachad_idle.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\heros_idle.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\tungtunggod_atk1.png" />
     <None Remove="view\GameCombat\Ressources\Sprites\tungtunggod_atk2.png" />
@@ -124,6 +129,7 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="view\GameCombat\Ressources\background\bar_background.png" />
+    <Resource Include="view\GameCombat\Ressources\background\gigachad_background.png" />
     <Resource Include="view\GameCombat\Ressources\bananini.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -188,6 +194,10 @@
     <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk2.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_atk3.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\CappuccinoAssassino_idle.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\gigachad_atk1.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\gigachad_atk2.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\gigachad_atk3.png" />
+    <Resource Include="view\GameCombat\Ressources\Sprites\gigachad_idle.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk2.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk3.png" />
     <Resource Include="view\GameCombat\Ressources\Sprites\heros_atk1.png" />

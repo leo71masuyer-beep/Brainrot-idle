@@ -7,16 +7,12 @@
         <!-- Arrière-plan -->
         <Image Source="pack://application:,,,/view/GameCombat/Ressources/background/gigachad_background.png" Stretch="UniformToFill"/>
         <Rectangle Fill="#40000000"/>
-        <!-- Légèrement éclairci pour mieux voir le fond -->
 
         <Grid Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <!-- S'adapte à la taille exacte des barres de vie -->
                 <RowDefinition Height="*"/>
-                <!-- Prend tout l'espace libre au milieu -->
                 <RowDefinition Height="Auto"/>
-                <!-- S'adapte à la taille exacte du menu du bas -->
             </Grid.RowDefinitions>
 
             <!-- LIGNE 0 : BARRES DE VIE -->
@@ -28,37 +24,38 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Héros -->
-                <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="350">
-                    <TextBlock x:Name="TxtNomHeros" Text="Tung Tung Sahur" Foreground="White" FontSize="22" FontWeight="Bold" FontFamily="Consolas" Margin="0,0,0,5"/>
-                    <ProgressBar x:Name="BarrePVHeros" Height="25" Foreground="#4CAF50" Background="#333333" Maximum="100" Value="79" BorderThickness="1" BorderBrush="#555"/>
-                    <TextBlock x:Name="TxtStatsHeros" Text="PV: 100 / 100" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="0,5,0,0"/>
+                <StackPanel Grid.Column="0" HorizontalAlignment="Left" Width="450">
+                    <TextBlock x:Name="TxtNomHeros" Text="Tung Tung Sahur" Foreground="White" FontSize="26" FontWeight="Bold" FontFamily="Consolas" Margin="0,0,0,8"/>
+                    <ProgressBar x:Name="BarrePVHeros" Height="35" Foreground="#4CAF50" Background="#333333" Maximum="100" Value="79" BorderThickness="1" BorderBrush="#555"/>
+                    <TextBlock x:Name="TxtStatsHeros" Text="PV: 79 / 100" Foreground="White" FontSize="20" FontFamily="Consolas" Margin="0,8,0,0"/>
                 </StackPanel>
 
                 <!-- VS -->
-                <TextBlock Grid.Column="1" Text="VS" Foreground="#FFD700" FontSize="36" FontWeight="Bold" FontFamily="Consolas" VerticalAlignment="Center" Margin="30,0"/>
+                <TextBlock Grid.Column="1" Text="VS" Foreground="#FFD700" FontSize="46" FontWeight="Bold" FontFamily="Consolas" VerticalAlignment="Center" Margin="40,0"/>
 
                 <!-- Ennemi -->
-                <StackPanel Grid.Column="2" HorizontalAlignment="Right" Width="350">
-                    <TextBlock x:Name="TxtNomEnnemi" Text="gigachad" Foreground="White" FontSize="22" FontWeight="Bold" HorizontalAlignment="Right" FontFamily="Consolas" Margin="0,0,0,5"/>
-                    <ProgressBar x:Name="BarrePVEnnemi" Height="25" Foreground="#F44336" Background="#333333" Maximum="1000" Value="978" FlowDirection="RightToLeft" BorderThickness="1" BorderBrush="#555"/>
-                    <TextBlock x:Name="TxtStatsEnnemi" Text="PV: 1000 / 1000" Foreground="White" FontSize="16" HorizontalAlignment="Right" FontFamily="Consolas" Margin="0,5,0,0"/>
+                <StackPanel Grid.Column="2" HorizontalAlignment="Right" Width="450">
+                    <TextBlock x:Name="TxtNomEnnemi" Text="gigachad" Foreground="White" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right" FontFamily="Consolas" Margin="0,0,0,8"/>
+                    <ProgressBar x:Name="BarrePVEnnemi" Height="35" Foreground="#F44336" Background="#333333" Maximum="1000" Value="978" FlowDirection="RightToLeft" BorderThickness="1" BorderBrush="#555"/>
+                    <TextBlock x:Name="TxtStatsEnnemi" Text="PV: 978 / 1000" Foreground="White" FontSize="20" HorizontalAlignment="Right" FontFamily="Consolas" Margin="0,8,0,0"/>
                 </StackPanel>
             </Grid>
 
             <!-- LIGNE 1 : PERSONNAGES -->
-            <!-- Le fond de cette ligne descend maintenant beaucoup plus bas sur l'image -->
             <Grid Grid.Row="1" Margin="20,0,20,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="ImgHeros" Grid.Column="0" Source="pack://application:,,,/view/GameCombat/Ressources/Sprites/heros_idle.png" 
-                       Stretch="Uniform" Height="300" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
-                <Image x:Name="ImgEnnemi" Grid.Column="1" Source="pack://application:,,,/view/GameCombat/Ressources/Sprites/gigachad_idle.png" 
-                       Stretch="Uniform" Height="350" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <Image x:Name="ImgHeros" Grid.Column="0" Source="pack://application:,,,/view/GameCombat/Ressources/Sprites/heros_idle.png" 
+                       Stretch="Uniform" Height="450" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="194,0,0,0"/>
+
+                <Image x:Name="ImgEnnemi" Grid.Column="1" Source="pack://application:,,,/view/GameCombat/Ressources/Sprites/lutin_basique.png" 
+                       Stretch="Uniform" Height="500" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,80"/>
             </Grid>
 
+            <!-- LIGNE 2 : INTERFACE DU BAS (RÉCOMPENSES & BOUTON) -->
             <Border Grid.Row="2" Background="#E60A0A0A" CornerRadius="10" Margin="0,15,0,0" BorderBrush="#44FFFFFF" BorderThickness="1">
                 <Grid Margin="25,20">
                     <Grid.ColumnDefinitions>

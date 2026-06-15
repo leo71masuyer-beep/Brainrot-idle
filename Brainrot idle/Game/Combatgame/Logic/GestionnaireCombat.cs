@@ -132,27 +132,27 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                 switch (vague)
                 {
                     case 1:
-                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 100, 5, 5, 5, 0, 0, 100, false, 20, 20));
+                        ennemisDeLaVague.Add(new Personnage("CappuccinoAssassino", 100, 5, 5, 5, 0, 0, 100, false, 35, 30));
                         break;
 
                     case 2:
-                        ennemisDeLaVague.Add(new Personnage("BallerinoLololo", 150, 8, 5, 5, 0, 0, 150, false, 30, 25));
+                        ennemisDeLaVague.Add(new Personnage("BallerinoLololo", 150, 8, 5, 5, 0, 0, 150, false, 40, 35));
                         break;
 
                     case 3:
-                        ennemisDeLaVague.Add(new Personnage("BobritoBandito", 300, 10, 2, 10, 0, 0, 300, false, 45, 40));
+                        ennemisDeLaVague.Add(new Personnage("BobritoBandito", 300, 10, 2, 10, 0, 0, 300, false, 55, 50));
                         break;
 
                     case 4:
-                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 125, 14, 20, 15, 0, 0, 125, false, 30, 35));
+                        ennemisDeLaVague.Add(new Personnage("BallerinaCappuccina", 125, 14, 20, 15, 0, 0, 125, false, 40, 55));
                         break;
 
                     case 5:
-                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 500, 26, 5, 10, 10, 15, 500, false, 168, 84));
+                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 500, 26, 5, 10, 10, 15, 500, false, 178, 94));
                         break;
 
                     default:
-                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 500, 26, 5, 10, 10, 15, 500, false, 168, 84));
+                        ennemisDeLaVague.Add(new Personnage($"tungtungGod", 500, 26, 5, 10, 10, 15, 500, false, 178, 94));
                         break;
                 }
             }
@@ -162,11 +162,13 @@ namespace MonJeuCombat.Games.CombatGame.Logic
                 {
                     //string nom, double pv, double atk, double def, double vit, int pourcentageCrit, int degCrit, double pvmax, bool EstJ, int orBase = 0, int expBase = 0
                     case 1:
-                        ennemisDeLaVague.Add(new Personnage("gigachad", 1000, 1, 1000, 10, 0, 0, 1000, false, 5, 5));
+                        ennemisDeLaVague.Add(new Personnage("GigaChad", 650, 35, 50, 5, 0, 0, 650, false, 225, 178));
                         break;
 
                     default:
-                        ennemisDeLaVague.Add(new Personnage($"Lutin Enragé", 150, 20, 8, 12, 10, 50, 150, false, 50, 50));
+                        AddEnnemisAleatoire(new Personnage($"FielonPhonk", 300, 20, 8, 12, 0, 0, 300, false, 50, 50),
+                                            new Personnage($"GoldChad", 1000, 200, 0, 1, 0, 0, 1000, false, 2500, 0),
+                                            new Personnage($"MolossePhonk", 10000, 50, 8, 12, 10, 50, 10000, false, 10000, 5000));
                         break;
                 }
             }

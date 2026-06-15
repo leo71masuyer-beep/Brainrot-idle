@@ -67,7 +67,8 @@
                         <TextBlock Text="RÉCOMPENSES :" Foreground="#A59C90" FontSize="22" FontFamily="Consolas" VerticalAlignment="Center"/>
                         <TextBlock x:Name="TxtOrGagne" Text="0 Or" Foreground="#FFD700" FontSize="26" FontWeight="Bold" FontFamily="Consolas" Margin="30,0,0,0" VerticalAlignment="Center"/>
                         <TextBlock x:Name="TxtExpGagne" Text="0 Exp" Foreground="#4CAF50" FontSize="26" FontWeight="Bold" FontFamily="Consolas" Margin="30,0,0,0" VerticalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
+                    </Viewbox>
 
                     <Button Grid.Column="1" x:Name="BtnArreterCombat" Content="FUIR &amp; LOOTER" 
                             Background="#990000" Foreground="White" FontSize="22" FontWeight="Bold" FontFamily="Consolas"

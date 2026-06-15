@@ -32,7 +32,8 @@
                     <TextBlock x:Name="TxtNomHeros" Text="Tung Tung Sahur" Foreground="White" FontSize="22" FontWeight="Bold" FontFamily="Consolas" Margin="0,0,0,5"/>
                     <ProgressBar x:Name="BarrePVHeros" Height="25" Foreground="#4CAF50" Background="#333333" Maximum="100" Value="79" BorderThickness="1" BorderBrush="#555"/>
                     <TextBlock x:Name="TxtStatsHeros" Text="PV: 100 / 100" Foreground="White" FontSize="16" FontFamily="Consolas" Margin="0,5,0,0"/>
-                </StackPanel>
+                    </StackPanel>
+                </Viewbox>
 
                 <!-- VS -->
                 <TextBlock Grid.Column="1" Text="VS" Foreground="#FFD700" FontSize="36" FontWeight="Bold" FontFamily="Consolas" VerticalAlignment="Center" Margin="30,0"/>
@@ -42,7 +43,8 @@
                     <TextBlock x:Name="TxtNomEnnemi" Text="gigachad" Foreground="White" FontSize="22" FontWeight="Bold" HorizontalAlignment="Right" FontFamily="Consolas" Margin="0,0,0,5"/>
                     <ProgressBar x:Name="BarrePVEnnemi" Height="25" Foreground="#F44336" Background="#333333" Maximum="1000" Value="978" FlowDirection="RightToLeft" BorderThickness="1" BorderBrush="#555"/>
                     <TextBlock x:Name="TxtStatsEnnemi" Text="PV: 1000 / 1000" Foreground="White" FontSize="16" HorizontalAlignment="Right" FontFamily="Consolas" Margin="0,5,0,0"/>
-                </StackPanel>
+                    </StackPanel>
+                </Viewbox>
             </Grid>
 
             <!-- LIGNE 1 : PERSONNAGES -->
@@ -70,7 +72,8 @@
                         <TextBlock Text="RÉCOMPENSES :" Foreground="#A59C90" FontSize="22" FontFamily="Consolas" VerticalAlignment="Center"/>
                         <TextBlock x:Name="TxtOrGagne" Text="0 Or" Foreground="#FFD700" FontSize="26" FontWeight="Bold" FontFamily="Consolas" Margin="30,0,0,0" VerticalAlignment="Center"/>
                         <TextBlock x:Name="TxtExpGagne" Text="0 Exp" Foreground="#4CAF50" FontSize="26" FontWeight="Bold" FontFamily="Consolas" Margin="30,0,0,0" VerticalAlignment="Center"/>
-                    </StackPanel>
+                        </StackPanel>
+                    </Viewbox>
 
                     <Button Grid.Column="1" x:Name="BtnArreterCombat" Content="FUIR &amp; LOOTER" 
                             Background="#990000" Foreground="White" FontSize="22" FontWeight="Bold" FontFamily="Consolas"

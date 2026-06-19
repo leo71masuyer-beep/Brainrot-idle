@@ -6,6 +6,7 @@ namespace Brainrot_idle.Ressources
 {
     public static class GameState
     {
+
         // ---------------- DONNÉES DU JOUEUR ----------------
         public static double points = 0;
         public static double auraParSeconde = 0;
@@ -51,7 +52,6 @@ namespace Brainrot_idle.Ressources
         // ---------------- STATS DES COMPÉTENCES DÉBLOQUÉES ----------------
         public static int NiveauApprenti { get; set; } = 0;
         public static double MultiplicateurXp { get; set; } = 1.0; // Initialisé à 1.0 (très important !)
-
         public static int NiveauCliqueur { get; set; } = 0;
         public static double MultiplicateurAuraParClic { get; set; } = 1.0; // Initialisé à 1.0 (très important !)
 
@@ -61,18 +61,34 @@ namespace Brainrot_idle.Ressources
 
         // ---------------- MOTEUR IDLE CORE (BACKEND) ----------------
         private static DispatcherTimer globalTimer;
+        private static DispatcherTimer autoSaveTimer;
 
         /// <summary>
         /// Initialise le cœur de calcul de l'économie. Lancé automatiquement une fois par App.xaml.cs.
         /// </summary>
         public static void InitialiserTimerGlobal()
         {
+            // Timer principal du jeu
             if (globalTimer == null)
             {
                 globalTimer = new DispatcherTimer();
                 globalTimer.Interval = TimeSpan.FromSeconds(1);
                 globalTimer.Tick += GlobalTimer_Tick;
                 globalTimer.Start();
+            }
+
+            // Sauvegarde automatique toutes les 30 secondes
+            if (autoSaveTimer == null)
+            {
+                autoSaveTimer = new DispatcherTimer();
+                autoSaveTimer.Interval = TimeSpan.FromSeconds(30);
+
+                autoSaveTimer.Tick += (sender, e) =>
+                {
+                    SaveManager.Save();
+                };
+
+                autoSaveTimer.Start();
             }
         }
 

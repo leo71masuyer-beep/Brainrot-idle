@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Brainrot_idle.Ressources;
+using Brainrot_idle.Ressources.systememusic;
+using Brainrot_idle.view;
+using System;
 using System.Windows;
 using System.Windows.Media;
-using Brainrot_idle.view;
-using Brainrot_idle.Ressources.systememusic;
 
 namespace Brainrot_idle
 {
@@ -44,6 +45,7 @@ namespace Brainrot_idle
             {
                 DeclencherEtapeTuto(1);
             }
+            SaveManager.Load();
         }
 
         // MÉTHODES DU TUTORIEL
@@ -111,6 +113,12 @@ namespace Brainrot_idle
                 // Fin du tutoriel, on cache la fenêtre
                 TutoPopup.Visibility = Visibility.Collapsed;
             }
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            SaveManager.Save();
+
+            base.OnClosed(e);
         }
     }
 }

@@ -603,7 +603,7 @@
                         </ScrollViewer>
                     </Grid>
 
-                    <Grid x:Name="PanneauStats" Visibility="Collapsed" Background="Transparent">
+                    <Grid x:Name="PanneauStats" Visibility="Visible" Background="Transparent">
                         <Border Background="#1A0A2E" BorderBrush="#9D00FF" BorderThickness="3" CornerRadius="20" 
                                 HorizontalAlignment="Center" VerticalAlignment="Center" Padding="50">
                             <StackPanel>

@@ -22,8 +22,6 @@ namespace Brainrot_idle.view
             uiTimer.Interval = TimeSpan.FromMilliseconds(200); // 5 fois par seconde pour une fluidité maximale
             uiTimer.Tick += UiTimer_Tick;
             uiTimer.Start(); // Lance le rafraîchissement
-            // NOTE : L'événement 'this.Unloaded += HomePage_Unloaded;' a été supprimé
-            // pour empêcher le timer de s'éteindre lors de la navigation vers le Skill Tree.
 
         }
 
@@ -33,7 +31,7 @@ namespace Brainrot_idle.view
             UpdateUI();
         }
 
-        // ---------------- REFRESH DE L'UI (BOUCLE) ----------------
+        // ---------------- REFRESH DE L'UI ----------------
         private void UiTimer_Tick(object sender, EventArgs e)
         {
             // Le timer se contente de demander la mise à jour des éléments visuels
@@ -136,5 +134,8 @@ namespace Brainrot_idle.view
         private void Statistiques_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new StatistiquesFrames());
         private void Music_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MusicFrame());
         private void Parametre_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new ParametreFrame());
+
+        private void Achievements_Button_Click(object sender, RoutedEventArgs e) => NavigationService.Navigate(new AchievementsFrame());
+
     }
 }

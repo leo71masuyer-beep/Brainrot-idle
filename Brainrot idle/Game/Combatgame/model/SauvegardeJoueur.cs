@@ -73,7 +73,7 @@ namespace Brainrot_idle.Game.Combatgame.model
 
         public static int CalculerXpRequise(int niveau)
         {
-            return (int)(50 * Math.Pow(1.5, niveau - 1));
+            return (int)(50 * Math.Pow(1.1, niveau - 1));
         }
 
         public static void AjouterExp(int montantGagne)
@@ -85,7 +85,7 @@ namespace Brainrot_idle.Game.Combatgame.model
             {
                 ExpTotal -= xpRequise;
                 NiveauHeros++;
-                if (NiveauHeros % 5 == 0) Pierres += 3;
+                if (NiveauHeros % 5 == 0) Pierres += 5;
                 else Pierres += 1;
                 xpRequise = CalculerXpRequise(NiveauHeros);
             }

@@ -28,7 +28,7 @@ namespace Brainrot_idle.view
         /// </summary>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // 1. Visuel pour le Snake (Jeu 1)
+            // 1. Visuel pour le jeu 1s
             if (GameState.IsSnakeDebloque)
             {
                 SnakeButton.Opacity = 1.0;
@@ -40,7 +40,7 @@ namespace Brainrot_idle.view
                 SnakeLockImage.Visibility = Visibility.Visible;
             }
 
-            // 2. Visuel pour le Combat (Jeu 2)
+            // 2. Visuel pour le jeu 2
             if (GameState.IsCombatDebloque)
             {
                 CombatButton.Opacity = 1.0;
@@ -52,7 +52,7 @@ namespace Brainrot_idle.view
                 CombatLockImage.Visibility = Visibility.Visible;
             }
 
-            // 3. Visuel pour le Morpion (Jeu 3)
+            // 3. Visuel pour le jeu 3
             if (GameState.IsMorpionDebloque)
             {
                 MorpionButton.Opacity = 1.0;
@@ -125,9 +125,7 @@ namespace Brainrot_idle.view
             }
         }
 
-        // ==========================================
         // ÉVÉNEMENTS DE CLIC DES MINI-JEUX
-        // ==========================================
 
         private void Snake_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -169,7 +167,6 @@ namespace Brainrot_idle.view
         {
             if (GameState.IsJeu4Debloque)
             {
-                // Remplacer 'PageJeu4' par le nom de ta classe de jeu réelle quand elle sera créée
                 // NavigationService.Navigate(new PageJeu4()); 
             }
             else
